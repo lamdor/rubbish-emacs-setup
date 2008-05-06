@@ -3,5 +3,5 @@ auto-save-list/*
 backups/*
 semantic.cache
 *~
-#*#
+\#*#
 

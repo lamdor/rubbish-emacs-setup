@@ -75,6 +75,13 @@
 		 (flymake-mode))
 	     ))
 
+;; Erlang Support
+(add-to-list 'load-path "/Users/luke/.emacs.d/site-lisp/erlang/")
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+
+
 ;; Setup Environmental Variables
 (if window-system (ns-grabenv "/bin/bash" 
 			      "source ~/.bash_login"))

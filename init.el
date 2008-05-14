@@ -35,6 +35,7 @@
 (require 'ruby-style)
 (require 'autotest)
 (require 'tail)
+(require 'keywiz)
 (require 'unit-test)
 
 ;; Key Bindings

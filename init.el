@@ -24,6 +24,12 @@
 (require 'git-blame)
 (add-to-list 'vc-handled-backends 'GIT)
 
+;; yasnippet
+(add-to-list 'load-path "/Users/luke/.emacs.d/site-lisp/yasnippet-0.5.4/")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "/Users/luke/.emacs.d/site-lisp/yasnippet-0.5.4/snippets")
+
 ;; Misc Files
 (add-to-list 'load-path "/Users/luke/.emacs.d/el/")
 (require 'snippet)

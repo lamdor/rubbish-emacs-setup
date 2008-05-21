@@ -1,37 +1,40 @@
+(defvar emacs-root (concat (getenv "HOME") "/.emacs.d/"))
+
+
 ;; Dependecies
 
 ;; eeio
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/eieio"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/eieio"))
 (require 'eieio)
 
 ;; Semantic
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/semantic/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/semantic/"))
 (setq semantic-load-turn-everything-on t)
 (require 'semantic-load)
 
 ;; speedbar
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/speedbar/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/speedbar/"))
 (require 'speedbar)
 
 ;; ECB (Emacs Code Browser)
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/ecb-2.32/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/ecb-2.32/"))
 (require 'ecb-autoloads)
 
 ;; Git Integration
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/git/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/git/"))
 (require 'git)
 (require 'vc-git)
 (require 'git-blame)
 (add-to-list 'vc-handled-backends 'GIT)
 
 ;; yasnippet
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/yasnippet-0.5.4/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/yasnippet-0.5.4/"))
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat (getenv "HOME") "/.emacs.d/site-lisp/yasnippet-0.5.4/snippets")
+(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets")
 
 ;; Misc Files
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/el/"))
+(add-to-list 'load-path (concat emacs-root "el/"))
 (require 'snippet)
 (require 'find-recursive)
 (require 'ruby-electric)
@@ -87,7 +90,7 @@
 	     ))
 
 ;; Erlang Support
-(add-to-list 'load-path (concat (getenv "HOME") "/.emacs.d/site-lisp/erlang/"))
+(add-to-list 'load-path (concat emacs-root "site-lisp/erlang/"))
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)

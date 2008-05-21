@@ -44,6 +44,10 @@
 (require 'keywiz)
 (require 'unit-test)
 
+;; ido-mode
+(require 'ido)
+(ido-mode t)
+
 ;; Key Bindings
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-k" 'kill-region)

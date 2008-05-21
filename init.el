@@ -31,7 +31,7 @@
 (add-to-list 'load-path (concat emacs-root "site-lisp/yasnippet-0.5.4/"))
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets")
+(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets/"))
 
 ;; Misc Files
 (add-to-list 'load-path (concat emacs-root "el/"))
@@ -97,15 +97,13 @@
 
 
 ;; Setup Environmental Variables
-(if window-system (ns-grabenv "/bin/bash" 
-			      "source ~/.bash_login"))
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)
 
 ;; Put backup files in a specific dir
 (setq make-backup-files t)
 (setq version-control t)
-(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/")))))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
 
 ;; Look Pretty
 (global-hl-line-mode 1)

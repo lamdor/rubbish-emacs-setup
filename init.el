@@ -96,4 +96,7 @@
 
 ;; Look Pretty
 (global-hl-line-mode 1)
+
+;; Miscallaneous Things
 (mouse-wheel-mode t)
+(put 'downcase-region 'disabled nil)

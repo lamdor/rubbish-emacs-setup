@@ -1,40 +1,44 @@
+;;;; Luke's .emacs file
+
 (defvar emacs-root (concat (getenv "HOME") "/.emacs.d/"))
 
+(defun add-path (p)
+  (add-to-list 'load-path (concat emacs-root p)))
 
 ;; Dependecies
 
 ;; eeio
-(add-to-list 'load-path (concat emacs-root "site-lisp/eieio"))
+(add-path "site-lisp/eieio")
 (require 'eieio)
 
 ;; Semantic
-(add-to-list 'load-path (concat emacs-root "site-lisp/semantic/"))
+(add-path "site-lisp/semantic/")
 (setq semantic-load-turn-everything-on t)
 (require 'semantic-load)
 
 ;; speedbar
-(add-to-list 'load-path (concat emacs-root "site-lisp/speedbar/"))
+(add-path "site-lisp/speedbar/")
 (require 'speedbar)
 
 ;; ECB (Emacs Code Browser)
-(add-to-list 'load-path (concat emacs-root "site-lisp/ecb-2.32/"))
+(add-path "site-lisp/ecb-2.32/")
 (require 'ecb-autoloads)
 
 ;; Git Integration
-(add-to-list 'load-path (concat emacs-root "site-lisp/git/"))
+(add-path "site-lisp/git/")
 (require 'git)
 (require 'vc-git)
 (require 'git-blame)
 (add-to-list 'vc-handled-backends 'GIT)
 
 ;; yasnippet
-(add-to-list 'load-path (concat emacs-root "site-lisp/yasnippet-0.5.4/"))
+(add-path "site-lisp/yasnippet-0.5.4/")
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets/"))
 
 ;; Misc Files
-(add-to-list 'load-path (concat emacs-root "el/"))
+(add-path "el/")
 (require 'snippet)
 (require 'find-recursive)
 (require 'ruby-electric)
@@ -90,7 +94,7 @@
 	     ))
 
 ;; Erlang Support
-(add-to-list 'load-path (concat emacs-root "site-lisp/erlang/"))
+(add-path "site-lisp/erlang/")
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)

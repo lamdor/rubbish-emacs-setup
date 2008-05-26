@@ -1,9 +1,11 @@
+
 #*#
 *~
 .DS_Store
 /auto-save-list
 /backups
+/*.elc
+/**/*.elc
 auto-save-list/*
 backups/*
 semantic.cache
-

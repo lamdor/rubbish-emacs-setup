@@ -19,4 +19,5 @@
 
 ;; Miscallaneous Things
 (mouse-wheel-mode t)
+(setq-default show-trailing-whitespace t)
 (put 'downcase-region 'disabled nil)

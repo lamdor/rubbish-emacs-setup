@@ -9,4 +9,5 @@
 (load "dependencies.el")
 (load "customizations.el")
 (load "ruby.el")
+(load "ecb.el")
 (load "erlang.el")

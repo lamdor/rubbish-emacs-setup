@@ -11,10 +11,6 @@
 (add-path "site-lisp/speedbar/")
 (require 'speedbar)
 
-;; ECB (Emacs Code Browser)
-(add-path "site-lisp/ecb-2.32/")
-(require 'ecb-autoloads)
-
 ;; Git Integration
 (add-path "site-lisp/git/")
 (require 'git)

@@ -18,6 +18,13 @@
 (require 'git-blame)
 (add-to-list 'vc-handled-backends 'GIT)
 
+;; Color theme
+(add-path "site-lisp/color-theme-6.6.0")
+(require 'color-theme)
+(color-theme-initialize)
+(load-file (concat emacs-root "el/color-theme-twilight.el"))
+(color-theme-twilight)
+
 ;; yasnippet
 (add-path "site-lisp/yasnippet-0.5.4/")
 (require 'yasnippet)

@@ -40,6 +40,7 @@
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)
+(require 'tidy)
 (require 'tail)
 (require 'keywiz)
 (require 'unit-test)

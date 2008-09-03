@@ -1,7 +1,6 @@
 ;; Key Bindings
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-x\C-j" 'speedbar)
 (global-unset-key "\C-z")
 
@@ -10,10 +9,12 @@
 (setq inhibit-startup-message t)
 (setq custom-file (concat emacs-root "/mine/customizations.el"))
 
-;; Put backup files in a specific dir
-(setq make-backup-files t)
-(setq version-control t)
-(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+;; Auto revert files
+(global-auto-revert-mode 1)
+
+;; Don't make backups
+(setq make-backup-files nil)
+(setq version-control nil)
 
 ;; Look Pretty
 (global-hl-line-mode 1)

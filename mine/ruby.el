@@ -1,7 +1,5 @@
 (require 'ruby-electric)
-(require 'inf-ruby)
 (require 'rdebug)
-(require 'ruby-mode)
 (require 'ruby-style)
 (require 'autotest)
 
@@ -12,6 +10,12 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
 (add-hook 'ruby-mode-hook (lambda () (local-set-key "\r" 'newline-and-indent)))
 (add-hook 'ruby-mode-hook (lambda () (ruby-electric-mode t)))
+
+;; inferior ruby support
+(autoload 'run-ruby "inf-ruby" "Runs an inferior ruby process")
+(autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
+(add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
+
 
 ;; Flymake Ruby
 (require 'flymake)

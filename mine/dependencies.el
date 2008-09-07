@@ -37,6 +37,10 @@
       (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
 	    auto-mode-alist))
 
+;; scala
+(add-path "site-lisp/scala")
+(require 'scala-mode-auto)
+
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)

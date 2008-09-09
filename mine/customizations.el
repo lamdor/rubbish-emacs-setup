@@ -2,6 +2,7 @@
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-x\C-j" 'speedbar)
+(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
 (global-unset-key "\C-z")
 
 ;; Setup Environmental Variables

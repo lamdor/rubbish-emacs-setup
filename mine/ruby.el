@@ -8,7 +8,6 @@
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
-(add-hook 'ruby-mode-hook (lambda () (local-set-key "\r" 'newline-and-indent)))
 (add-hook 'ruby-mode-hook (lambda () (ruby-electric-mode t)))
 
 ;; inferior ruby support

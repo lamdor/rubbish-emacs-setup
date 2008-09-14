@@ -1,7 +1,7 @@
 ;; Key Bindings
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
+(global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)
 (global-set-key "\C-x\C-j" 'speedbar)
 (global-set-key "\r" 'newline-and-indent)
 

@@ -33,9 +33,7 @@
 
 ;; nxml-mode
 (load-file (concat emacs-root "site-lisp/nxml-mode-20041004/rng-auto.el"))
-(setq auto-mode-alist
-      (cons '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
-	    auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
 
 ;; scala
 (add-path "site-lisp/scala")

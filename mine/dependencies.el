@@ -49,6 +49,10 @@
 (require 'keywiz)
 (require 'unit-test)
 
+;; yaml-mode
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(autoload 'yaml-mode "yaml-mode" "Major mode for editting yaml files" t)
+
 ;; ido-mode
 (require 'ido)
 (ido-mode t)

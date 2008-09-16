@@ -15,6 +15,8 @@
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 
+(add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
+
 
 ;; Flymake Ruby
 (require 'flymake)

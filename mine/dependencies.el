@@ -39,6 +39,8 @@
 (add-path "site-lisp/scala")
 (require 'scala-mode-auto)
 
+(require 'misc)
+
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)

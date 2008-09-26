@@ -4,6 +4,7 @@
 (global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)
 (global-set-key "\C-x\C-j" 'speedbar)
 (global-set-key "\M-\." 'ido-find-tag)
+(global-set-key "\C-a" 'beginning-of-line-or-back-to-indention)
 (global-set-key "\r" 'newline-and-indent)
 
 (global-unset-key "\C-z")

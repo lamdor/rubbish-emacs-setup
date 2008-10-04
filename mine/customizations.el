@@ -6,6 +6,7 @@
 (global-set-key "\M-\." 'ido-find-tag)
 (global-set-key "\C-a" 'beginning-of-line-or-back-to-indention)
 (global-set-key "\r" 'newline-and-indent)
+(global-set-key (kbd "C-c C-a") 'autotest-switch)
 
 (global-unset-key "\C-z")
 

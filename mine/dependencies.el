@@ -34,12 +34,11 @@
 ;; nxml-mode
 (load-file (concat emacs-root "site-lisp/nxml-mode-20041004/rng-auto.el"))
 (add-to-list 'auto-mode-alist '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
+(setq nxml-slash-auto-complete-flag t)
 
 ;; scala
 (add-path "site-lisp/scala")
 (require 'scala-mode-auto)
-
-(require 'misc)
 
 ;; Misc Files
 (add-path "el/")

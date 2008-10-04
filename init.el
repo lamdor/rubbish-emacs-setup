@@ -10,6 +10,7 @@
 (add-path "mine")
 (load "projects.el")
 (load "dependencies.el")
+(load "misc.el")
 (load "customizations.el")
 (load "ruby.el")
 (load "ecb.el")

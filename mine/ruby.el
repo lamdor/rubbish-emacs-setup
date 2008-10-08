@@ -17,6 +17,9 @@
 
 (add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
 
+(defun run-jruby ()
+  (interactive)
+    (run-ruby "/usr/local/jruby/current/bin/jruby -S irb --inf-ruby-mode"))
 
 ;; Flymake Ruby
 (require 'flymake)

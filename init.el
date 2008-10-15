@@ -16,6 +16,7 @@
 (load "ecb.el")
 (load "erlang.el")
 (load "java.el")
+(load "groovy.el")
 (load "projects.el")
 
 (message "My .emacs loaded in %ds." (destructuring-bind (hi lo ms) (current-time) (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))

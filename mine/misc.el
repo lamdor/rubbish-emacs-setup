@@ -5,3 +5,12 @@
     (back-to-indentation)
     (if (equal previous-point (point))
 	(beginning-of-line))))
+
+(defun kill-to-end-or-join ()
+  (interactive)
+  (if (equal (point) (point-at-eol))
+      (save-excursion
+	(next-line)
+	(delete-indentation)
+      )
+    (kill-line)))

@@ -7,6 +7,7 @@
 (global-set-key "\C-a" 'beginning-of-line-or-back-to-indention)
 (global-set-key "\r" 'newline-and-indent)
 (global-set-key (kbd "C-c C-a") 'autotest-switch)
+(global-set-key (kbd "C-k") 'kill-to-end-or-join)
 
 (global-unset-key "\C-z")
 

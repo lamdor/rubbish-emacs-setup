@@ -8,6 +8,7 @@
 
 (defun kill-to-end-or-join ()
   (interactive)
+  "This will either kill to the end of the line or if already there join it with the next line"
   (if (equal (point) (point-at-eol))
       (save-excursion
 	(next-line)

@@ -1,0 +1,3 @@
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = http://zagadka.vm.bytemark.co.uk/git/magit.git

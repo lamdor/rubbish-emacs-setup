@@ -18,6 +18,10 @@
 (require 'git-blame)
 (add-to-list 'vc-handled-backends 'GIT)
 
+;; Magit
+(add-path "site-lisp/magit/")
+(autoload 'magit-status "magit" "use magit git magic" t)
+  
 ;; Color theme
 (add-path "site-lisp/color-theme-6.6.0")
 (require 'color-theme)

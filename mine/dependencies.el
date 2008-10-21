@@ -1,16 +1,3 @@
-;; eeio
-(add-path "site-lisp/eieio")
-(require 'eieio)
-
-;; Semantic
-(add-path "site-lisp/semantic/")
-(setq semantic-load-turn-everything-on t)
-(require 'semantic-load)
-
-;; speedbar
-(add-path "site-lisp/speedbar/")
-(require 'speedbar)
-
 ;; Git Integration
 (add-path "site-lisp/git/")
 (require 'git)

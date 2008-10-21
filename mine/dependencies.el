@@ -21,6 +21,10 @@
 ;; Magit
 (add-path "site-lisp/magit/")
 (autoload 'magit-status "magit" "use magit git magic" t)
+
+;; Gist
+(add-path "site-lisp/gist/")
+(require 'gist)
   
 ;; Color theme
 (add-path "site-lisp/color-theme-6.6.0")

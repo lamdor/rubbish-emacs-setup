@@ -11,6 +11,9 @@
 
 (global-unset-key "\C-z")
 
+(if (string-match "mingw" (emacs-version))
+    (load "windows.el"))
+
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)

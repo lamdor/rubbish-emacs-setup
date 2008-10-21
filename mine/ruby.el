@@ -21,6 +21,10 @@
   (interactive)
     (run-ruby "/usr/local/jruby/current/bin/jruby -S irb --inf-ruby-mode"))
 
+(add-path "site-lisp/ri-emacs/")
+(setq ri-repl-executable "ri_repl")
+(autoload 'ri "ri" "lookup Ruby documentation" t)
+
 ;; Flymake Ruby
 (require 'flymake)
 ;; I don't like the default colors :)

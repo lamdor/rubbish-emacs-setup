@@ -13,7 +13,6 @@
 (load "misc.el")
 (load "customizations.el")
 (load "ruby.el")
-(load "ecb.el")
 (load "erlang.el")
 (load "java.el")
 (load "groovy.el")

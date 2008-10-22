@@ -9,11 +9,6 @@
 (add-path "site-lisp/magit/")
 (autoload 'magit-status "magit" "use magit git magic" t)
 
-;; CEDET
-(load-file
- (concat emacs-root "site-lisp/cedet-1.0pre4/common/cedet.el"))
-
-
 ;; Gist
 (add-path "site-lisp/gist/")
 (require 'gist)

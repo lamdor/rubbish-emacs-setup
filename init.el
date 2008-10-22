@@ -1,4 +1,4 @@
-g;;;; Luke's .emacs file
+;;;; Luke's .emacs file
 
 (defvar emacs-root (concat (getenv "HOME") "/.emacs.d/"))
 

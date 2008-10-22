@@ -1,5 +1,5 @@
 ;; ECB (Emacs Code Browser)
-;;(add-path "site-lisp/ecb-2.32/")
+;;add-path "site-lisp/ecb-2.32/")
 ;;(require 'ecb-autoloads)
 ;;
 ;;(custom-set-variables

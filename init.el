@@ -1,4 +1,4 @@
-;;;; Luke's .emacs file
+g;;;; Luke's .emacs file
 
 (defvar emacs-root (concat (getenv "HOME") "/.emacs.d/"))
 
@@ -12,10 +12,12 @@
 (load "dependencies.el")
 (load "misc.el")
 (load "customizations.el")
+(load "projects.el")
+
+;; Languages
 (load "ruby.el")
 (load "erlang.el")
 (load "java.el")
 (load "groovy.el")
-(load "projects.el")
 
 (message "My .emacs loaded in %ds." (destructuring-bind (hi lo ms) (current-time) (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))

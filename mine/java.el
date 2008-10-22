@@ -10,3 +10,7 @@
 (autoload 'mvn-keys "mvn" "Sets Maven Keys")
 
 (add-hook 'java-mode-hook (lambda () (mvn-keys)))
+
+(add-path "site-lisp/elib-1.0")
+(add-path "site-lisp/jde-2.3.5.1/lisp")
+(require 'jde)

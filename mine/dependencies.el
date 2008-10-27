@@ -24,7 +24,7 @@
 (add-path "site-lisp/yasnippet-0.5.6/")
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets/"))
+(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.6/snippets/"))
 
 ;; nxml-mode
 (load-file (concat emacs-root "site-lisp/nxml-mode-20041004/rng-auto.el"))

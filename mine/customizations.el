@@ -11,8 +11,10 @@
 
 (global-unset-key "\C-z")
 
-(if (string-match "mingw" (emacs-version))
-    (load "windows.el"))
+(case system-type
+  ('windows-nt (load "windows.el"))
+  ('darwin (load "macosx.el")))
+
 
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)

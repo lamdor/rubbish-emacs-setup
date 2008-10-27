@@ -3,7 +3,7 @@
 ;; Copyright 2008 pluskid
 ;; 
 ;; Author: pluskid <pluskid@gmail.com>
-;; Version: 0.5.4
+;; Version: 0.5.6
 ;; X-URL: http://code.google.com/p/yasnippet/
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -40,6 +40,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; User customizable variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defvar yas/dont-activate nil
+  "If set to t, don't activate yas/minor-mode automatically.")
+(make-variable-buffer-local 'yas/dont-activate)
+
 (defvar yas/key-syntaxes (list "w" "w_" "w_." "^ ")
   "A list of syntax of a key. This list is tried in the order
 to try to find a key. For example, if the list is '(\"w\" \"w_\").
@@ -107,10 +111,14 @@ them. `yas/window-system-popup-function' is used instead when in
 a window system.")
 
 (defvar yas/extra-mode-hooks
-  '(ruby-mode-hook actionscript-mode-hook ox-mode-hook python-mode-hook)
+  '()
   "A list of mode-hook that should be hooked to enable yas/minor-mode.
 Most modes need no special consideration. Some mode (like ruby-mode)
 doesn't call `after-change-major-mode-hook' need to be hooked explicitly.")
+(mapc '(lambda (x)
+	 (add-to-list 'yas/extra-mode-hooks
+		      x))
+      '(ruby-mode-hook actionscript-mode-hook ox-mode-hook python-mode-hook))
 
 (defvar yas/after-exit-snippet-hook
   '()
@@ -178,7 +186,7 @@ to expand.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Internal variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar yas/version "0.5.4")
+(defvar yas/version "0.5.6")
 
 (defvar yas/snippet-tables (make-hash-table)
   "A hash table of snippet tables corresponding to each major-mode.")
@@ -196,7 +204,7 @@ to expand.
   '(menu-item "--"))
 
 (defvar yas/known-modes
-  '(ruby-mode rst-mode)
+  '(ruby-mode rst-mode markdown-mode)
   "A list of mode which is well known but not part of emacs.")
 (defconst yas/escape-backslash
   (concat "YASESCAPE" "BACKSLASH" "PROTECTGUARD"))
@@ -252,6 +260,11 @@ You can customize the key through `yas/trigger-key'."
   :group 'editing
   (define-key yas/minor-mode-map yas/trigger-key 'yas/expand))
 
+(defun yas/minor-mode-auto-on ()
+  "Turn on YASnippet minor mode unless `yas/dont-activate' is
+set to t."
+  (unless yas/dont-activate
+    (yas/minor-mode-on)))
 (defun yas/minor-mode-on ()
   "Turn on YASnippet minor mode."
   (interactive)
@@ -430,6 +443,7 @@ a list of modes like this to help the judgement."
       (save-excursion
 	(save-restriction
 	  (save-match-data
+	    (widen)
 	    (format "%s" (eval (read string))))))
     (error (format "(error in elisp evaluation: %s)" 
 		   (error-message-string err)))))
@@ -620,6 +634,9 @@ will be deleted before inserting template."
       ;; Step 3: evaluate all backquotes
       (goto-char (point-min))
       (while (re-search-forward "`\\([^`]*\\)`" nil t)
+	;; go back so that (current-column) in elisp code evaluation
+	;; will calculate to a meaningful value
+	(goto-char (match-beginning 0))
 	(replace-match (yas/eval-string (match-string-no-properties 1))
 		       t t))
 
@@ -804,7 +821,7 @@ will be deleted before inserting template."
 		     (yas/group-primary-field target))))
       (yas/exit-snippet (yas/group-snippet group)))))
 
-(defun yas/parse-template ()
+(defun yas/parse-template (&optional file-name)
   "Parse the template in the current buffer.
 If the buffer contains a line of \"# --\" then the contents
 above this line are ignored. Variables can be set above this
@@ -822,7 +839,7 @@ Here's a list of currently recognized variables:
 # --
 #include \"$1\""
   (goto-char (point-min))
-  (let (template name bound condition)
+  (let ((name file-name) template bound condition)
     (if (re-search-forward "^# --\n" nil t)
 	(progn (setq template 
 		     (buffer-substring-no-properties (point) 
@@ -925,9 +942,10 @@ hierarchy."
       (dolist (file (yas/directory-files directory t))
 	(when (file-readable-p file)
 	  (insert-file-contents file nil nil nil t)
-	  (push (cons (file-name-nondirectory file)
-		      (yas/parse-template))
-		snippets))))
+	  (let ((snippet-file-name (file-name-nondirectory file)))
+	    (push (cons snippet-file-name
+			(yas/parse-template snippet-file-name))
+		  snippets)))))
     (yas/define-snippets mode-sym
 			 snippets
 			 parent)
@@ -1039,8 +1057,7 @@ name. And under each subdirectory, each file is a definition
 of a snippet. The file name is the trigger key and the
 content of the file is the template."
   (interactive "DSelect the root directory: ")
-  (when (and (interactive-p)
-	     (file-directory-p directory))
+  (when (file-directory-p directory)
     (add-to-list 'yas/root-directory directory))
   (dolist (dir (yas/directory-files directory nil))
     (yas/load-directory-1 dir))
@@ -1050,10 +1067,10 @@ content of the file is the template."
 (defun yas/initialize ()
   "Do necessary initialization."
   (add-hook 'after-change-major-mode-hook
-	    'yas/minor-mode-on)
+	    'yas/minor-mode-auto-on)
   (dolist (hook yas/extra-mode-hooks)
     (add-hook hook
-	      'yas/minor-mode-on))
+	      'yas/minor-mode-auto-on))
   (add-hook 'yas/minor-mode-on-hook
 	    'yas/ensure-minor-mode-priority)
   (when yas/use-menu
@@ -1094,7 +1111,7 @@ parent mode. The PARENT-MODE may not need to be a real mode."
     (dolist (snippet snippets)
       (let* ((full-key (car snippet))
 	     (key (file-name-sans-extension full-key))
-	     (name (caddr snippet))
+	     (name (or (caddr snippet) (file-name-extension full-key)))
 	     (condition (nth 3 snippet))
 	     (template (yas/make-template (cadr snippet)
 					  (or name key)

@@ -21,7 +21,7 @@
 (color-theme-twilight)
 
 ;; yasnippet
-(add-path "site-lisp/yasnippet-0.5.4/")
+(add-path "site-lisp/yasnippet-0.5.6/")
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.4/snippets/"))

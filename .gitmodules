@@ -1,9 +1,9 @@
-[submodule "site-lisp/magit"]
-	path = site-lisp/magit
-	url = http://zagadka.vm.bytemark.co.uk/git/magit.git
 [submodule "site-lisp/gist"]
 	path = site-lisp/gist
 	url = git://github.com/defunkt/gist.el.git
 [submodule "site-lisp/ri-emacs"]
 	path = site-lisp/ri-emacs
 	url = git://github.com/technomancy/ri-emacs.git
+[submodule "site-lisp/magit"]
+	path = site-lisp/magit
+	url = http://zagadka.vm.bytemark.co.uk/git/magit.git

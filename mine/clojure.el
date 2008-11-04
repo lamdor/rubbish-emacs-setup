@@ -6,4 +6,4 @@
 (require 'clojure-auto)
 (require 'clojure-paredit)
 
-(add-hook clojure-mode-hook (lambda () (paredit-mode t)))
+(add-hook 'clojure-mode-hook (lambda () (paredit-mode t)))

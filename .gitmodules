@@ -13,3 +13,6 @@
 [submodule "site-lisp/swank-clojure"]
 	path = site-lisp/swank-clojure
 	url = git://github.com/jochu/swank-clojure.git
+[submodule "site-lisp/slime"]
+	path = site-lisp/slime
+	url = git://github.com/pat-maddox/slime.git

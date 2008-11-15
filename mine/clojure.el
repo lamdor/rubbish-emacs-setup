@@ -13,4 +13,5 @@
 
 (add-path "site-lisp/swank-clojure")
 (setq swank-clojure-jar-path "~/.m2/repository/jvm/clojure/clojure-lang/1.0-SNAPSHOT/clojure-lang-1.0-SNAPSHOT.jar")
+(setq swank-clojure-extra-classpaths (list "~/code/watch/clojure-contrib/src/"))
 (require 'swank-clojure-autoload)

@@ -50,3 +50,7 @@
 ;; ido-mode
 (require 'ido)
 (ido-mode t)
+
+;; typing-of-emacs
+(setq toe-starting-time-per-word 20)
+(autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)

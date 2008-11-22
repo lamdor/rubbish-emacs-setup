@@ -54,3 +54,7 @@
 ;; typing-of-emacs
 (setq toe-starting-time-per-word 20)
 (autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)
+
+;; twittering-mode
+(setq twittering-username "lukeamdor")
+(autolaod 'twittering-mode "twittering-mode" "Twittering mode" t)

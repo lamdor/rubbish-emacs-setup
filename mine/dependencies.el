@@ -57,4 +57,4 @@
 
 ;; twittering-mode
 (setq twittering-username "lukeamdor")
-(autolaod 'twittering-mode "twittering-mode" "Twittering mode" t)
+(autoload 'twittering-mode "twittering-mode" "Twittering mode" t)

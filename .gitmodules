@@ -6,7 +6,7 @@
 	url = git://github.com/technomancy/ri-emacs.git
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
-	url = http://zagadka.vm.bytemark.co.uk/git/magit.git
+	url = git://gitorious.org/magit/mainline.git
 [submodule "site-lisp/clojure-mode"]
 	path = site-lisp/clojure-mode
 	url = git://github.com/jochu/clojure-mode.git

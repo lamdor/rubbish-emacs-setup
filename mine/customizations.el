@@ -8,7 +8,7 @@
 (global-set-key "\r" 'newline-and-indent)
 (global-set-key (kbd "C-c C-a") 'autotest-switch)
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
-(global-set-key (kbd "C-c C-m") 'magit-status)
+(global-set-key (kbd "C-M-g") 'magit-status)
 
 (global-unset-key "\C-z")
 

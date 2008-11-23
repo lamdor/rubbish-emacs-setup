@@ -17,7 +17,7 @@
       (list "~/code/watch/clojure-contrib/src/"
 	    "~/code/learning/clojure/shcloj-code/code"
 	    "~/.m2/repository/ant/ant/1.6.5/ant-1.6.5.jar"
-	    (concat emacs-root "mine/clojure/"))
+	    (concat emacs-root "mine/clojure/")))
 (require 'swank-clojure-autoload)
 
 ;; from Bill Clementson

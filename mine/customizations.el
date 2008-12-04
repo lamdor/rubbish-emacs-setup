@@ -32,6 +32,9 @@
 ;; Look Pretty
 (global-hl-line-mode 1)
 
+;; Midnight mode to clean up old buffers
+(require 'midnight)
+
 ;; Miscallaneous Things
 (mouse-wheel-mode t)
 (setq visible-bell t)

@@ -25,6 +25,9 @@
 ;; Auto revert files
 (global-auto-revert-mode 1)
 
+;; Always use subwords to to move aroudn
+(c-subword-mode t)
+
 ;; Don't make backups
 (setq make-backup-files nil)
 (setq version-control nil)

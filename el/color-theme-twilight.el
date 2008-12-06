@@ -69,7 +69,7 @@
      (minibuffer-prompt ((t (:foreground "#8f9d6a"))))
      (region ((t (:background "#27292a"))))
      (mode-line ((t (:background "grey75" :foreground "black"))))
-     (highlight ((t (:background "#454545"))))
+     (highlight ((t (:background "#202020"))))
      (highline-face ((t (:background "#222222"))))
      (italic ((t (nil))))
      (left-margin ((t (nil))))

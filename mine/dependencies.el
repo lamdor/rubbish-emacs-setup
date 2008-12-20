@@ -58,3 +58,6 @@
 ;; twittering-mode
 (setq twittering-username "lukeamdor")
 (autoload 'twittering-mode "twittering-mode" "Twittering mode" t)
+
+;; htmlize
+(autoload 'htmlize-file "htmlize" "HTMLize a file" t)

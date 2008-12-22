@@ -9,6 +9,7 @@
 (global-set-key (kbd "C-c C-a") 'autotest-switch)
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
 (global-set-key (kbd "C-M-g") 'magit-status)
+(global-set-key (kbd "C-x p") 'other-previous-window)
 
 (global-unset-key "\C-z")
 

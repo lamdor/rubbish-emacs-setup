@@ -15,3 +15,7 @@
 	(delete-indentation)
       )
     (kill-line)))
+
+(defun other-previous-window ()
+  (interactive)
+  (other-window -1))

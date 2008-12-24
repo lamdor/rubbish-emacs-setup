@@ -728,7 +728,7 @@ Return the list of files that haven't been handled."
 (defun git-run-ls-files-with-excludes (status files default-state &rest options)
   "Run git-ls-files on FILES with appropriate --exclude-from options."
   (let ((exclude-files (git-get-exclude-files)))
-    (apply #'git-run-ls-files status files default-state "--directory"
+    (apply #'git-run-ls-files status files default-state "--directory" "--no-empty-directory"
            (concat "--exclude-per-directory=" git-per-dir-ignore-file)
            (append options (mapcar (lambda (f) (concat "--exclude-from=" f)) exclude-files)))))
 
@@ -1252,8 +1252,8 @@ Return the list of files that haven't been handled."
        "\n")
       (when subject (insert subject "\n\n"))
       (cond (msg (insert msg "\n"))
-            ((file-readable-p ".dotest/msg")
-             (insert-file-contents ".dotest/msg"))
+            ((file-readable-p ".git/rebase-apply/msg")
+             (insert-file-contents ".git/rebase-apply/msg"))
             ((file-readable-p ".git/MERGE_MSG")
              (insert-file-contents ".git/MERGE_MSG")))
       ; delete empty lines at end
@@ -1272,9 +1272,9 @@ Return the list of files that haven't been handled."
           (coding-system (git-get-commits-coding-system))
           author-name author-email subject date)
       (when (eq 0 (buffer-size buffer))
-        (when (file-readable-p ".dotest/info")
+        (when (file-readable-p ".git/rebase-apply/info")
           (with-temp-buffer
-            (insert-file-contents ".dotest/info")
+            (insert-file-contents ".git/rebase-apply/info")
             (goto-char (point-min))
             (when (re-search-forward "^Author: \\(.*\\)\nEmail: \\(.*\\)$" nil t)
               (setq author-name (match-string 1))
@@ -1299,7 +1299,7 @@ Return the list of files that haven't been handled."
   (let (author-name author-email subject date msg)
     (with-temp-buffer
       (let ((coding-system (git-get-logoutput-coding-system)))
-        (git-call-process-env t nil "log" "-1" commit)
+        (git-call-process-env t nil "log" "-1" "--pretty=medium" commit)
         (goto-char (point-min))
         (when (re-search-forward "^Author: *\\(.*\\) <\\(.*\\)>$" nil t)
           (setq author-name (match-string 1))
@@ -1545,7 +1545,7 @@ Commands:
         (with-current-buffer buffer
           (when (and list-buffers-directory
                      (string-equal fulldir (expand-file-name list-buffers-directory))
-                     (string-match "\\*git-status\\*$" (buffer-name buffer)))
+		     (eq major-mode 'git-status-mode))
             (setq found buffer))))
       (setq list (cdr list)))
     found))

@@ -58,3 +58,5 @@
 				  (define-key slime-repl-mode-map (kbd "C-c d") 'slime-java-describe)
 				  (define-key slime-mode-map (kbd "C-c D") 'slime-javadoc)
 				  (define-key slime-repl-mode-map (kbd "C-c D") 'slime-javadoc)))
+
+(provide 'mine-clojure)

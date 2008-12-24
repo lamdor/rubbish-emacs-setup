@@ -61,3 +61,5 @@
 
 ;; htmlize
 (autoload 'htmlize-file "htmlize" "HTMLize a file" t)
+
+(provide 'mine-dependencies)

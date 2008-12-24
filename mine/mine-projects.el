@@ -25,3 +25,5 @@
   (let ((default (symbol-at-point)))
      (find-tag (ido-read-tag (format "Find tag: " default) nil
 			 (and default (symbol-name default))))))
+
+(provide 'mine-projects)

@@ -19,3 +19,5 @@
 (defun other-previous-window ()
   (interactive)
   (other-window -1))
+
+(provide 'mine-defuns)

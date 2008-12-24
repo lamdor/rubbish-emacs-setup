@@ -8,17 +8,25 @@
 (defvar *emacs-load-start* (current-time))
 
 (add-path "mine")
-(load "projects.el")
-(load "dependencies.el")
-(load "misc.el")
-(load "customizations.el")
-(load "projects.el")
+(require 'mine-projects)
+(require 'mine-dependencies)
+(require 'mine-misc)
+(require 'mine-defuns)
+(require 'mine-customizations)
+(require 'mine-bindings)
 
 ;; Languages
-(load "ruby.el")
-(load "clojure.el")
-(load "java.el")
-(load "erlang.el")
-(load "groovy.el")
+(require 'mine-ruby)
+(require 'mine-clojure)
+(require 'mine-java)
+(require 'mine-erlang)
+(require 'mine-html-xml)
+(require 'mine-groovy)
+(require 'mine-lisp)
 
+;; system specific loading
+(case system-type
+  ('windows-nt (require 'mine-windows))
+  ('darwin (require 'mine-macosx)))
+;; 
 (message "My .emacs loaded in %ds." (destructuring-bind (hi lo ms) (current-time) (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))

@@ -8,3 +8,5 @@
 (add-hook 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
 
 (setq groovy-home "/usr/local/groovy/current/")
+
+(provide 'mine-groovy)

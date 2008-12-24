@@ -2,3 +2,5 @@
 
 (autoload 'haml-mode "haml-mode" "Haml mode" t)
 (add-to-list 'auto-mode-alist '("\\.haml" . haml-mode))
+
+(provide 'mine-html-xml)

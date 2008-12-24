@@ -13,7 +13,7 @@
 (global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key "\M-\." 'ido-find-tag)
-;; (global-set-key "\C-x\C-i" 'ido-imenu)
+(global-set-key "\C-x\C-i" 'ido-imenu)
 
 ;; Text Editting
 (global-set-key "\C-x\C-k" 'kill-region)

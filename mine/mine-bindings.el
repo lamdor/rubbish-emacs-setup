@@ -21,6 +21,7 @@
 (global-set-key "\r" 'newline-and-indent)
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
 (global-set-key (kbd "C-c r") 'revert-buffer)
+(global-set-key (kbd "M-g") 'goto-line)
 
 ;; Use regex searches
 (global-set-key "\C-s" 'isearch-forward-regexp)

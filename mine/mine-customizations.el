@@ -1,4 +1,4 @@
-(setq custom-file (concat emacs-root "/mine/customizations.el"))
+(setq custom-file (concat emacs-root "/mine/mine-customizations.el"))
 
 (provide 'mine-customizations)
 

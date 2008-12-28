@@ -14,6 +14,7 @@
 (require 'mine-defuns)
 (require 'mine-customizations)
 (require 'mine-bindings)
+(require 'mine-erc)
 
 ;; Languages
 (require 'mine-ruby)

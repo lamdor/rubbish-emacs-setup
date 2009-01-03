@@ -22,6 +22,7 @@
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-c o") 'indent-buffer)
 
 ;; Use regex searches
 (global-set-key "\C-s" 'isearch-forward-regexp)

@@ -44,5 +44,12 @@
 ;; annoying suspend
 (global-unset-key "\C-z")
 
+;; Stupid MacOSX handing of backquote
+(defun insert-backquote ()
+  (interactive)
+  (insert "`"))
+(global-set-key (kbd "C-`") 'insert-backquote)
+
+
 (provide 'mine-bindings)
 

@@ -25,6 +25,9 @@
 ;; Look Pretty
 (global-hl-line-mode 1)
 
+;; Misc Aliases
+(defalias 'qrr 'query-replace-regexp)
+
 ;; Midnight mode to clean up old buffers
 (require 'midnight)
 

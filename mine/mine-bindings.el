@@ -29,6 +29,7 @@
 (global-set-key "\C-r" 'isearch-backward-regexp)
 (global-set-key "\C-\M-s" 'isearch-forward)
 (global-set-key "\C-\M-r" 'isearch-backward)
+(global-set-key (kbd "M-%") 'query-replace-regexp)
 
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)

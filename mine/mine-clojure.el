@@ -3,9 +3,8 @@
 (autoload 'paredit-mode "paredit" "Minore module for psuedo-structually editting lisp code." t)
 
 (add-path "site-lisp/clojure-mode")
-(require 'clojure-auto)
-(require 'clojure-paredit)
-
+(autoload 'clojure-mode "clojure-mode" "A major mode for Clojure" t)
+(add-to-list 'auto-mode-alist '("\\.clj$" . clojure-mode))
 (add-hook 'clojure-mode-hook (lambda () (paredit-mode t)))
 
 (add-path "site-lisp/slime")

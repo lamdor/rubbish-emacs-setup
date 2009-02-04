@@ -25,8 +25,8 @@
 ;; Look Pretty
 (global-hl-line-mode 1)
 (transient-mark-mode t)
-(tool-bar-mode nil)
-(menu-bar-mode nil)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)

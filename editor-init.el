@@ -12,5 +12,12 @@
 (require 'mine-customizations)
 (require 'mine-misc)
 (require 'mine-bindings)
+(require 'mine-vc)
+(require 'mine-pretty-lite)
+
+;; system specific loading
+(case system-type
+  ('windows-nt (require 'mine-windows))
+  ('darwin (require 'mine-macosx)))
 
 

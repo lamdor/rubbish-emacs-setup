@@ -2,4 +2,4 @@
 
 (tool-bar-mode -1)
 
-(require 'mine-windows)
+(provide 'mine-windows)

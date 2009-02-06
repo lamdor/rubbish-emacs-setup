@@ -16,6 +16,9 @@
 (require 'mine-customizations)
 (require 'mine-bindings)
 (require 'mine-erc)
+(require 'mine-pretty-lite)
+(require 'mine-pretty)
+(require 'mine-vc)
 
 ;; Languages
 (require 'mine-ruby)

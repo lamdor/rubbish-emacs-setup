@@ -1,25 +1,7 @@
-;; Git Integration
-(add-path "site-lisp/git/")
-(require 'git)
-(require 'vc-git)
-(require 'git-blame)
-(add-to-list 'vc-handled-backends 'GIT)
-
-;; Magit
-(add-path "site-lisp/magit/")
-(autoload 'magit-status "magit" "use magit git magic" t)
-
 ;; Gist
 (add-path "site-lisp/gist/")
 (require 'gist)
   
-;; Color theme
-(add-path "site-lisp/color-theme-6.6.0")
-(require 'color-theme)
-(color-theme-initialize)
-(load-file (concat emacs-root "el/color-theme-twilight.el"))
-(color-theme-twilight)
-
 ;; yasnippet
 (add-path "site-lisp/yasnippet-0.5.6/")
 (require 'yasnippet)
@@ -37,10 +19,6 @@
 ;; yaml-mode
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (autoload 'yaml-mode "yaml-mode" "Major mode for editting yaml files" t)
-
-;; ido-mode
-(require 'ido)
-(ido-mode t)
 
 ;; unit-test
 (require 'unit-test)

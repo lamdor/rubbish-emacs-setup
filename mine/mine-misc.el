@@ -1,5 +1,6 @@
-;; I like highlighted parens
-(show-paren-mode 1)
+;; ido-mode
+(require 'ido)
+(ido-mode t)
 
 ;; ido setup
 (setq ido-enable-prefix nil
@@ -21,12 +22,6 @@
 ;; Don't make backups
 (setq make-backup-files nil)
 (setq version-control nil)
-
-;; Look Pretty
-(global-hl-line-mode 1)
-(transient-mark-mode t)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
 
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)

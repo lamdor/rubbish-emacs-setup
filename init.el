@@ -19,6 +19,7 @@
 ;; Languages
 (require 'mine-ruby)
 (require 'mine-clojure)
+(require 'mine-scala)
 (require 'mine-java)
 (require 'mine-erlang)
 (require 'mine-html-xml)

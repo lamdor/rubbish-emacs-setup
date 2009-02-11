@@ -31,10 +31,6 @@
 (add-to-list 'auto-mode-alist '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
 (setq nxml-slash-auto-complete-flag t)
 
-;; scala
-(add-path "site-lisp/scala")
-(require 'scala-mode-auto)
-
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)

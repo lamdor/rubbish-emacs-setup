@@ -1,10 +1,10 @@
 ;;; -*-Emacs-Lisp-*-
-;;; scala-mode-auto.el - Autoloads file for the scala mode
+;;; scala-mode-lib.el - Libraries and macroes used by the scala mode.
 
 ;; Copyright (C) 2008 Scala Dev Team at EPFL
 ;; Authors: See AUTHORS file
 ;; Keywords: scala languages oop
-;; $Id: scala-mode-auto.el 16886 2009-01-09 16:58:22Z cunei $
+;; $Id: scala-mode-lib.el 16886 2009-01-09 16:58:22Z cunei $
 
 ;;; License
 
@@ -47,42 +47,69 @@
 ;;; Code
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; We now depend on font-locking features only in emacs 21.x and newer
-(unless (<= 21 emacs-major-version)
-  (error
-   (format "The Scala mode require Emacs version 21.x (and not your Emacs version %s.%s)"  emacs-major-version  emacs-minor-version)))
+(provide 'scala-mode-lib)
 
-;; TODO insert check for correct version of speedbar
+(eval-when-compile
+  (require 'scala-mode-constants))
 
 
-;; Attach .scala files to the scala-mode
-(add-to-list 'auto-mode-alist '("\\.scala\\'" . scala-mode))
-(modify-coding-system-alist 'file "\\.scala$"     'utf-8)
+(defmacro scala-mode-lib:define-keys (key-map &rest key-funcs)
+  "Define key bindings for KEY-MAP (create KEY-MAP, if it does
+not exist."
+  `(progn
+     (unless (boundp ',key-map)
+       (setf ,key-map (make-keymap)))
+     ,@(mapcar
+  #'(lambda (key-func)
+      `(define-key ,key-map ,(first key-func) ,(second key-func)))
+  key-funcs)))
 
 
-;; Autoload from scala-mode.el
-(autoload (quote scala-mode) "scala-mode" "\
-Major mode for editing Scala code.
+(defun scala-special-char-p (char)
+  (and char
+       (string-match scala-all-special-char-re (string char))))
 
-When started, run `scala-mode-hook'.
-
-\\{scala-mode-map}" t nil)
-
-
-;; Autoload from scala-mode-inf.el
-(autoload (quote scala-interpreter-running-p-1) "scala-mode-inf" nil t nil)
-
-(autoload (quote scala-run-scala) "scala-mode-inf" "Run a Scala interpreter in an Emacs buffer" t nil)
-
-(autoload (quote scala-switch-to-interpreter) "scala-mode-inf" "Switch to buffer containing the interpreter" t nil)
-
-(autoload (quote scala-eval-region) "scala-mode-inf" "Send current region to Scala interpreter." t nil)
-
-(autoload (quote scala-eval-buffer) "scala-mode-inf" "Send whole buffer to Scala interpreter." t nil)
-
-(autoload (quote scala-load-file) "scala-mode-inf" "Load a file in the Scala interpreter." t nil)
-
-(autoload (quote scala-quit-interpreter) "scala-mode-inf" "Quit Scala interpreter." t nil)
+(defun scala-looking-at-special-identifier (regexp)
+  (and (not (scala-special-char-p (char-before)))
+       (looking-at regexp)
+       (not (scala-special-char-p (char-after (match-end 0))))))
 
 
-(provide 'scala-mode-auto)
+(defun scala-search-special-identifier-forward (limit)
+  (ignore-errors
+    (while (and (search-forward-regexp scala-special-ident-re limit)
+                (save-match-data
+                  (string-match scala-comment-begin-or-end-re
+                                (match-string-no-properties 0)))))
+    t))
+
+
+(defun scala-mode-find-clstrtobj-name-doc ()
+  (save-excursion
+    (if (re-search-forward "\\(class\\|object\\|trait\\)[ \t\n]+\\([a-zA-Z0-9_:=]+\\)[ \t\n]*" nil t)
+	
+      (buffer-substring (match-beginning 2) (match-end 2))
+      "NONAME")))
+
+
+(defun scala-mode-def-and-args-doc ()
+  (save-excursion
+    (if (re-search-forward
+	 (concat
+	  ;; function name
+	  "[ \t\n]*def[ \t\n]+\\([a-zA-Z0-9_:=]+\\)[ \t\n]*"
+ 
+	  ;; arguments
+	  "\\((\\([a-zA-Z0-9_:* \t\n]*\\))\\)?"
+	  ) nil t)
+
+	;; TODO: output args in a sane format to use in yasnippet, look at doxymancs line 1441 
+	(let* ((func (buffer-substring (match-beginning 1) (match-end 1)))
+	       ;(args (buffer-substring (match-beginning 3) (match-end 3)))
+	       )
+	  (concat "${1:" func "} $0"))
+      "${1:name} $0")))
+
+
+(defun scala-mode-file-doc ()
+  (file-name-nondirectory buffer-file-name))

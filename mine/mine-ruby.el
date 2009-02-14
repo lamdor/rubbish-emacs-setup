@@ -13,8 +13,8 @@
 (autoload 'rinari-launch "rinari" "Run rinari minor mode if inside a rails project" t)
 
 ;; Use ruby-compmilation from rinari
-(add-path "site-lisp/rinari/util/")
-(require 'ruby-compilation-rspec)
+;; (add-path "site-lisp/rinari/util/")
+;; (require 'ruby-compilation-rspec)
 
 ;; File Types
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))

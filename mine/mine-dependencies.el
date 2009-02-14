@@ -26,11 +26,6 @@
 (yas/initialize)
 (yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.6/snippets/"))
 
-;; nxml-mode
-(load-file (concat emacs-root "site-lisp/nxml-mode-20041004/rng-auto.el"))
-(add-to-list 'auto-mode-alist '("\\.\\(xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode))
-(setq nxml-slash-auto-complete-flag t)
-
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)

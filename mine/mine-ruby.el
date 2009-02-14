@@ -1,6 +1,5 @@
 ;; Ruby Dependencies
 
-(add-path "site-lisp/ri-emacs/")
 (add-path "site-lisp/rinari/")
 
 (require 'ruby-electric)
@@ -11,7 +10,6 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
 (autoload 'run-ruby "inf-ruby" "Runs an inferior ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
-(autoload 'ri "ri" "lookup Ruby documentation" t)
 (autoload 'rinari-launch "rinari" "Run rinari minor mode if inside a rails project" t)
 
 ;; Use ruby-compmilation from rinari

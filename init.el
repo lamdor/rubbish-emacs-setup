@@ -1,4 +1,5 @@
 ;;;; Luke's .emacs file
+(setq debug-on-error t)
 
 (defvar emacs-root (concat (getenv "HOME") "/.emacs.d/"))
 

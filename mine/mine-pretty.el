@@ -5,6 +5,6 @@
 (load-file (concat emacs-root "el/color-theme-twilight.el"))
 (color-theme-twilight)
 
-(global-hl-line-mode -1)
+(global-hl-line-mode t)
 
 (provide 'mine-pretty)

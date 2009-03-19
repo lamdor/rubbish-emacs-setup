@@ -16,6 +16,7 @@
 (require 'mine-pretty-lite)
 
 ;; system specific loading
+(require 'cl)
 (case system-type
   ('windows-nt (require 'mine-windows))
   ('darwin (require 'mine-macosx)))

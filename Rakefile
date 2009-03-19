@@ -17,4 +17,4 @@ namespace :emacs do
 end
 
 
-task :default => :compile_el
+task :default => ["emacs:clean_elc", "emacs:compile_el"]

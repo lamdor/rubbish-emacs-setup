@@ -1,12 +1,10 @@
-
 #*#
 *~
 .DS_Store
 TAGS
 /auto-save-list
 /backups
-/*.elc
-/**/*.elc
+*.elc
 auto-save-list/*
 backups/*
 semantic.cache

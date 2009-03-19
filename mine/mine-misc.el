@@ -19,6 +19,9 @@
 ;; Always use subwords to to move aroudn
 (c-subword-mode t)
 
+;; Use soft tabs
+(setq-default indent-tabs-mode nil)
+
 ;; Don't make backups
 (setq make-backup-files nil)
 (setq version-control nil)

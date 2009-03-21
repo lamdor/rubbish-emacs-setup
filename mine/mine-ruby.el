@@ -61,4 +61,9 @@
 (push '("Rakefile$" flymake-ruby-init) flymake-allowed-file-name-masks)
 (push '("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3) flymake-err-line-patterns)
 
+;; Cucumber (perhaps not totally ruby related)
+(add-path "site-lisp/cucumber-mode/")
+(autoload 'feature-mode "cucumber-mode" "Major mode for editing plain text stories" t)
+(add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
+
 (provide 'mine-ruby)

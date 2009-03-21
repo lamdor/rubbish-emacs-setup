@@ -16,3 +16,6 @@
 [submodule "site-lisp/rinari"]
 	path = site-lisp/rinari
 	url = git://github.com/eschulte/rinari.git
+[submodule "site-lisp/cucumber-mode"]
+	path = site-lisp/cucumber-mode
+	url = git://github.com/michaelklishin/cucumber.el.git

@@ -16,3 +16,6 @@
 [submodule "site-lisp/rinari"]
 	path = site-lisp/rinari
 	url = git://github.com/eschulte/rinari.git
+[submodule "site-lisp/org-mode"]
+	path = site-lisp/org-mode
+	url = git://repo.or.cz/org-mode.git

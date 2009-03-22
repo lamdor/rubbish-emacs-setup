@@ -8,3 +8,4 @@ TAGS
 auto-save-list/*
 backups/*
 semantic.cache
+/.org-id-locations

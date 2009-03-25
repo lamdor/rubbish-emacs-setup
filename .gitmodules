@@ -19,3 +19,9 @@
 [submodule "site-lisp/cucumber-mode"]
 	path = site-lisp/cucumber-mode
 	url = git://github.com/michaelklishin/cucumber.el.git
+[submodule "site-lisp/org-mode"]
+	path = site-lisp/org-mode
+	url = git://repo.or.cz/org-mode.git
+[submodule "site-lisp/remember-mode"]
+	path = site-lisp/remember-mode
+	url = git://repo.or.cz/remember-el.git

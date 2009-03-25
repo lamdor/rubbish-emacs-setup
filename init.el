@@ -19,6 +19,7 @@
 (require 'mine-pretty-lite)
 (require 'mine-pretty)
 (require 'mine-vc)
+(require 'mine-org-mode)
 
 ;; Languages
 (require 'mine-ruby)

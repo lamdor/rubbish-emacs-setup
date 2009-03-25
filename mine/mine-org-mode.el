@@ -20,11 +20,26 @@
 
 (setq org-refile-use-outline-path t)
 (setq org-refile-targets
-      '(("learning-gtd.org" :maxlevel . 2)
-        ("learning-someday-maybe.org" :level . 1)))
+      '(("gtd.org" :maxlevel . 2)
+        ("someday-maybe.org" :level . 1)))
+
 
 (setq org-agenda-dim-blocked-tasks t)
-(setq org-agenda-files (list (my-org-file "learning-gtd.org")))
+(setq org-agenda-skip-scheduled-if-done t)
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-deadline-warning-days 0)
+(setq org-agenda-ndays 1)
+(setq org-agenda-files (list (my-org-file "gtd.org")))
+(setq org-agenda-compact-blocks t)
+
+(setq org-agenda-custom-commands
+      '(("A" "Action List"
+         ((agenda "")
+          (alltodo))
+         ((org-agenda-todo-ignore-deadlines t)
+          (org-agenda-todo-ignore-scheduled t)
+          (org-agenda-todo-ignore-with-date t)
+          (org-agenda-sorting-strategy '(tag-up))))))
 
 (setq org-todo-keywords 
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))) 
@@ -36,18 +51,21 @@
 (autoload 'remember "remember" nil t)
 (org-remember-insinuate)
 (setq org-remember-templates
-      '(("Todo" ?t "* TODO %?\n %i\n %a" "learning-gtd.org" "Inbox")
-        ("Someday/Maybe" ?s "* %?\n %i" "learning-someday-maybe.org" "Someday/Maybe")))
+      '(("Todo" ?t "* TODO %?\n %i\n %a" "gtd.org" "Inbox")
+        ("Misc Task" ?m "* TODO %? %^g\n" "gtd.org" "Misc Tasks")
+        ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
+        ("Remember To Checkbook" ?c "* TODO %? :@desk:\n" "gtd.org" "Checkbook")))
 
 ;; misc helpers
 (defun gtd ()
   (interactive)
-  (find-file (my-org-file "learning-gtd.org")))
+  (find-file (my-org-file "gtd.org")))
 
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-remember)
 (global-set-key "\C-cg" 'gtd)
+(global-set-key "\C-cj" 'org-clock-goto)
 (global-set-key "\C-cl" 'org-store-link)
 
 (provide 'mine-org-mode)

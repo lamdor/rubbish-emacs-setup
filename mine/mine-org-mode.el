@@ -52,19 +52,26 @@
 (org-remember-insinuate)
 (setq org-remember-templates
       '(("Todo" ?t "* TODO %?\n %i\n %a" "gtd.org" "Inbox")
+        ("Inbox" ?i "* %?" "gtd.org" "Inbox")
         ("Misc Task" ?m "* TODO %? %^g\n" "gtd.org" "Misc Tasks")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
         ("Remember To Checkbook" ?c "* TODO %? :@desk:\n" "gtd.org" "Checkbook")))
 
-;; misc helpers
+;; navagation helpers
 (defun gtd ()
   (interactive)
   (find-file (my-org-file "gtd.org")))
 
+(defun gtd-jump ()
+  (interactive)
+  (find-file (my-org-file "gtd.org"))
+  (org-goto))
+
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-remember)
-(global-set-key "\C-cg" 'gtd)
+(global-set-key (kbd "C-c g g") 'gtd)
+(global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key "\C-cj" 'org-clock-goto)
 (global-set-key "\C-cl" 'org-store-link)
 

@@ -27,7 +27,7 @@
 (setq org-agenda-dim-blocked-tasks 'invisible)
 (setq org-agenda-skip-scheduled-if-done t)
 (setq org-agenda-skip-deadline-if-done t)
-(setq org-deadline-warning-days 0)
+(setq org-deadline-warning-days 2)
 (setq org-agenda-ndays 1)
 (setq org-agenda-files (list (my-org-file "gtd.org")))
 (setq org-agenda-compact-blocks t)

@@ -62,6 +62,10 @@
   (interactive)
   (find-file (my-org-file "gtd.org")))
 
+(defun gtd-someday-maybe ()
+  (interactive)
+  (find-file (my-org-file "someday-maybe.org")))
+
 (defun gtd-jump ()
   (interactive)
   (find-file (my-org-file "gtd.org"))
@@ -70,9 +74,11 @@
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-remember)
-(global-set-key (kbd "C-c g g") 'gtd)
-(global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key "\C-cj" 'org-clock-goto)
 (global-set-key "\C-cl" 'org-store-link)
+
+(global-set-key (kbd "C-c g g") 'gtd)
+(global-set-key (kbd "C-c g j") 'gtd-jump)
+(global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
 
 (provide 'mine-org-mode)

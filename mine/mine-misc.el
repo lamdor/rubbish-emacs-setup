@@ -16,6 +16,11 @@
 ;; Auto revert files
 (global-auto-revert-mode 1)
 
+;; Save place in files
+(setq save-place-file (concat emacs-root "saveplace"))
+(setq-default save-place t)
+(require 'saveplace)
+
 ;; Always use subwords to to move aroudn
 (c-subword-mode t)
 

@@ -39,7 +39,11 @@
          ((org-agenda-todo-ignore-deadlines t)
           (org-agenda-todo-ignore-scheduled t)
           (org-agenda-todo-ignore-with-date t)
-          (org-agenda-sorting-strategy '(tag-up))))))
+          (org-agenda-sorting-strategy '(tag-up)))
+         ("~/org/actions.html"))))
+
+(setq org-agenda-exporter-settings
+      '((htmlize-output-type 'css)))
 
 (setq org-todo-keywords 
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))) 

@@ -7,4 +7,7 @@
 
 (global-hl-line-mode t)
 
+(require 'highlight-parentheses)
+(highlight-parentheses-mode)
+
 (provide 'mine-pretty)

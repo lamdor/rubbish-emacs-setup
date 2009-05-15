@@ -28,6 +28,7 @@
 (require 'mine-java)
 (require 'mine-erlang)
 (require 'mine-html-xml)
+(require 'mine-javascript)
 (require 'mine-groovy)
 (require 'mine-lisp)
 

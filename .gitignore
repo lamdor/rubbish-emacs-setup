@@ -10,3 +10,5 @@ backups/*
 semantic.cache
 /.org-id-locations
 /url/cookies
+/saveplace
+/tramp

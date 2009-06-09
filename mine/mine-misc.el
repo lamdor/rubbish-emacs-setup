@@ -31,6 +31,9 @@
 (setq make-backup-files nil)
 (setq version-control nil)
 
+;; delete trailing whitespace on save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)
 

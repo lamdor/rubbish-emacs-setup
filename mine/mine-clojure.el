@@ -11,9 +11,10 @@
 (require 'slime)
 
 (add-path "site-lisp/swank-clojure")
-(setq swank-clojure-jar-path "~/code/watch/clojure/clojure.jar")
+(setq swank-clojure-jar-path "/usr/local/clojure/current/clojure-1.0.0.jar")
 (setq swank-clojure-extra-classpaths
       (list "~/code/watch/clojure-contrib/src/"
+	    "~/code/learning/clojure/programming-clojure/code"
 	    "~/code/learning/clojure/shcloj-code/code"
 	    "~/.m2/repository/ant/ant/1.6.5/ant-1.6.5.jar"
 	    (concat emacs-root "mine/clojure/")))

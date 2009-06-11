@@ -2,6 +2,8 @@
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
+(run-at-time "00:59" 3600 'org-save-all-org-buffers)
+
 ;; configuration
 (setq org-directory "~/org/")
 (defun my-org-file (file)
@@ -45,8 +47,9 @@
 (setq org-agenda-exporter-settings
       '((htmlize-output-type 'css)))
 
-(setq org-todo-keywords 
-      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))) 
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
+(setq org-use-fast-todo-selection t)
 (setq org-link-abbrev-alist
       '(("google" . "http://www.google.com/search?q=%s")))
 

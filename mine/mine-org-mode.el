@@ -62,7 +62,7 @@
         ("Inbox" ?i "* %?" "gtd.org" "Inbox")
         ("Misc Task" ?m "* TODO %? %^g\n" "gtd.org" "Misc Tasks")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
-        ("Remember To Checkbook" ?c "* TODO %? :@desk:\n" "gtd.org" "Checkbook")))
+        ("Remember To Checkbook" ?c "* TODO %? on %t :@desk:\n" "gtd.org" "Checkbook")))
 
 ;; navagation helpers
 (defun gtd ()

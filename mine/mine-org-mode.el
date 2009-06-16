@@ -51,7 +51,8 @@
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
 (setq org-use-fast-todo-selection t)
 (setq org-link-abbrev-alist
-      '(("google" . "http://www.google.com/search?q=%s")))
+      '(("google" . "http://www.google.com/search?q=%s")
+        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")

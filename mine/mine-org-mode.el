@@ -54,6 +54,8 @@
       '(("google" . "http://www.google.com/search?q=%s")
         ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
 
+
+
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")
 (autoload 'remember "remember" nil t)
@@ -94,6 +96,7 @@
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
 
+(define-key org-agenda-mode-map (kbd "q") 'bury-buffer)
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)
@@ -117,5 +120,10 @@
   (make-frame '((name . "remember") (width . 80) (height . 10)))
   (select-frame-by-name "remember")
   (org-remember))
+
+(defun mine-batch-export-agenda-views ()
+  (interactive)
+  (gtd)
+  (org-batch-store-agenda-views))
 
 (provide 'mine-org-mode)

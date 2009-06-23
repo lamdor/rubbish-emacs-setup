@@ -5,8 +5,6 @@
 (require 'ruby-electric)
 (require 'rdebug)
 (require 'ruby-style)
-(setq autotest-use-ui t)
-(autoload 'autotest "autotest" "Run autotest" t)
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
 (autoload 'run-ruby "inf-ruby" "Runs an inferior ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
@@ -14,6 +12,16 @@
 ;; Rinari setup
 (autoload 'rinari-launch "rinari" "Run rinari minor mode if inside a rails project" t)
 (setq rinari-tags-file-name "TAGS")
+
+(setq autotest-use-ui t)
+(autoload 'autotest "autotest" "Run autotest" t)
+
+(defun autotest-rspec ()
+  "Runs autotest as rspec enabled"
+  (interactive)
+  (setq autotest-command "RSPEC=true autotest")
+  (autotest)
+  (setq autotest-command "autotest"))
 
 ;; Use ruby-compmilation from rinari
 ;; (add-path "site-lisp/rinari/util/")

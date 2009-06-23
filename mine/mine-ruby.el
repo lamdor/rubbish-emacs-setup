@@ -71,7 +71,7 @@
 
 ;; Cucumber (perhaps not totally ruby related)
 (add-path "site-lisp/cucumber-mode/")
-(autoload 'feature-mode "cucumber-mode" "Major mode for editing plain text stories" t)
+(autoload 'feature-mode "feature-mode" "Major mode for editing plain text stories" t)
 (add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
 
 (provide 'mine-ruby)

@@ -96,7 +96,9 @@
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
 
-(define-key org-agenda-mode-map (kbd "q") 'bury-buffer)
+(add-hook 'org-agenda-mode-hook
+          '(lambda ()
+             (define-key org-agenda-mode-map (kbd "q") 'bury-buffer)))
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)

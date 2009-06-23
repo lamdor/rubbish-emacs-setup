@@ -20,6 +20,11 @@
 	    (concat emacs-root "mine/clojure/")))
 (require 'swank-clojure-autoload)
 
+;; clojure-test-mode
+(autoload 'clojure-test-mode "clojure-test-mode" "Clojure test mode" t)
+(autoload 'clojure-test-maybe-enable "clojure-test-mode" "" t)
+(add-hook 'clojure-mode-hook 'clojure-test-maybe-enable)
+
 ;; from Bill Clementson
 ;; http://bc.tech.coop/blog/081120.html
 (defun slime-java-describe (symbol-name)

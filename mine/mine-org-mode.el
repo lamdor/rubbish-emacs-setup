@@ -98,7 +98,8 @@
 
 (add-hook 'org-agenda-mode-hook
           '(lambda ()
-             (define-key org-agenda-mode-map (kbd "q") 'bury-buffer)))
+             (define-key org-agenda-mode-map (kbd "q") 'bury-buffer)
+             (define-key org-agenda-mode-map (kbd "x") 'bury-buffer)))
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)

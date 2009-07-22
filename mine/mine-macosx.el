@@ -7,6 +7,7 @@
 (set-frame-font "Monaco-14")
 (if (functionp 'ns-set-background-alpha)
     (ns-set-background-alpha 0.9))
-(scroll-bar-mode -1)
+(if (functionp 'scroll-bar-mode)
+    (scroll-bar-mode -1))
 
 (provide 'mine-macosx)

@@ -8,6 +8,6 @@
 (global-hl-line-mode t)
 
 (require 'highlight-parentheses)
-(highlight-parentheses-mode)
+(highlight-parentheses-mode t)
 
 (provide 'mine-pretty)

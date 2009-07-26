@@ -2,37 +2,50 @@
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-(run-at-time "00:59" 3600 'org-save-all-org-buffers)
-
 ;; configuration
 (setq org-directory "~/org/")
 (defun my-org-file (file)
   (concat org-directory file))
 
-(setq org-completion-use-ido t)
-(setq org-hide-leading-stars t)
-(setq org-odd-levels-only t)
-(setq org-blank-before-new-entry nil)
-(setq org-startup-folded 'content)
+;; automatically save org buffers
+(run-at-time "00:59" 3600 'org-save-all-org-buffers)
 
-(setq org-enforce-todo-dependencies t)
+;; dislplay configuration
+(setq org-completion-use-ido t
+      org-hide-leading-stars t
+      org-odd-levels-only t
+      org-blank-before-new-entry nil
+      org-startup-folded 'content)
 
-(setq org-log-into-drawer "LOGBOOK")
-(setq org-log-done 'time)
+;; todo configuration
+(setq org-enforce-todo-dependencies t
+      org-todo-keywords
+      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
+      org-use-fast-todo-selection t)
 
-(setq org-refile-use-outline-path t)
-(setq org-refile-targets
+;; logging configuration
+(setq org-log-into-drawer "LOGBOOK"
+      org-log-done 'time)
+
+;; link configuration
+(setq org-link-abbrev-alist
+      '(("google" . "http://www.google.com/search?q=%s")
+        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
+
+;; refiling configuration
+(setq org-refile-use-outline-path t
+      org-refile-targets
       '(("gtd.org" :maxlevel . 2)
         ("someday-maybe.org" :level . 1)))
 
-
-(setq org-agenda-dim-blocked-tasks 'invisible)
-(setq org-agenda-skip-scheduled-if-done t)
-(setq org-agenda-skip-deadline-if-done t)
-(setq org-deadline-warning-days 2)
-(setq org-agenda-ndays 1)
-(setq org-agenda-files (list (my-org-file "gtd.org")))
-(setq org-agenda-compact-blocks t)
+;; agenda configuration
+(setq org-agenda-dim-blocked-tasks 'invisible
+      org-agenda-skip-scheduled-if-done t
+      org-agenda-skip-deadline-if-done t
+      org-deadline-warning-days 2
+      org-agenda-ndays 1
+      org-agenda-files (list (my-org-file "gtd.org"))
+      org-agenda-compact-blocks t)
 
 (setq org-agenda-custom-commands
       '(("A" "Action List"
@@ -47,14 +60,10 @@
 (setq org-agenda-exporter-settings
       '((htmlize-output-type 'css)))
 
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)")))
-(setq org-use-fast-todo-selection t)
-(setq org-link-abbrev-alist
-      '(("google" . "http://www.google.com/search?q=%s")
-        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
-
-
+(defun mine-batch-export-agenda-views ()
+  (interactive)
+  (gtd)
+  (org-batch-store-agenda-views))
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")
@@ -124,9 +133,31 @@
   (select-frame-by-name "remember")
   (org-remember))
 
-(defun mine-batch-export-agenda-views ()
-  (interactive)
-  (gtd)
-  (org-batch-store-agenda-views))
+;; Colors
+
+(custom-set-faces
+ '(outline-1 ((t (:foreground "#D6B163" :bold t))))
+ '(outline-2 ((t (:foreground "#A5F26E" :bold t))))
+ '(outline-3 ((t (:foreground "#B150E7" :bold nil))))
+ '(outline-4 ((t (:foreground "#529DB0" :bold nil))))
+ '(outline-5 ((t (:foreground "#CC7832" :bold nil))))
+ '(org-level-1 ((t (:inherit outline-1))))
+ '(org-level-2 ((t (:inherit outline-2))))
+ '(org-level-3 ((t (:inherit outline-3))))
+ '(org-level-4 ((t (:inherit outline-4))))
+ '(org-level-5 ((t (:inherit outline-5))))
+ '(org-agenda-date ((t (:inherit font-lock-type-face))))
+ '(org-agenda-date-weekend ((t (:inherit org-agenda-date))))
+ '(org-scheduled-today ((t (:foreground "#ff6ab9" :italic t))))
+ '(org-scheduled-previously ((t (:foreground "#d74b4b"))))
+ '(org-upcoming-deadline ((t (:foreground "#d6ff9c"))))
+ '(org-warning ((t (:foreground "#8f6aff" :italic t))))
+ '(org-date ((t (:inherit font-lock-constant-face))))
+ '(org-tag ((t (:inherit font-lock-comment-delimiter-face))))
+ '(org-hide ((t (:foreground "#191919"))))
+ '(org-todo ((t (:background "DarkRed" :foreground "white" :box (:line-width 1 :style released-button)))))
+ '(org-done ((t (:background "DarkGreen" :foreground "white" :box (:line-width 1 :style released-button)))))
+ '(org-column ((t (:background "#222222"))))
+ '(org-column-title ((t (:background "DarkGreen" :foreground "white" :bold t :box (:line-width 1 :style released-button))))))
 
 (provide 'mine-org-mode)

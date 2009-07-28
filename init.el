@@ -30,6 +30,7 @@
 (require 'mine-html-xml)
 (require 'mine-javascript)
 (require 'mine-groovy)
+(require 'mine-slime)
 (require 'mine-lisp)
 
 

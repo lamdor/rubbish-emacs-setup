@@ -31,6 +31,9 @@
 (setq make-backup-files nil)
 (setq version-control nil)
 
+;; Allow to be able to select text and start typing or delete
+(delete-selection-mode t)
+
 ;; delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 

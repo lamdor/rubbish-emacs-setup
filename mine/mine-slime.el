@@ -1,7 +1,16 @@
 (add-path "site-lisp/slime")
 (require 'slime)
 
-(add-hook 'slime-repo-mode-hook (lambda () (paredit-mode t)))
+(add-path "site-lisp/slime/contrib")
+(autoload 'slime-repl-init "slime-repl" "" t)
+(autoload 'slime-autodoc-init "slime-autodoc" "" t)
+(autoload 'slime-fuzzy-init "slime-fuzzy" "Loads cool slime stuff" t)
+(add-hook 'slime-load-hook (lambda ()
+                             (slime-repl-init)
+                             (slime-autodoc-init)
+                             (slime-fuzzy-init)))
+
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode t)))
 
 ;; clojure slime setup
 (add-path "site-lisp/swank-clojure")
@@ -9,7 +18,7 @@
 
 (defmacro mine-swank-clojure-implementation (name &optional extra-classpath java-path clojure-jar extra-vm-args)
   `(let ((swank-clojure-jar-path ,(or clojure-jar "/usr/local/clojure/current/clojure-1.0.0.jar"))
-         (swank-clojure-extra-classpaths ,(or extra-classpath `(list "~/code/watch/clojure-contrib/src/")))
+         (swank-clojure-extra-classpaths (cons (concat emacs-root "mine/clojure/") ,(or extra-classpath `(list "~/code/watch/clojure-contrib/src/"))))
          (swank-clojure-java-path ,(or java-path "java"))
          (swank-clojure-extra-vm-args ,extra-vm-args))
      (list ',name (swank-clojure-cmd) :init 'swank-clojure-init)))

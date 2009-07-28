@@ -40,26 +40,26 @@
 
 ;; From: http://clj-me.blogspot.com/2008/05/jumping-to-javadocs-from-repl.html
 ;; usage:
-;; (javadoc Throwable) opens a window displaying Throwable's javadoc 
+;; (javadoc Throwable) opens a window displaying Throwable's javadoc
 ;; hint: (javadoc (class some-object))
 
 (defn open-url [url]
-     (let [htmlpane (javax.swing.JEditorPane. url)]
-       (.setEditable htmlpane false)
-       (.addHyperlinkListener htmlpane
-			     (proxy [javax.swing.event.HyperlinkListener] []
-			       (hyperlinkUpdate [#^javax.swing.event.HyperlinkEvent e]
-						(when (= (.getEventType e)
-							 (. javax.swing.event.HyperlinkEvent$EventType ACTIVATED))
-						  (if (instance? javax.swing.text.html.HTMLFrameHyperlinkEvent e)
-						    (.. htmlpane getDocument (processHTMLFrameHyperlinkEvent e))
-						    (try
-						     (.setPage htmlpane (.getURL e))
-						     (catch Throwable t (.printStacktrace t))))))))
-       (doto (new javax.swing.JFrame)
-	 (setContentPane (new javax.swing.JScrollPane htmlpane))
-	 (setBounds 32 32 700 900)
-	 (show))))
+  (let [htmlpane (javax.swing.JEditorPane. url)]
+    (.setEditable htmlpane false)
+    (.addHyperlinkListener htmlpane
+                           (proxy [javax.swing.event.HyperlinkListener] []
+                             (hyperlinkUpdate [#^javax.swing.event.HyperlinkEvent e]
+                                              (when (= (.getEventType e)
+                                                       (. javax.swing.event.HyperlinkEvent$EventType ACTIVATED))
+                                                (if (instance? javax.swing.text.html.HTMLFrameHyperlinkEvent e)
+                                                  (.. htmlpane getDocument (processHTMLFrameHyperlinkEvent e))
+                                                  (try
+                                                   (.setPage htmlpane (.getURL e))
+                                                   (catch Throwable t (.printStacktrace t))))))))
+    (doto (new javax.swing.JFrame)
+      (.setContentPane (new javax.swing.JScrollPane htmlpane))
+      (.setBounds 32 32 700 900)
+      (.show))))
 
 (defn javadoc [c]
   (let [url (str "http://java.sun.com/javase/6/docs/api/"

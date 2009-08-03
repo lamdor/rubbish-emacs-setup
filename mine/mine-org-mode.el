@@ -83,7 +83,7 @@
 
 (defun gtd-switch-to-agenda ()
   (interactive)
-  (switch-to-buffer "*Org Agenda*"))
+  (org-agenda nil "A"))
 
 (defun gtd-someday-maybe ()
   (interactive)

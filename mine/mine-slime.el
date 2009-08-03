@@ -1,19 +1,15 @@
 (add-path "site-lisp/slime")
 (require 'slime)
 
+;; clojure slime setup
 (add-path "site-lisp/slime/contrib")
-(autoload 'slime-repl-init "slime-repl" "" t)
-(autoload 'slime-autodoc-init "slime-autodoc" "" t)
-(autoload 'slime-fuzzy-init "slime-fuzzy" "Loads cool slime stuff" t)
-(add-hook 'slime-load-hook (lambda ()
-                             (slime-repl-init)
-                             (slime-autodoc-init)
-                             (slime-fuzzy-init)))
-
+(slime-setup '(slime-repl
+               slime-c-p-c
+               slime-fuzzy))
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode t)))
 
-;; clojure slime setup
 (add-path "site-lisp/swank-clojure")
+(setq swank-clojure-jar-path "/usr/local/clojure/current/clojure-1.0.0.jar") ; needed for swank-clojure to be happy
 (require 'swank-clojure-autoload)
 
 (defmacro mine-swank-clojure-implementation (name &optional extra-classpath java-path clojure-jar extra-vm-args)
@@ -51,6 +47,5 @@
                                           (list "~/code/watch/clojure-contrib/src/")
                                           nil
                                           "/Users/luke/code/watch/clojure/clojure.jar")))
-
 
 (provide 'mine-slime)

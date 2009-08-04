@@ -54,15 +54,32 @@
          ((org-agenda-todo-ignore-deadlines t)
           (org-agenda-todo-ignore-scheduled t)
           (org-agenda-todo-ignore-with-date t)
-          (org-agenda-sorting-strategy '(tag-up)))
-         ("~/org/export/actions.html"))))
+          (org-agenda-sorting-strategy '(tag-up))))))
+
+;; export the tags that I want exported
+
+(setq mine-batch-export-tags '("@errands"
+                               "@phone"
+                               "@home"))
+
+(dolist (export-tag mine-batch-export-tags)
+  (add-to-list 'org-agenda-custom-commands
+               (list export-tag (format "Exported Actions (%s)" export-tag)
+                     (list (list 'tags-todo export-tag))
+                     '((org-agenda-todo-ignore-deadlines t)
+                       (org-agenda-todo-ignore-scheduled t)
+                       (org-agenda-todo-ignore-with-date t)
+                       (org-agenda-with-colors nil)
+                       (org-agenda-sorting-strategy '(tag-up)))
+                     (my-org-file (format "export/%s.txt" export-tag)))))
+
 
 (setq org-agenda-exporter-settings
-      '((htmlize-output-type 'css)))
+      '((htmlize-output-type 'font)))
 
 (defun mine-batch-export-agenda-views ()
   (interactive)
-  (gtd)
+  ;; (gtd)
   (org-batch-store-agenda-views))
 
 ;; remember-mode setup
@@ -83,7 +100,13 @@
 
 (defun gtd-switch-to-agenda ()
   (interactive)
-  (org-agenda nil "A"))
+  (if (get-buffer "*Org Agenda*")
+      (progn
+        (split-window-vertically)
+        (other-window 1)
+        (switch-to-buffer "*Org Agenda*")
+        (org-fit-agenda-window))
+      (org-agenda nil "A")))
 
 (defun gtd-someday-maybe ()
   (interactive)
@@ -104,11 +127,6 @@
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
-
-(add-hook 'org-agenda-mode-hook
-          '(lambda ()
-             (define-key org-agenda-mode-map (kbd "q") 'bury-buffer)
-             (define-key org-agenda-mode-map (kbd "x") 'bury-buffer)))
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)

@@ -6,7 +6,7 @@
 	url = git://gitorious.org/magit/mainline.git
 [submodule "site-lisp/clojure-mode"]
 	path = site-lisp/clojure-mode
-	url = git://github.com/jochu/clojure-mode.git
+	url = git@github.com:rubbish/clojure-mode.git
 [submodule "site-lisp/swank-clojure"]
 	path = site-lisp/swank-clojure
 	url = git://github.com/jochu/swank-clojure.git

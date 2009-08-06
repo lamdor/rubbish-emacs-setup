@@ -33,6 +33,8 @@
 (require 'mine-slime)
 (require 'mine-lisp)
 
+;; Load Desktop
+(require 'mine-desktop)
 
 ;; system specific loading
 (case system-type

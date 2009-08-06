@@ -12,3 +12,5 @@ semantic.cache
 /url/cookies
 /saveplace
 /tramp
+/.emacs.desktop
+/.emacs.desktop.lock

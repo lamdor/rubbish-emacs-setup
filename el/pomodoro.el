@@ -42,6 +42,7 @@
 (defun pomodoro-display (msg)
   (let ((pomdoro-buffer (get-buffer-create "*Pomodoro*")))
     (switch-to-buffer pomdoro-buffer)
+    (delete-other-windows)
     (toggle-read-only -1)
     (erase-buffer)
     (insert msg)

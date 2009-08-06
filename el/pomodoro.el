@@ -13,16 +13,19 @@
 (defvar pomodoro-display-string nil)
 (defun pomodoro-display-update ()
   (setq pomodoro-display-string
-   (and pomodoro-current-timer
-       (format "Pomodoro: %s"
-               (pomodoro-format-time-difference
-                (timer-until pomodoro-current-timer (current-time)))))))
+        (if pomodoro-current-timer
+            (format "Pomodoro: %s"
+                    (pomodoro-format-time-difference
+                     (timer-until pomodoro-current-timer (current-time))))
+          ""))
+  (sit-for 0))
 
 (defvar pomodoro-display-timer nil)
 (define-minor-mode pomodoro-display-mode
-  :global t
+  :global t :group 'pomodoro
+  (and pomodoro-display-timer (cancel-timer pomodoro-display-timer))
+  (setq pomodoro-display-string "")
   (or global-mode-string (setq global-mode-string '("")))
-  (or pomodoro-display-timer (cancel-timer pomodoro-display-timer))
   (if pomodoro-display-mode
       (progn
         (or (memq 'pomodoro-display-string global-mode-string)
@@ -37,11 +40,9 @@
 (defun pomodoro-start-display ()
   (pomodoro-display-mode t))
 
-(setq mode-line-format nil)
-
-(defun pomodoro-display (msg)
-  (let ((pomdoro-buffer (get-buffer-create "*Pomodoro*")))
-    (switch-to-buffer pomdoro-buffer)
+(defun pomodoro-display-message (msg)
+  (let ((pomodoro-buffer (get-buffer-create "*Pomodoro*")))
+    (switch-to-buffer pomodoro-buffer)
     (delete-other-windows)
     (toggle-read-only -1)
     (erase-buffer)
@@ -51,7 +52,7 @@
 (defun pomodoro-finished ()
   (cancel-timer pomodoro-current-timer)
   (setq pomodoro-current-timer nil)
-  (pomodoro-display "Pomodoro Finished"))
+  (pomodoro-display-message "Pomodoro Finished"))
 
 (defun pomodoro-start ()
   "Start a pomodoro timer"

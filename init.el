@@ -20,6 +20,7 @@
 (require 'mine-pretty)
 (require 'mine-vc)
 (require 'mine-org-mode)
+(require 'mine-pomodoro)
 
 ;; Languages
 (require 'mine-ruby)

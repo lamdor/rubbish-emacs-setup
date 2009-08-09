@@ -52,7 +52,8 @@
 (defun pomodoro-finished ()
   (cancel-timer pomodoro-current-timer)
   (setq pomodoro-current-timer nil)
-  (pomodoro-display-message "Pomodoro Finished"))
+  (pomodoro-display-message "Pomodoro Finished")
+  (run-hooks 'pomodoro-finished-hook))
 
 (defun pomodoro-start ()
   "Start a pomodoro timer"

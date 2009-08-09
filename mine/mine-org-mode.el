@@ -30,6 +30,7 @@
 ;; link configuration
 (setq org-link-abbrev-alist
       '(("google" . "http://www.google.com/search?q=%s")
+        ("pending" . "file:///Users/luke/Desktop/pending/%s")
         ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
 
 ;; refiling configuration

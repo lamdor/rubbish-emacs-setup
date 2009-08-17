@@ -8,7 +8,7 @@
   (concat org-directory file))
 
 ;; automatically save org buffers
-(run-at-time "00:59" 3600 'org-save-all-org-buffers)
+(run-at-time t 3600 'org-save-all-org-buffers)
 
 ;; dislplay configuration
 (setq org-completion-use-ido t

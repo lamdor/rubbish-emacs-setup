@@ -21,6 +21,11 @@
   (set-frame-parameter (selected-frame) 'font "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")
   (add-to-list 'default-frame-alist '(font . "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")))
 
+(defun mine-use-fullscreen ()
+  (interactive)
+  (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)
+  (add-to-list 'default-frame-alist '(fullscreen . 'fullboth)))
+
 (defun mine-use-transparency ()
   (interactive)
   (set-frame-parameter (selected-frame) 'alpha '(90 80))

@@ -32,6 +32,19 @@
 ;; delete trailing whitespace on save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; auto indentation of yanked/pasted text
+(setq major-modes-to-auto-indent-yanked-text '(emacs-lisp-mode
+                                               clojure-mode
+                                               c-mode
+                                               c++-mode
+                                               objc-mode
+                                               ruby-mode))
+
+(defun yank-and-indent ()
+  (interactive)
+  (yank)
+  (call-interactively 'indent-region))
+
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)
 

@@ -61,6 +61,7 @@
 ;; export the tags that I want exported
 
 (setq mine-batch-export-tags '("@errands"
+                               "@groceries"
                                "@phone"
                                "@home"))
 

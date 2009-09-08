@@ -31,15 +31,6 @@
 (global-set-key "\C-\M-r" 'isearch-backward)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 
-;; Start shell or switch to it if it's active.
-(global-set-key (kbd "C-x m") 'shell)
-
-;; Start a new eshell even if one is active.
-(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
-
-;; Start a regular shell if you prefer that.
-(global-set-key (kbd "C-x M-m") 'shell)
-
 (global-set-key (kbd "C-M-g") 'magit-status)
 
 ;; annoying suspend

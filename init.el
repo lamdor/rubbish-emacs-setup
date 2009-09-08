@@ -18,6 +18,7 @@
 (require 'mine-erc)
 (require 'mine-pretty-lite)
 (require 'mine-pretty)
+(require 'mine-shell)
 (require 'mine-vc)
 (require 'mine-org-mode)
 (require 'mine-pomodoro)

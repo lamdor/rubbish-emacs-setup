@@ -1,5 +1,5 @@
 In Emacs, this file should be read in -*- Outline -*- mode.
-$Id: AUTHORS 16153 2008-09-19 22:26:07Z nielsen $
+$Id: AUTHORS 17069 2009-02-10 08:30:51Z nielsen $
 
 Below is a list of people who have made changes or contributed to the
 scala emacs mode.
@@ -15,3 +15,4 @@ scala emacs mode.
 ** Victor Rodriguez <victorr at gmail.com>
 ** ? <cwitty at newtonlabs.com>
 ** Hemant Kumar <gethemant at gmail.com>
+** Ulrick Müller <ulm@gentoo.org>

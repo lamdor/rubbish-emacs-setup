@@ -1,10 +1,10 @@
 ;;; -*-Emacs-Lisp-*-
 ;;; scala-mode.el - Major mode for editing Scala code.
 
-;; Copyright (C) 2008 Scala Dev Team at EPFL
+;; Copyright (C) 2009 Scala Dev Team at EPFL
 ;; Authors: See AUTHORS file
 ;; Keywords: scala languages oop
-;; $Id: scala-mode.el 16886 2009-01-09 16:58:22Z cunei $
+;; $Id: scala-mode.el 17069 2009-02-10 08:30:51Z nielsen $
 
 ;;; License
 
@@ -73,7 +73,7 @@
   :group 'scala)
 
 (defconst scala-mode-version "0.5.99.5")
-(defconst scala-mode-svn-revision "$Revision: 16886 $")
+(defconst scala-mode-svn-revision "$Revision: 17069 $")
 (defconst scala-bug-e-mail "scala@listes.epfl.ch")
 (defconst scala-web-url "http://scala-lang.org/")
 
@@ -145,8 +145,8 @@ through `mail-user-agent'."
   ;; the `n' means that comments can be nested
   (modify-syntax-entry ?\/  ". 124nb" scala-mode-syntax-table)
   (modify-syntax-entry ?\*  ". 23n"   scala-mode-syntax-table)
-  (modify-syntax-entry ?\n  "> nb" scala-mode-syntax-table)
-  (modify-syntax-entry ?\r  "> nb" scala-mode-syntax-table))
+  (modify-syntax-entry ?\n  "> bn" scala-mode-syntax-table)
+  (modify-syntax-entry ?\r  "> bn" scala-mode-syntax-table))
 
 
 ;;; Mode

@@ -1,10 +1,10 @@
 ;;; -*-Emacs-Lisp-*-
 ;;; scala-mode-indent.el - 
 
-;; Copyright (C) 2008 Scala Dev Team at EPFL
+;; Copyright (C) 2009 Scala Dev Team at EPFL
 ;; Authors: See AUTHORS file
 ;; Keywords: scala languages oop
-;; $Id: scala-mode-indent.el 16886 2009-01-09 16:58:22Z cunei $
+;; $Id: scala-mode-indent.el 17339 2009-03-20 09:15:21Z nielsen $
 
 ;;; License
 
@@ -123,7 +123,12 @@
   (let ((block-start-eol (scala-point-after (end-of-line)))
         (block-after-spc (scala-point-after (scala-forward-spaces))))
     (if (> block-after-spc block-start-eol)
-        (+ (current-indentation) scala-mode-indent:step)
+	(progn
+	  (beginning-of-line)
+	  (when (search-forward ")" block-start-eol t)
+	    (scala-forward-spaces)
+	    (backward-sexp))
+	  (+ (current-indentation) scala-mode-indent:step))
       (current-column))))
 
 (defun scala-indentation-from-following ()
@@ -152,14 +157,16 @@
   ;; current expression. Return nil if indentation cannot be guessed.
   (save-excursion
     (scala-backward-spaces)
-    (when (and (not (bobp))
-               (or (eq (char-syntax (char-before)) ?\()
-                   (progn
-                     (when (eq (char-before) ?\))
-                       (backward-sexp)
-                       (scala-backward-spaces))
-                     (scala-looking-at-backward scala-expr-start-re))))
-      (+ (current-indentation) scala-mode-indent:step))))
+    (and (not (bobp))
+	 (if (eq (char-syntax (char-before)) ?\()
+	     (scala-block-indentation)
+	   (progn
+	     (when (eq (char-before) ?\))
+	       (backward-sexp)
+	       (scala-backward-spaces))
+	     (scala-looking-at-backward scala-expr-start-re)))
+	 (+ (current-indentation) scala-mode-indent:step))))
+
 
 (defun scala-indentation-from-block ()
   ;; Return suggested indentation based on the current block.

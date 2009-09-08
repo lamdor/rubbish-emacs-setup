@@ -1,10 +1,10 @@
 ;;; -*-Emacs-Lisp-*-
 ;;; scala-mode-feature-tags.el - 
 
-;; Copyright (C) 2008 Scala Dev Team at EPFL
+;; Copyright (C) 2009 Scala Dev Team at EPFL
 ;; Authors: See AUTHORS file
 ;; Keywords: scala languages oop
-;; $Id: scala-mode-feature-tags.el 16886 2009-01-09 16:58:22Z cunei $
+;; $Id: scala-mode-feature-tags.el 17069 2009-02-10 08:30:51Z nielsen $
 
 ;;; License
 

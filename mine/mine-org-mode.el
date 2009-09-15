@@ -121,6 +121,10 @@
   (find-file (my-org-file "gtd.org"))
   (org-goto))
 
+(defun gtd-pomodori ()
+  (interactive)
+  (find-file (my-org-file "pomodori.org")))
+
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cr" 'org-remember)
@@ -129,8 +133,10 @@
 
 (global-set-key (kbd "C-c g g") 'gtd)
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
+(global-set-key (kbd "C-c g p") 'gtd-pomodori)
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
+
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)

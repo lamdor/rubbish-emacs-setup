@@ -14,6 +14,7 @@
 (setq org-completion-use-ido t
       org-hide-leading-stars t
       org-odd-levels-only t
+      org-tags-column -92
       org-blank-before-new-entry nil
       org-startup-folded 'content)
 
@@ -110,7 +111,7 @@
         (other-window 1)
         (switch-to-buffer "*Org Agenda*")
         (org-fit-agenda-window))
-      (org-agenda nil "A")))
+    (org-agenda nil "A")))
 
 (defun gtd-someday-maybe ()
   (interactive)

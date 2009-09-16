@@ -9,6 +9,7 @@
 (add-hook 'scala-mode-hook
 	  '(lambda ()
 	     (scala-electric-mode t)
+             (local-set-key (kbd "RET") 'newline-and-indent)
              (c-subword-mode t)))
 
 (provide 'mine-scala)

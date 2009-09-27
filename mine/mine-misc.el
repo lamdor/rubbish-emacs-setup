@@ -15,6 +15,7 @@
 
 ;; Auto revert files
 (global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
 
 ;; Always use subwords to to move aroudn
 (c-subword-mode t)

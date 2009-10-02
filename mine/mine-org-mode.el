@@ -36,9 +36,9 @@
         ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
 
 ;; refiling configuration
-(setq org-refile-use-outline-path t
+(setq org-refile-use-outline-path nil
       org-refile-targets
-      '(("gtd.org" :maxlevel . 2)
+      '(("gtd.org" :maxlevel . 3)
         ("someday-maybe.org" :level . 1)))
 
 ;; agenda configuration

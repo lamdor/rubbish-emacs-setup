@@ -42,7 +42,8 @@
         ("someday-maybe.org" :level . 1)))
 
 ;; agenda configuration
-(setq org-agenda-dim-blocked-tasks 'invisible
+(setq org-agenda-search-headline-for-time nil
+      org-agenda-dim-blocked-tasks 'invisible
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-deadline-warning-days 2

@@ -34,6 +34,7 @@
 (require 'mine-groovy)
 (require 'mine-slime)
 (require 'mine-lisp)
+(require 'mine-markdown)
 
 ;; system specific loading
 (case system-type

@@ -10,6 +10,15 @@
 
 (require 'highlight-parentheses)
 (highlight-parentheses-mode t)
+(show-paren-mode t)
+
+(transient-mark-mode t)
+
+;; Remove noise
+(global-hl-line-mode nil)
+(if (fboundp 'tool-bar-mode)
+    (tool-bar-mode nil))
+(menu-bar-mode nil)
 
 ;; display settings
 (defun mine-use-normal-font ()

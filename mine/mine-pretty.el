@@ -15,10 +15,9 @@
 (transient-mark-mode t)
 
 ;; Remove noise
-(global-hl-line-mode nil)
-(if (fboundp 'tool-bar-mode)
-    (tool-bar-mode nil))
-(menu-bar-mode nil)
+(global-hl-line-mode t)
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
 ;; display settings
 (defun mine-use-normal-font ()

@@ -98,7 +98,7 @@
         ("Misc Task" ?m "* TODO %? %^g\n" "gtd.org" "Misc Tasks")
         ("Misc ISEBA Task" ?b "* TODO %? :@bigcreek:\n" "gtd.org" "ISEBA")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
-        ("Remember To Checkbook" ?c "* TODO %? on %t :@desk:\n" "gtd.org" "Mine Checkbook")))
+        ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "gtd.org" "Mine Checkbook")))
 
 ;; navagation helpers
 (defun gtd ()

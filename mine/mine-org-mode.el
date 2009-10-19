@@ -42,14 +42,14 @@
       '(("gtd.org" :maxlevel . 3)
         ("someday-maybe.org" :level . 1)))
 
-;; agenda configuration
-(setq org-agenda-search-headline-for-time nil
+;; agenda configuraion
+(setq org-agenda-files (list (my-org-file "gtd.org"))
+      org-agenda-search-headline-for-time nil
       org-agenda-dim-blocked-tasks 'invisible
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-deadline-warning-days 2
       org-agenda-ndays 1
-      org-agenda-files (list (my-org-file "gtd.org"))
       org-agenda-compact-blocks t)
 
 (setq org-agenda-custom-commands
@@ -87,6 +87,14 @@
   (interactive)
   ;; (gtd)
   (org-batch-store-agenda-views))
+
+;; org-mobile setup
+;; (setq org-mobile-files (org-agenda-files))
+(setq org-mobile-directory (my-org-file "stage/"))
+(setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
+
+(autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
+(autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")

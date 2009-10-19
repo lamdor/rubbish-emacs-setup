@@ -22,7 +22,8 @@
 (setq org-enforce-todo-dependencies t
       org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
-      org-use-fast-todo-selection t)
+      org-use-fast-todo-selection t
+      org-default-priority 85)
 
 ;; logging configuration
 (setq org-log-into-drawer "LOGBOOK"
@@ -58,7 +59,7 @@
          ((org-agenda-todo-ignore-deadlines t)
           (org-agenda-todo-ignore-scheduled t)
           (org-agenda-todo-ignore-with-date t)
-          (org-agenda-sorting-strategy '(tag-up))))))
+          (org-agenda-sorting-strategy '(priority-down tag-up))))))
 
 ;; export the tags that I want exported
 

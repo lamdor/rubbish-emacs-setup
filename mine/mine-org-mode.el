@@ -3,7 +3,8 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; configuration
-(setq org-directory "~/org/")
+(if (not (boundp 'org-directory))
+    (setq org-directory "~/org/"))
 (defun my-org-file (file)
   (concat org-directory file))
 

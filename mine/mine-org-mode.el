@@ -4,12 +4,12 @@
 
 ;; configuration
 (if (not (boundp 'org-directory))
-    (setq org-directory "~/org/"))
+    (setq org-directory "~/org"))
 (defun my-org-file (file)
-  (concat org-directory file))
+  (concat org-directory "/" file))
 
 ;; automatically save org buffers
-(run-at-time t 3600 'org-save-all-org-buffers)
+(run-at-time t 300 'org-save-all-org-buffers)
 
 ;; dislplay configuration
 (setq org-completion-use-ido t
@@ -90,12 +90,51 @@
   (org-batch-store-agenda-views))
 
 ;; org-mobile setup
-;; (setq org-mobile-files (org-agenda-files))
 (setq org-mobile-directory (my-org-file "stage/"))
 (setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
 
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
+
+(setq org-mobile-remote-host "root@coderlukes.com")
+(setq org-mobile-remote-directory "/var/org/")
+(setq org-mobile-remote-scp-string (format "%s:%s" org-mobile-remote-host org-mobile-remote-directory))
+
+
+(defun mine-scp-command (from to)
+  (format "scp %s* %s" from to))
+
+(defun mine-scp-files (from to)
+  (shell-command (mine-scp-command from to)))
+
+(defun mine-scp-files-async (from to)
+  (start-process-shell-command "mine-scp" nil (mine-scp-command from to)))
+
+(defun mine-chown-remote-org-mobile-files ()
+  (start-process-shell-command "mine-chown-remote-org" nil
+                               (format "ssh %s chown www-data %s*" org-mobile-remote-host org-mobile-remote-directory)))
+
+(defun mine-org-push-remote ()
+  (mine-scp-files-async org-mobile-directory org-mobile-remote-scp-string)
+  (mine-chown-remote-org-mobile-files))
+
+(defun mine-org-pull-remote ()
+  (mine-scp-files org-mobile-remote-scp-string org-mobile-directory))
+
+(defun mine-org-pull-remote-async ()
+  (mine-scp-files-async org-mobile-remote-scp-string org-mobile-directory))
+
+(add-hook 'org-mobile-post-push-hook 'mine-org-push-remote)
+(add-hook 'org-mobile-pre-pull-hook 'mine-org-pull-remote)
+(add-hook 'org-mobile-post-pull-hook 'mine-org-push-remote)
+
+(defun mine-org-mobile-sync ()
+  (interactive)
+  (message "Syncing org-mobile")
+  (mine-org-pull-remote-async)
+  (org-mobile-push))
+
+(run-at-time t 1200 'mine-org-mobile-sync)
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")

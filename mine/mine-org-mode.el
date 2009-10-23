@@ -130,7 +130,7 @@
 
 (defun mine-org-mobile-sync ()
   (interactive)
-  (message "Syncing org-mobile")
+  (message (format "Syncing org-mobile at %s" (current-time-string)))
   (mine-org-pull-remote-async)
   (org-mobile-push))
 

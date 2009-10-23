@@ -4,10 +4,10 @@
 ;; Start shell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'shell)
 
+(setq dirtrack-list '("^\\([^ ]*\\) .*\n->" 1 t))
+
 (add-hook 'shell-mode-hook
           '(lambda ()
-             (setq dirtrack-list '("^\\([^ ]*\\) ?.*" 1 t))
-             (shell-dirtrack-mode -1)
-             (dirtrack-mode t)))
+             (dirtrack-mode 1)))
 
 (provide 'mine-shell)

@@ -8,16 +8,37 @@
 (defun my-org-file (file)
   (concat org-directory "/" file))
 
+;; files
+(setq mine-org-files
+      (list
+       "inbox.org"
+       "misc-tasks.org"
+       "projects.org"
+       "bigcreek.org"
+       "chores.org"
+       "self-fulfillment.org"
+       "financial.org"))
+
+(setq mine-outside-org-files ())
+
+(setq org-agenda-files (append
+                        (mapcar 'my-org-file mine-org-files)
+                        mine-outside-org-files))
+
 ;; automatically save org buffers
 (run-at-time t 300 'org-save-all-org-buffers)
 
-;; dislplay configuration
+(setq org-global-properties
+      '(("Effort_ALL" . "0 1 2 3 5 8 13 21")))
+
+;; display configuration
 (setq org-completion-use-ido t
       org-hide-leading-stars t
       org-odd-levels-only t
       org-tags-column -92
       org-blank-before-new-entry nil
-      org-startup-folded 'content)
+      org-startup-folded 'content
+      org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
 
 ;; todo configuration
 (setq org-enforce-todo-dependencies t
@@ -25,6 +46,22 @@
       '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
       org-use-fast-todo-selection t
       org-default-priority 85)
+
+;; tag configuration
+(setq org-tag-alist
+      '((:startgroup . nil)
+        ("@mac" . ?m)
+        ("@development" . ?d)
+        ("@bigcreek" . ?b)
+        ("@email" . ?e)
+        ("@home" . ?h)
+        ("@phone" . ?p)
+        ("@desk" . ?a)
+        ("@read" . ?d)
+        ("@errands" . ?r)
+        ("@groceries" . ?g)
+        ("@kate" . ?k)
+        (:endgroup . nil)))
 
 ;; logging configuration
 (setq org-log-into-drawer "LOGBOOK"
@@ -39,13 +76,13 @@
 
 ;; refiling configuration
 (setq org-refile-use-outline-path nil
-      org-refile-targets
-      '(("gtd.org" :maxlevel . 3)
-        ("someday-maybe.org" :level . 1)))
+      org-refile-targets (append
+                          (mapcar '(lambda (orgf)
+                                     (append (list orgf) '(:maxlevel . 3))) mine-org-files)
+                          '(("someday-maybe.org" :level . 1))))
 
 ;; agenda configuraion
-(setq org-agenda-files (list (my-org-file "gtd.org"))
-      org-agenda-search-headline-for-time nil
+(setq org-agenda-search-headline-for-time nil
       org-agenda-dim-blocked-tasks 'invisible
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
@@ -62,7 +99,6 @@
           (org-agenda-todo-ignore-with-date t)
           (org-agenda-sorting-strategy '(priority-down tag-up))))))
 
-;; export the tags that I want exported
 
 (setq mine-batch-export-tags '("@errands"
                                "@groceries"
@@ -80,14 +116,6 @@
                        (org-agenda-sorting-strategy '(tag-up)))
                      (my-org-file (format "export/%s.txt" export-tag)))))
 
-
-(setq org-agenda-exporter-settings
-      '((htmlize-output-type 'font)))
-
-(defun mine-batch-export-agenda-views ()
-  (interactive)
-  ;; (gtd)
-  (org-batch-store-agenda-views))
 
 ;; org-mobile setup
 (setq org-mobile-directory (my-org-file "stage/"))
@@ -134,19 +162,19 @@
   (mine-org-pull-remote-async)
   (org-mobile-push))
 
-(run-at-time t 1200 'mine-org-mobile-sync)
+(run-at-time t 7200 'mine-org-mobile-sync)
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")
 (autoload 'remember "remember" nil t)
 (org-remember-insinuate)
 (setq org-remember-templates
-      '(("Todo" ?t "* TODO %?\n %i\n %a" "gtd.org" "Inbox")
-        ("Inbox" ?i "* %?" "gtd.org" "Inbox")
-        ("Misc Task" ?m "* TODO %? %^g\n" "gtd.org" "Misc Tasks")
-        ("Misc ISEBA Task" ?b "* TODO %? :@bigcreek:\n" "gtd.org" "ISEBA")
+      '(("Todo" ?t "* TODO %?\n %i\n %a" "inbox.org" "Inbox")
+        ("Inbox" ?i "* %?" "inbox.org" "Inbox")
+        ("Misc Task" ?m "* TODO %? %^g\n" "misc-tasks.org" "Misc Tasks")
+        ("Misc ISEBA Task" ?b "* TODO %? :@bigcreek:\n" "bigcreek.org" "ISEBA")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
-        ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "gtd.org" "Mine Checkbook")))
+        ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" ".org" "Mine Checkbook")))
 
 ;; navagation helpers
 (defun gtd ()

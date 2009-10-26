@@ -18,8 +18,9 @@
             'dired-mode-hook
             'shell-mode-hook))
 
-(setq autotest-use-ui t)
+;; autotest setup
 (autoload 'autotest "autotest" "Run autotest" t)
+(setq autotest-use-ui t)
 
 (defun autotest-rspec ()
   "Runs autotest as rspec enabled"
@@ -45,7 +46,7 @@
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 
 ;; Hooks
-(add-hook 'ruby-mode-hook (lambda () (ruby-electric-mode t)))
+(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 (add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
 (add-hook 'ruby-mode-hook
@@ -60,8 +61,7 @@
 ;; Misc
 (defun run-jruby ()
   (interactive)
-    (run-ruby "/usr/local/jruby/current/bin/jruby -S irb --inf-ruby-mode"))
-
+    (run-ruby "/usr/local/bin/jruby -S irb --inf-ruby-mode" "jruby"))
 
 ;; Flymake Flymake
 (require 'flymake)

@@ -12,6 +12,11 @@
 ;; Rinari setup
 (autoload 'rinari-launch "rinari" "Run rinari minor mode if inside a rails project" t)
 (setq rinari-tags-file-name "TAGS")
+(setq rinari-major-modes
+      (list 'find-file-hook
+            'mumamo-after-change-major-mode-hook
+            'dired-mode-hook
+            'shell-mode-hook))
 
 (setq autotest-use-ui t)
 (autoload 'autotest "autotest" "Run autotest" t)

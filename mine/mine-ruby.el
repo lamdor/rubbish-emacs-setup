@@ -28,6 +28,13 @@
   (autotest)
   (setq autotest-command "autotest"))
 
+(defun autotest-rspec-with-features ()
+  "Runs autotest as rspec and cucumber features enabled"
+  (interactive)
+  (setq autotest-command "AUTOFEATURE=true RSPEC=true autotest")
+  (autotest)
+  (setq autotest-command "autotest"))
+
 ;; Use ruby-compmilation from rinari
 ;; (add-path "site-lisp/rinari/util/")
 ;; (require 'ruby-compilation-rspec)

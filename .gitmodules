@@ -25,3 +25,6 @@
 [submodule "site-lisp/remember-mode"]
 	path = site-lisp/remember-mode
 	url = git://repo.or.cz/remember-el.git
+[submodule "site-lisp/sbt"]
+	path = site-lisp/sbt
+	url = git@github.com:rubbish/sbt.el.git

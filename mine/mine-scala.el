@@ -6,7 +6,7 @@
 
 (add-path "site-lisp/sbt")
 (autoload 'sbt "sbt" "sbt shell" t)
-(autoload 'sbt-swith "sbt" "sbt shell switch" t)
+(autoload 'sbt-switch "sbt" "sbt shell switch" t)
 
 (add-hook 'scala-mode-hook
 	  '(lambda ()

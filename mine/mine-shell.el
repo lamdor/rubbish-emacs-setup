@@ -4,7 +4,7 @@
 ;; Start shell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'shell)
 
-(setq dirtrack-list '("^\\([^ ]*\\) .*\n->" 1 t))
+(setq dirtrack-list '("^\\([^ ]*\\) \\((.+) \\)?\n-> " 1 t))
 
 (add-hook 'shell-mode-hook
           '(lambda ()

@@ -6,7 +6,6 @@
 
 ;; frame/window
 (global-set-key "\C-x\C-j" 'speedbar)
-(global-set-key (kbd "C-c C-a") 'autotest-switch)
 (global-set-key (kbd "C-x p") 'other-previous-window)
 
 ;; file navigation

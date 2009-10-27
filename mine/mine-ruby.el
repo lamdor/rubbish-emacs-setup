@@ -49,6 +49,7 @@
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 (add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
+(add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "C-c C-a") 'autotest-switch)))
 (add-hook 'ruby-mode-hook
           '(lambda ()
 	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))

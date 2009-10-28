@@ -1,4 +1,5 @@
 (add-path "site-lisp/org-mode/lisp")
+(setq org-modules '(org-habit))
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
@@ -90,7 +91,11 @@
       org-agenda-skip-deadline-if-done t
       org-deadline-warning-days 2
       org-agenda-ndays 1
-      org-agenda-compact-blocks t)
+      org-agenda-compact-blocks t
+      org-agenda-tags-column -92
+      org-habit-preceding-days 20
+      org-habit-following-days 3
+      org-habit-graph-column 55)
 
 (setq org-agenda-custom-commands
       '(("A" "Action List"
@@ -117,6 +122,7 @@
                        (org-agenda-with-colors nil)
                        (org-agenda-sorting-strategy '(tag-up)))
                      (my-org-file (format "export/%s.txt" export-tag)))))
+
 
 
 ;; org-mobile setup

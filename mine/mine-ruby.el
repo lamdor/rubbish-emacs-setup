@@ -86,5 +86,6 @@
 (add-path "site-lisp/cucumber-mode/")
 (autoload 'feature-mode "feature-mode" "Major mode for editing plain text stories" t)
 (add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
+(add-hook 'feature-mode-hook '(lambda () (local-set-key (kbd "C-c C-a") 'autotest-switch)))
 
 (provide 'mine-ruby)

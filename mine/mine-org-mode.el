@@ -68,11 +68,13 @@
       org-log-done 'time)
 
 ;; link configuration
+(setq org-confirm-shell-link-function 'y-or-n-p)
 (setq org-link-abbrev-alist
       '(("google" . "http://www.google.com/search?q=%s")
-        ("pending" . "file:///Users/luke/Desktop/Pending/%s")
+        ("pending" . "shell:showinfinder /Users/luke/Desktop/Pending/%s")
         ("dump" . "file:///Users/luke/Documents/Dump/%s")
-        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")))
+        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")
+        ("reveal" . "shell:showinfinder %s")))
 
 ;; refiling configuration
 (setq org-refile-use-outline-path nil

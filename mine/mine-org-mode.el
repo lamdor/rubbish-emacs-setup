@@ -1,6 +1,6 @@
 (add-path "site-lisp/org-mode/lisp")
-(setq org-modules '(org-habit))
 (require 'org)
+(add-to-list 'org-modules 'org-habit)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; configuration

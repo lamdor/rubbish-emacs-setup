@@ -31,6 +31,9 @@
                 "-m" msg
                 "-p" (format "%s" (if priority priority 0))))
 
+(defun switch-to-other-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer)))
 
 (defun ido-imenu ()
   "Update the imenu index and then use ido to select a symbol to navigate to."

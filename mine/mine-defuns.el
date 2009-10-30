@@ -25,6 +25,8 @@
   (indent-region (point-min) (point-max)))
 
 (defun growl-message (msg &optional priority)
+  "Sends a message to grow"
+  (interactive "sMessage: ")
   (call-process "growlnotify" nil nil nil
                 "-m" msg
                 "-p" (format "%s" (if priority priority 0))))

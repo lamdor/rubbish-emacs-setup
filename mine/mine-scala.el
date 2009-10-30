@@ -8,6 +8,8 @@
 (autoload 'sbt "sbt" "sbt shell" t)
 (autoload 'sbt-switch "sbt" "sbt shell switch" t)
 
+(setq sbt-use-ui t)
+
 (add-hook 'scala-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "C-c C-a") 'sbt-switch)

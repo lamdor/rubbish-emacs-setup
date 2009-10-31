@@ -44,19 +44,24 @@
   (interactive)
   (mvn-command "test-compile"))
 
+(defun mvn-kicker (command)
+  (interactive "smvn kicker command: ")
+  (mvn-shell (concat "MVN_COMMAND=" command " kicker -r mvn")))
+
 (defun mvn-switch ()
   (interactive)
   (if (equal (buffer-name) mvn-buffer-name)
         (switch-to-buffer (other-buffer))
       (if (get-buffer mvn-buffer-name)
           (switch-to-buffer mvn-buffer-name)
-        (mvn-shell "ls"))))
+        (mvn-kicker "test"))))
 
 (defun mvn-keys ()
   (interactive)
   (local-set-key (kbd "C-c m i") 'mvn-install)
   (local-set-key (kbd "C-c m c i") 'mvn-clean-install)
   (local-set-key (kbd "C-c m p") 'mvn-package)
+  (local-set-key (kbd "C-c m k") 'mvn-kicker)
   (local-set-key (kbd "C-c m t") 'mvn-test-compile)
   (local-set-key (kbd "C-c m m") 'mvn-switch))
 

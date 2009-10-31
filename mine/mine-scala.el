@@ -8,6 +8,8 @@
 (autoload 'sbt "sbt" "sbt shell" t)
 (autoload 'sbt-switch "sbt" "sbt shell switch" t)
 
+(autoload 'mvn-keys "mvn" "Sets Maven Keys" t)
+
 (setq sbt-use-ui t)
 
 (add-hook 'scala-mode-hook
@@ -15,7 +17,8 @@
 	     (local-set-key (kbd "C-c C-a") 'sbt-switch)
              (scala-electric-mode t)
              (local-set-key (kbd "RET") 'newline-and-indent)
-             (c-subword-mode t)))
+             (c-subword-mode t)
+             (mvn-keys)))
 
 (provide 'mine-scala)
 

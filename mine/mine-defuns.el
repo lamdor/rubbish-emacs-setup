@@ -24,6 +24,13 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
+(defun clear-unit-test-from-mode-line ()
+  (interactive)
+  (mapcar (lambda (buffer)
+            (with-current-buffer buffer
+              (show-test-none)))
+          (remove-if 'minibufferp (buffer-list))))
+
 (defun growl-message (msg &optional priority)
   "Sends a message to grow"
   (interactive "sMessage: ")

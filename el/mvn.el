@@ -45,10 +45,12 @@
   (mvn-command "test-compile"))
 
 (defun mvn-switch ()
-  (let ((current-buffer-name (buffer-name (current-buffer))))
-    (if (eq current-buffer mvn-buffer-name)
+  (interactive)
+  (if (equal (buffer-name) mvn-buffer-name)
         (switch-to-buffer (other-buffer))
-      (mvn-shell "ls"))))
+      (if (get-buffer mvn-buffer-name)
+          (switch-to-buffer mvn-buffer-name)
+        (mvn-shell "ls"))))
 
 (defun mvn-keys ()
   (interactive)

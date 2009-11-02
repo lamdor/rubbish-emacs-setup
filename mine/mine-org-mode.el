@@ -189,6 +189,17 @@
   (interactive)
   (find-file (my-org-file "gtd.org")))
 
+(defun gtd-agenda ()
+  (interactive)
+  (if (equal (buffer-name (current-buffer))
+             "*Org Agenda*")
+      (switch-to-buffer (other-buffer))
+    (if (get-buffer "*Org Agenda*")
+        (switch-to-buffer "*Org Agenda*")
+      (progn
+        (org-agenda nil "A")
+        (delete-other-windows)))))
+
 (defun gtd-switch-to-agenda ()
   (interactive)
   (if (get-buffer "*Org Agenda*")
@@ -218,7 +229,7 @@
 (global-set-key "\C-cj" 'org-clock-goto)
 (global-set-key "\C-cl" 'org-store-link)
 
-(global-set-key (kbd "C-c g g") 'gtd)
+(global-set-key (kbd "C-c g g") 'gtd-agenda)
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
 (global-set-key (kbd "C-c g p") 'gtd-pomodori)
 (global-set-key (kbd "C-c g j") 'gtd-jump)

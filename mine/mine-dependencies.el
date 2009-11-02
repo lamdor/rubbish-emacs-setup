@@ -6,7 +6,10 @@
 (add-path "site-lisp/yasnippet-0.6.1c")
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.6.1c/snippets/"))
+(setq yas/root-directories
+      (list (concat emacs-root "site-lisp/yasnippet-0.6.1c/snippets/")
+            (concat emacs-root "mysnippets/")))
+(mapc 'yas/load-directory yas/root-directories)
 
 ;; Misc Files
 (add-path "el/")

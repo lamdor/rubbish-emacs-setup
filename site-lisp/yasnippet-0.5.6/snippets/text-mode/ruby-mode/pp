@@ -1,3 +1,0 @@
-#name : p inspect
-# --
-p [:${var}, ${var}]

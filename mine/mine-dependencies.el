@@ -1,12 +1,12 @@
 ;; Gist
 (add-path "site-lisp/gist/")
 (require 'gist)
-  
+
 ;; yasnippet
-(add-path "site-lisp/yasnippet-0.5.6/")
+(add-path "site-lisp/yasnippet-0.6.1c")
 (require 'yasnippet)
 (yas/initialize)
-(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.5.6/snippets/"))
+(yas/load-directory (concat emacs-root "site-lisp/yasnippet-0.6.1c/snippets/"))
 
 ;; Misc Files
 (add-path "el/")

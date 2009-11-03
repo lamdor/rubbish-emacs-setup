@@ -15,7 +15,6 @@
        "inbox.org"
        "misc-tasks.org"
        "projects.org"
-       "bigcreek.org"
        "chores.org"
        "self-fulfillment.org"
        "financial.org"))

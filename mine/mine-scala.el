@@ -9,16 +9,31 @@
 (autoload 'sbt-switch "sbt" "sbt shell switch" t)
 
 (autoload 'mvn-keys "mvn" "Sets Maven Keys" t)
-
 (setq sbt-use-ui t)
+
+(defun scala-run-scala-sbt ()
+  (interactive)
+  (let ((sbt-path (sbt-find-path-to-project)))
+    (if (equal "/" sbt-path)
+        (scala-run-scala "scala")
+      (progn
+        (cd sbt-path)
+        (scala-run-scala "sbt console")))))
 
 (add-hook 'scala-mode-hook
 	  '(lambda ()
 	     (local-set-key (kbd "C-c C-a") 'sbt-switch)
+             (mvn-keys)
+
              (scala-electric-mode t)
              (local-set-key (kbd "RET") 'newline-and-indent)
              (c-subword-mode t)
-             (mvn-keys)))
+
+             (local-set-key (kbd "C-c C-l") 'scala-load-file)
+             (local-set-key (kbd "C-c C-r") 'scala-eval-region)
+             (local-set-key (kbd "C-M-x") 'scala-eval-definition)
+             (local-set-key (kbd "C-c C-s") 'scala-run-scala-sbt)
+             (local-set-key (kbd "C-c C-z") 'scala-switch-to-interpreter)))
 
 (provide 'mine-scala)
 

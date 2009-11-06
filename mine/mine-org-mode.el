@@ -232,7 +232,7 @@
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
 (global-set-key (kbd "C-c g p") 'gtd-pomodori)
 (global-set-key (kbd "C-c g j") 'gtd-jump)
-(global-set-key (kbd "C-c g m") 'gtd-someday-maybe)
+(global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
 
 ;; for a popup window for remember mode

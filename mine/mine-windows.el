@@ -5,4 +5,6 @@
 
 (tool-bar-mode -1)
 
+(setq explicit-shell-file-name "C:/cygwin/bin/bash.exe")
+
 (provide 'mine-windows)

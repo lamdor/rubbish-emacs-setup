@@ -6,5 +6,8 @@
 (tool-bar-mode -1)
 
 (setq explicit-shell-file-name "C:/cygwin/bin/bash.exe")
+(setq find-program "find.exe")
+(setq grep-find-program "find.exe")
+(setq grep-find-use-xargs 'gnu)
 
 (provide 'mine-windows)

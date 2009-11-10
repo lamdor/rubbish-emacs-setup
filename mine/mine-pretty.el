@@ -19,16 +19,19 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+(setq mine-normal-font "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+(setq mine-big-font "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")
+
 ;; display settings
 (defun mine-use-normal-font ()
   (interactive)
-  (set-frame-parameter (selected-frame) 'font "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-  (add-to-list 'default-frame-alist '(font . "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")))
+  (set-frame-parameter (selected-frame) 'font mine-normal-font)
+  (add-to-list 'default-frame-alist (cons 'font mine-normal-font)))
 
 (defun mine-use-big-font ()
   (interactive)
-  (set-frame-parameter (selected-frame) 'font "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")
-  (add-to-list 'default-frame-alist '(font . "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")))
+  (set-frame-parameter (selected-frame) 'font mine-big-font)
+  (add-to-list 'default-frame-alist (cons 'font mine-big-font)))
 
 (defun mine-use-fullscreen ()
   (interactive)
@@ -65,7 +68,5 @@
   (interactive)
   (mine-use-big-font)
   (mine-use-no-transparency))
-
-(mine-normal-display)
 
 (provide 'mine-pretty)

@@ -11,6 +11,10 @@
             (concat emacs-root "mysnippets/")))
 (mapc 'yas/load-directory yas/root-directories)
 
+(setq yas/prompt-functions '(yas/dropdown-prompt
+                             yas/ido-prompt
+                             yas/no-prompt))
+
 ;; Misc Files
 (add-path "el/")
 (require 'find-recursive)

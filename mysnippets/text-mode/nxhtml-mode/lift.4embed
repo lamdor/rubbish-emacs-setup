@@ -1,0 +1,5 @@
+#name : <lift:embed what="template_name">...</lift:embed>
+# --
+<lift:embed what="${1:template_name}">
+  $0
+</lift:embed>

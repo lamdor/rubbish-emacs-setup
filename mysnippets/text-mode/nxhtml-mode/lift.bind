@@ -1,0 +1,5 @@
+#name : <lift:bind name="..">...</lift:bind>
+# --
+<lift:bind name="${1:content}">
+  $0
+</lift:bind>

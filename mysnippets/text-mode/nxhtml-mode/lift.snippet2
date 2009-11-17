@@ -1,0 +1,5 @@
+#name : <lift:snippet type="Class.method"...></lift:snippet>
+# --
+<lift:snippet type="${1:Class.method}">
+  $0
+</lift:snippet>

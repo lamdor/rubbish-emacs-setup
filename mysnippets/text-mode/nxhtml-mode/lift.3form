@@ -1,0 +1,5 @@
+#name : <lift:Class.method form="POST">...</lift:Class.method>
+# --
+<lift:${1:Class.method} form="POST">
+  $0
+</lift:$1>

@@ -1,0 +1,5 @@
+#name : <lift:Class.method>...</lift:Class.method>
+# --
+<lift:${1:Class.method}$2>
+  $0
+</lift:$1>

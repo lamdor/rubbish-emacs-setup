@@ -1,0 +1,5 @@
+#name : <lift:surround ...></lift:surround>
+# --
+<lift:surround with="${1:default}" at="${2:content}">
+  $0
+</lift:surround>

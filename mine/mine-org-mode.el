@@ -60,6 +60,7 @@
         ("@read" . ?d)
         ("@errands" . ?r)
         ("@groceries" . ?g)
+        ("@geo" . ?e)
         ("@kate" . ?k)
         (:endgroup . nil)))
 

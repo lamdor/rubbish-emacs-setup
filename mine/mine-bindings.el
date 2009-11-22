@@ -30,6 +30,10 @@
 (global-set-key (kbd "C-M-r") 'isearch-backward)
 (global-set-key (kbd "M-%") 'query-replace-regexp)
 
+;; smex keybindings
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+
 (global-set-key (kbd "C-M-g") 'magit-status)
 
 ;; annoying suspend

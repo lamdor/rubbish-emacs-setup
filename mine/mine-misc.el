@@ -9,6 +9,12 @@
       ido-use-filename-at-point t
       ido-max-prospects 10)
 
+;; use uniquify
+(require 'uniquify)
+(setq
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)

@@ -201,6 +201,13 @@
         (org-agenda nil "A")
         (delete-other-windows)))))
 
+(defun gtd-find-inbox ()
+  (interactive)
+  (if (equal (buffer-name (current-buffer))
+             "inbox.org")
+      (switch-to-buffer (other-buffer))
+    (switch-to-buffer "inbox.org")))
+
 (defun gtd-switch-to-agenda ()
   (interactive)
   (if (get-buffer "*Org Agenda*")
@@ -233,6 +240,7 @@
 (global-set-key (kbd "C-c g g") 'gtd-agenda)
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
 (global-set-key (kbd "C-c g p") 'gtd-pomodori)
+(global-set-key (kbd "C-c g i") 'gtd-find-inbox)
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 

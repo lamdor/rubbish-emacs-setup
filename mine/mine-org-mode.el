@@ -17,7 +17,8 @@
        "projects.org"
        "chores.org"
        "self-fulfillment.org"
-       "financial.org"))
+       "financial.org"
+       "geo.org"))
 
 (setq mine-outside-org-files ())
 

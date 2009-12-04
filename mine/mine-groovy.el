@@ -7,6 +7,6 @@
 
 (add-hook 'auto-mode-alist '("\\.groovy\\'" . groovy-mode))
 
-(setq groovy-home "/usr/local/groovy/current/")
+(setq groovy-home "/usr/local/Cellar/groovy/1.6.5/")
 
 (provide 'mine-groovy)

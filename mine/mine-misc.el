@@ -1,6 +1,7 @@
 ;; ido-mode
 (require 'ido)
 (ido-mode t)
+(ido-everywhere t)
 
 ;; ido setup
 (setq ido-enable-prefix nil

@@ -15,23 +15,31 @@ task :clean_elc do
   end
 end
 
-desc "Update git submodules"
-task :update_submodules do
-  submodules = `git submodule`.split("\n").map { |l| l.split[1] }
-  submodules.each do |sm|
+namespace :submodules do
+  desc "Pull/merge git submodules"
+  task :pull do
+    submodules = `git submodule`.split("\n").map { |l| l.split[1] }
+    submodules.each do |sm|
 
-    Dir.chdir(sm) do
-      puts "#### IN #{sm}, please do your magic (pulling/merging) and then exit the shell"
-      ENV['NO_CDPATH'] = "1"
-      system "/bin/bash -i"
+      Dir.chdir(sm) do
+        puts "#### IN #{sm}, please do your magic (pulling/merging) and then exit the shell"
+        ENV['NO_CDPATH'] = "1"
+        system "/bin/bash -i"
+      end
+
+      system "git add #{sm}"
+      system "git commit -m 'updated #{sm}'"
     end
 
-    system "git add #{sm}"
-    system "git commit -m 'updated #{sm}'"
+    puts "Done updating submodules"
   end
 
-  puts "Done updating submodules"
+  desc "update submodules"
+  task :update do
+    system "git submodule update --init --recursive"
+  end
 end
+
 
 
 task :default => [:clean_elc, :compile_el]

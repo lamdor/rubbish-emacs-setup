@@ -10,15 +10,11 @@
   (concat org-directory "/" file))
 
 ;; files
+
 (setq mine-org-files
-      (list
-       "inbox.org"
-       "misc-tasks.org"
-       "projects.org"
-       "chores.org"
-       "self-fulfillment.org"
-       "financial.org"
-       "geo.org"))
+      (split-string (save-excursion
+                     (find-file (my-org-file "AGENDA_FILES"))
+                     (buffer-string))))
 
 (setq mine-outside-org-files ())
 

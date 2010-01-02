@@ -47,4 +47,7 @@
 (eval-after-load "init.el" '(smex-initialize))
 (smex-auto-update)
 
+;; ack
+(autoload 'ack "ack" "Search using ack" t)
+
 (provide 'mine-dependencies)

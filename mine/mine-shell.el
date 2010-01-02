@@ -2,7 +2,6 @@
 (ansi-color-for-comint-mode-on)
 
 ;; Start shell or switch to it if it's active.
-(global-set-key (kbd "C-x m") 'shell)
 (add-hook 'shell-mode-hook
           '(lambda ()
              (local-set-key (kbd "C-x m") 'switch-to-other-buffer)))

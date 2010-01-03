@@ -7,6 +7,8 @@
           '(lambda ()
              (local-set-key (kbd "C-x m") 'switch-to-other-buffer)))
 
+(defun mine-cwd-ps1 ()
+  (replace-regexp-in-string (getenv "HOME") "~" (eshell/pwd)))
 
 ;; start of git-ps1 prompt info
 (defun mine-git-cmd (args)
@@ -43,15 +45,19 @@
               (and staged "+")
               (and unstaged "*")
               (and untracked "%")
-              ")"))))
+              ")" ))))
+
+(defun mine-time-ps1 ()
+  (format-time-string "[%H:%M:%S]" (current-time)))
 
 (setq eshell-prompt-function
       (lambda ()
         (concat
-         (replace-regexp-in-string (getenv "HOME") "~" (eshell/pwd))
+         (mine-time-ps1)
+         " "
+         (mine-cwd-ps1)
          " "
          (mine-git-ps1)
-         " "
          "\n"
          "-> ")))
 

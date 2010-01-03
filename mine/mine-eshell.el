@@ -61,7 +61,7 @@
          "\n"
          "-> ")))
 
-(setq eshell-prompt-regexp "^\\(->\\|mysql>\\|irb(main):.+[>*]\\) ")
+(setq eshell-prompt-regexp "^\\(->\\|>\\|mysql>\\|irb(main):.+[>*]\\) ")
 
 (defun eshell/cdc (&rest project)
   (eshell/cd (concat "~/code/" (car project))))

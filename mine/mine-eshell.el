@@ -63,4 +63,7 @@
 (defun eshell/ack (search-string)
   (ack (concat ack-command " -- " search-string)))
 
+(defun eshell/rake (task)
+  (rinari-rake task))
+
 (provide 'mine-eshell)

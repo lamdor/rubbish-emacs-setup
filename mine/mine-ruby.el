@@ -10,7 +10,7 @@
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
 
 ;; Rinari setup
-(autoload 'rinari-launch "rinari" "Run rinari minor mode if inside a rails project" t)
+(require 'rinari)
 (setq rinari-tags-file-name "TAGS")
 (setq rinari-major-modes
       (list 'find-file-hook

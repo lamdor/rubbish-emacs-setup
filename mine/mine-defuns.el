@@ -72,4 +72,11 @@
            (position (cdr (assoc selected-symbol name-and-pos))))
       (goto-char position))))
 
+(defun kill-all-buffers ()
+  "kill all buffers, leaving *scratch* only"
+  (interactive)
+  (mapcar (lambda (x) (kill-buffer x))
+	  (buffer-list))
+  (delete-other-windows))
+
 (provide 'mine-defuns)

@@ -8,6 +8,9 @@
 
 (global-hl-line-mode t)
 
+(require 'ansi-color)
+(ansi-color-for-comint-mode-on)
+
 (require 'highlight-parentheses)
 (highlight-parentheses-mode t)
 (show-paren-mode t)

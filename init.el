@@ -17,7 +17,7 @@
 (require 'mine-bindings)
 (require 'mine-erc)
 (require 'mine-pretty)
-(require 'mine-shell)
+(require 'mine-eshell)
 (require 'mine-vc)
 (require 'mine-org-mode)
 (require 'mine-pomodoro)

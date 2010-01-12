@@ -63,14 +63,17 @@
 
 (setq eshell-prompt-regexp "^\\(->\\|>\\|mysql>\\|irb(main):.+[>*]\\) ")
 
-(defun eshell/cdc (&rest project)
-  (eshell/cd (concat "~/code/" (car project))))
+(defun eshell/cdc (&optional project)
+  (eshell/cd (concat "~/code/" project)))
 
 (defun eshell/ack (search-string)
   (ack (concat ack-command " -- " search-string)))
 
-(defun eshell/rake (task)
+(defun eshell/rake (&optional task)
   (rinari-rake task))
+
+(defun eshell/jrake (&optional task)
+  (rinari-jrake task))
 
 ;; bookmarking
 (defun pcomplete/eshell-mode/bmk ()

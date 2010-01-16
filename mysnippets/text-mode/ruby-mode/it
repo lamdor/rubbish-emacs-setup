@@ -1,0 +1,6 @@
+#name : rspec it
+#group : rspec
+# --
+it "${1:should ${2:be awesome}}" do
+  $0
+end

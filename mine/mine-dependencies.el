@@ -8,6 +8,7 @@
 (yas/initialize)
 (setq yas/root-directories
       (list (concat emacs-root "site-lisp/yasnippet-0.6.1c/snippets/")
+            (concat emacs-root "site-lisp/cucumber-mode/snippets/")
             (concat emacs-root "mysnippets/")))
 (mapc 'yas/load-directory yas/root-directories)
 
@@ -35,7 +36,7 @@
 (autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)
 
 ;; twittering-mode
-(setq twittering-username "lukeamdor")
+(setq twittering-username "rubbish")
 (autoload 'twittering-mode "twittering-mode" "Twittering mode" t)
 
 ;; htmlize

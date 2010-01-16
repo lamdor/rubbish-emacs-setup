@@ -1,0 +1,6 @@
+#name : rspec describe
+#group : rspec
+# --
+describe ${1:"${2:awesome feature}"} do
+  $0
+end

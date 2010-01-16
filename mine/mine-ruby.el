@@ -8,6 +8,7 @@
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
 (autoload 'run-ruby "inf-ruby" "Runs an inferior ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
+(require 'rcodetools)
 
 ;; Rinari setup
 (setq rinari-tags-file-name "TAGS")

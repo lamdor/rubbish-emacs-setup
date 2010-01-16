@@ -67,6 +67,7 @@
 (define-key ruby-mode-map (kbd "C-c C-a") 'autotest-switch)
 (define-key ruby-mode-map "\t" 'yas/expand)
 (define-key ruby-mode-map (kbd "C-x M-t") 'xmp)
+(define-key ruby-mode-map (kbd "M-?") 'rct-complete-symbol)
 
 ;; Ri setup
 (setq ri-repl-executable "ri_repl")

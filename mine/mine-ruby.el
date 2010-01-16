@@ -45,9 +45,6 @@
   (autotest)
   (setq autotest-command "autotest"))
 
-;; Use ruby-compmilation from rinari
-;; (add-path "site-lisp/rinari/util/")
-;; (require 'ruby-compilation-rspec)
 
 ;; File Types
 (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
@@ -61,6 +58,9 @@
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 (add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
 (add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "C-c C-a") 'autotest-switch)))
+(add-hook 'ruby-mode-hook '(lambda () (local-set-key "\t" 'yas/expand)))
+(add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "C-x M-t") 'xmp)))
+
 (add-hook 'ruby-mode-hook
           '(lambda ()
 	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))

@@ -10,13 +10,14 @@
 (autoload 'inf-ruby-keys "inf-ruby" "Set local key defs for inf-ruby in ruby-mode")
 
 ;; Rinari setup
-(require 'rinari)
 (setq rinari-tags-file-name "TAGS")
 (setq rinari-major-modes
       (list 'find-file-hook
             'mumamo-after-change-major-mode-hook
             'dired-mode-hook
-            'shell-mode-hook))
+            'shell-mode-hook
+            'magit-mode-hook))
+(require 'rinari)
 
 (define-key rinari-minor-mode-map (kbd "C-c ; r") nil)
 (define-key rinari-minor-mode-map (kbd "C-c ; r r") 'rinari-rake)

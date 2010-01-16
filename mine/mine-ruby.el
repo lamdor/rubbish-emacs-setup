@@ -56,16 +56,17 @@
 ;; Hooks
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
-(add-hook 'ruby-mode-hook '(lambda() (local-set-key "\r" 'ruby-reindent-then-newline-and-indent)))
-(add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "C-c C-a") 'autotest-switch)))
-(add-hook 'ruby-mode-hook '(lambda () (local-set-key "\t" 'yas/expand)))
-(add-hook 'ruby-mode-hook '(lambda () (local-set-key (kbd "C-x M-t") 'xmp)))
-
 (add-hook 'ruby-mode-hook
           '(lambda ()
 	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
 		 (flymake-mode))
 	     ))
+
+;; Key Bindings (since ruby in already required, i can just change the keymap)
+(define-key ruby-mode-map "\r" 'ruby-reindent-then-newline-and-indent)
+(define-key ruby-mode-map (kbd "C-c C-a") 'autotest-switch)
+(define-key ruby-mode-map "\t" 'yas/expand)
+(define-key ruby-mode-map (kbd "C-x M-t") 'xmp)
 
 ;; Ri setup
 (setq ri-repl-executable "ri_repl")

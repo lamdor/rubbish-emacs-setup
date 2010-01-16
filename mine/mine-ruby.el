@@ -18,6 +18,13 @@
             'dired-mode-hook
             'shell-mode-hook))
 
+(define-key rinari-minor-mode-map (kbd "C-c ; r") nil)
+(define-key rinari-minor-mode-map (kbd "C-c ; r r") 'rinari-rake)
+(define-key rinari-minor-mode-map (kbd "C-c ; r j") 'rinari-jrake)
+(define-key rinari-minor-mode-map (kbd "C-c ' r") nil)
+(define-key rinari-minor-mode-map (kbd "C-c ' r r") 'rinari-rake)
+(define-key rinari-minor-mode-map (kbd "C-c ' r j") 'rinari-jrake)
+
 ;; autotest setup
 (autoload 'autotest "autotest" "Run autotest" t)
 (setq autotest-use-ui t)

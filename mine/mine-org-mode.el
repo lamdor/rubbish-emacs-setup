@@ -13,8 +13,8 @@
 
 (setq mine-org-files
       (split-string (save-excursion
-                     (find-file (my-org-file "AGENDA_FILES"))
-                     (buffer-string))))
+                      (find-file (my-org-file "AGENDA_FILES"))
+                      (buffer-string))))
 
 (setq mine-outside-org-files ())
 
@@ -121,7 +121,8 @@
                        (org-agenda-sorting-strategy '(tag-up)))
                      (my-org-file (format "export/%s.txt" export-tag)))))
 
-
+(add-hook 'org-agenda-mode-hook '(lambda ()
+                                   (org-defkey org-agenda-mode-map ")" 'org-agenda-date-later)))
 
 ;; org-mobile setup
 (setq org-mobile-directory (my-org-file "stage/"))

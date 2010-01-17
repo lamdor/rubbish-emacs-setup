@@ -101,4 +101,9 @@
 (add-to-list 'auto-mode-alist '("\\.feature\\'" . feature-mode))
 (add-hook 'feature-mode-hook '(lambda () (local-set-key (kbd "C-c C-a") 'autotest-switch)))
 
+;; Gem Open Command
+(defun gem-open (gem-name)
+  (interactive "Mgem: ")
+  (shell-command (concat "gem open " gem-name " &")))
+
 (provide 'mine-ruby)

@@ -1,0 +1,6 @@
+#name : context
+#group : shoulda
+# --
+context ${1:"${2:awesome}"} do
+  $0
+end

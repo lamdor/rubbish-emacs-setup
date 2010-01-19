@@ -62,10 +62,16 @@
 		 (flymake-mode))
 	     ))
 
+(defadvice ruby-indent-command (around yas/try-expand-first activate)
+  "Try to expand a snippet before point, then call ruby-indent-command as usual"
+  (let ((yas/fallback-behavior nil))
+    (unless (and (interactive-p)
+                 (yas/expand))
+      ad-do-it)))
+
 ;; Key Bindings (since ruby in already required, i can just change the keymap)
 (define-key ruby-mode-map "\r" 'ruby-reindent-then-newline-and-indent)
 (define-key ruby-mode-map (kbd "C-c C-a") 'autotest-switch)
-(define-key ruby-mode-map "\t" 'yas/expand)
 (define-key ruby-mode-map (kbd "C-x M-t") 'xmp)
 (define-key ruby-mode-map (kbd "M-?") 'rct-complete-symbol)
 

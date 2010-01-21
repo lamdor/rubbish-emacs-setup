@@ -19,6 +19,8 @@
             'shell-mode-hook
             'magit-mode-hook))
 (require 'rinari)
+(add-path "site-lisp/rinari/util")
+(require 'ruby-compilation-rspec)
 
 (define-key rinari-minor-mode-map (kbd "C-c ; r") nil)
 (define-key rinari-minor-mode-map (kbd "C-c ; r r") 'rinari-rake)

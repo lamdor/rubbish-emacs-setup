@@ -20,7 +20,7 @@
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)
-(setenv "EDITOR" "emacsclient -n")
+(setenv "EDITOR" "emacsclient -c")
 
 ;; Auto revert files
 (global-auto-revert-mode 1)

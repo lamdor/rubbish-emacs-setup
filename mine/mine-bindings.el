@@ -3,7 +3,7 @@
 (global-set-key (kbd "<f1>") 'ns-toggle-fullscreen)
 
 ;; buffers
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)
 
 ;; frame/window

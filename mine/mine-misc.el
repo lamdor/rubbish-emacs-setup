@@ -26,7 +26,33 @@
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
-;; Always use subwords to to move aroudn
+;; Buffer selection setup
+(setq bs-configurations
+      '(("all" nil nil nil nil nil)
+        ("files" nil nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)
+        ("dired" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (eq major-mode 'dired-mode)))) nil)
+        ("magit" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (eq major-mode 'magit-mode)))) nil)))
+
+(setq bs-mode-font-lock-keywords
+  (list
+   ; Headers
+   (list "^[ ]+\\([-M].*\\)$" 1 font-lock-keyword-face)
+   ; Boring buffers
+   (list "^\\(.*\\*.*\\*.*\\)$" 1 font-lock-comment-face)
+   ; Dired buffers
+   '("^[ .*%]+\\(Dired.*\\)$" 1 font-lock-type-face)
+   ; Modified buffers
+   '("^[ .]+\\(\\*\\)" 1 font-lock-warning-face)
+   ; Read-only buffers
+   '("^[ .*]+\\(\\%\\)" 1 font-lock-variable-name-face)))
+
+;; Always use subwords to to move around
 (if (fboundp 'subword-mode)
     (subword-mode t)
   (c-subword-mode t))

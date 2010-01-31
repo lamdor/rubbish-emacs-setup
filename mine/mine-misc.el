@@ -27,7 +27,9 @@
 (setq global-auto-revert-non-file-buffers t)
 
 ;; Always use subwords to to move aroudn
-(c-subword-mode t)
+(if (fboundp 'subword-mode)
+    (subword-mode t)
+  (c-subword-mode t))
 
 ;; Use soft tabs
 (setq-default indent-tabs-mode nil)

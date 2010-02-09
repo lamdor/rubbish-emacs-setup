@@ -3,8 +3,11 @@
   (add-path "site-lisp/color-theme-6.6.0")
   (require 'color-theme)
   (color-theme-initialize)
-  (load-file (concat emacs-root "el/color-theme-twilight.el"))
-  (color-theme-twilight))
+  (load-file (concat emacs-root "site-lisp/zen-and-art/zen-and-art.el"))
+  ;; (load-file (concat emacs-root "el/color-theme-twilight.el"))
+  (color-theme-zen-and-art))
+
+
 
 (global-hl-line-mode t)
 
@@ -65,7 +68,7 @@
 (defun mine-normal-display ()
   (interactive)
   (mine-use-normal-font)
-  (mine-use-transparency))
+  (mine-use-no-transparency))
 
 (defun mine-pair-display ()
   (interactive)

@@ -27,6 +27,7 @@
 (require 'mine-clojure)
 (require 'mine-scala)
 (require 'mine-java)
+(require 'mine-csharp)
 (require 'mine-erlang)
 (require 'mine-html-xml)
 (require 'mine-javascript)

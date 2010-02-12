@@ -7,10 +7,6 @@
   ;; (load-file (concat emacs-root "el/color-theme-twilight.el"))
   (color-theme-zen-and-art))
 
-
-
-(global-hl-line-mode t)
-
 (require 'ansi-color)
 (ansi-color-for-comint-mode-on)
 
@@ -21,7 +17,7 @@
 (transient-mark-mode t)
 
 ;; Remove noise
-(global-hl-line-mode t)
+;; (global-hl-line-mode t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 

@@ -35,5 +35,7 @@
              (local-set-key (kbd "C-c C-s") 'scala-run-scala-sbt)
              (local-set-key (kbd "C-c C-z") 'scala-switch-to-interpreter)))
 
+(define-key scala-mode-map (kbd "<f1>") nil) ;; I don't like speedbar popping up
+
 (provide 'mine-scala)
 

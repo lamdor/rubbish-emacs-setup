@@ -24,3 +24,5 @@
 
 (add-hook 'csharp-mode-hook '(lambda ()
                                (cc-imenu-init cc-imenu-csharp-generic-expression)))
+
+(provide 'mine-csharp)

@@ -53,7 +53,7 @@
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("config\\.ru\\'" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("[Rr]akefile" . ruby-mode))
 
 ;; Hooks
 (add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))

@@ -73,6 +73,7 @@
         ("outbox" . "shell:showinfinder \"/Users/luke/Desktop/Outbox/%s\"")
         ("dump" . "file:///Users/luke/Documents/Dump/%s")
         ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")
+        ("geojira" . "https://jira.geolearning.com/browse/%s")
         ("reveal" . "shell:showinfinder \"%s\"")))
 
 ;; refiling configuration

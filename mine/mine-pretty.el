@@ -21,8 +21,8 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(setq mine-normal-font "-apple-Monaco-medium-normal-normal-*-14-*-*-*-m-0-iso10646-1")
-(setq mine-big-font "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-iso10646-1")
+(setq mine-normal-font "-apple-Monaco-medium-normal-normal-*-13-*-*-*-m-0-utf8-1")
+(setq mine-big-font "-apple-Monaco-medium-normal-normal-*-20-*-*-*-m-0-utf8-1")
 
 ;; display settings
 (defun mine-use-normal-font ()

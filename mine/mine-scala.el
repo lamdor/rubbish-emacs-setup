@@ -33,9 +33,11 @@
              (local-set-key (kbd "C-c C-r") 'scala-eval-region)
              (local-set-key (kbd "C-M-x") 'scala-eval-definition)
              (local-set-key (kbd "C-c C-s") 'scala-run-scala-sbt)
-             (local-set-key (kbd "C-c C-z") 'scala-switch-to-interpreter)))
+             (local-set-key (kbd "C-c C-z") 'scala-switch-to-interpreter)
 
-(define-key scala-mode-map (kbd "<f1>") nil) ;; I don't like speedbar popping up
+             (define-key scala-mode-map (kbd "<f1>") nil) ;; I don't like speedbar popping up
+             ))
+
 
 (provide 'mine-scala)
 

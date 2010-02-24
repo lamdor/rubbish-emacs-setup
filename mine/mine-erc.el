@@ -4,7 +4,7 @@
 (setq erc-user-full-name "Luke Amdor")
 
 (setq erc-autojoin-channels-alist
-      '(("freenode.net" "#emacs" "#ruby" "#jruby" "#rubyonrails" "#clojure")))
+      '(("freenode.net" "#emacs" "#ruby" "#jruby" "#rubyonrails" "#clojure" "#scala")))
 
 (setq erc-interpret-mirc-color t)
 

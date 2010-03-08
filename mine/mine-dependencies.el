@@ -28,6 +28,11 @@
 (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 (autoload 'yaml-mode "yaml-mode" "Major mode for editting yaml files" t)
 
+;; mustache-mode
+(autoload 'tpl-mode "mustache-mode" "Major mode for editting mustache/CTemplate files" t)
+(add-to-list 'auto-mode-alist '("\\.tpl\\'" . tpl-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . tpl-mode))
+
 ;; unit-test
 (require 'unit-test)
 

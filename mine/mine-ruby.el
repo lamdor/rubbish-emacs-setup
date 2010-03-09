@@ -85,6 +85,12 @@
   (interactive)
     (run-ruby "/usr/local/bin/jruby -S irb --inf-ruby-mode" "jruby"))
 
+(defun rinari-jrake (&optional task edit-cmd-args)
+  "Run rinari-rake with jrake"
+  (interactive)
+  (let ((ruby-compilation-executable-rake "jrake"))
+      (rinari-rake task edit-cmd-args)))
+
 ;; Flymake Flymake
 (require 'flymake)
 (set-face-background 'flymake-errline "red4")

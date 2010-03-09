@@ -169,7 +169,7 @@
   (mine-org-pull-remote-async)
   (org-mobile-push))
 
-(run-at-time t 7200 'mine-org-mobile-sync)
+;; (run-at-time t 7200 'mine-org-mobile-sync)
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")

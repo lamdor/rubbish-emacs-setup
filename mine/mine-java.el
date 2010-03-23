@@ -6,13 +6,15 @@
 	    (c-toggle-auto-newline 1)
 	    (c-toggle-syntactic-indentation 1)))
 
+(setenv "JAVA_OPTS" "-d32 -Xms256m -Xmx512m")
+
 (autoload 'mvn-keys "mvn" "Sets Maven Keys")
 (add-hook 'java-mode-hook (lambda () (mvn-keys)))
 
 (defun load-jde ()
   (interactive)
   "Load up JDE and all of its heathen dependencies"
-  
+
   (load-file
    (concat emacs-root "site-lisp/cedet-1.0pre4/common/cedet.el"))
   (add-path "site-lisp/elib-1.0")
@@ -43,10 +45,10 @@
 
 	      ;; Map C-c C-v C-t to run current test
 	      ;; (substitute-key-definition 'jde-jdb-menu-debug-applet 'jde-mvn-build-run-test jde-mode-map)))
-  
+
   ;; (define-key jde-mode-map [remap 'jde-jdb-menu-debug-applet]
   ;;     'jde-mvn-build-run-test)
- 
+
 ;;;   (with-pom ()
 ;;;     (jde-mvn-set-jde-variables :include-dependency-sources))
 

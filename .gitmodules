@@ -34,3 +34,6 @@
 [submodule "site-lisp/zen-and-art"]
 	path = site-lisp/zen-and-art
 	url = git://github.com/irfn/zen-and-art.git
+[submodule "site-lisp/wrap-region"]
+	path = site-lisp/wrap-region
+	url = git://github.com/rejeep/wrap-region.git

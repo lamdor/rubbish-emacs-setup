@@ -36,6 +36,12 @@
 ;; unit-test
 (require 'unit-test)
 
+;; wrap-region
+;; Wrap region
+(add-path "site-lisp/wrap-region")
+(require 'wrap-region)
+(wrap-region-global-mode t)
+
 ;; typing-of-emacs
 (setq toe-starting-time-per-word 20)
 (autoload 'typing-of-emacs "typing" "The Typing Of Emacs, a game." t)

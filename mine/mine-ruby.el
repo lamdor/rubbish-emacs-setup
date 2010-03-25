@@ -56,7 +56,16 @@
 (add-to-list 'auto-mode-alist '("[Rr]akefile" . ruby-mode))
 
 ;; Hooks
-(add-hook 'ruby-mode-hook '(lambda () (ruby-electric-mode t)))
+(add-hook 'ruby-mode-hook
+          ;; let wrap-region take care of these
+           '(lambda ()
+              (define-key ruby-mode-map "{" nil)
+              (define-key ruby-mode-map "(" nil)
+              (define-key ruby-mode-map "[" nil)
+              (define-key ruby-mode-map "\"" nil)
+              (define-key ruby-mode-map "\'" nil)))
+(add-hook 'ruby-mode-hook
+           '(lambda () (ruby-electric-mode t)))
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 (add-hook 'ruby-mode-hook
           '(lambda ()

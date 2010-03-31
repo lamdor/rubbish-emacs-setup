@@ -9,7 +9,7 @@
       ido-create-new-buffer 'always
       ido-use-filename-at-point t
       ido-max-prospects 10
-      ido-show-dot-for-dired t)
+      ido-show-dot-for-dired nil)
 
 ;; use uniquify
 (require 'uniquify)

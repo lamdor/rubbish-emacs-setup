@@ -3,6 +3,7 @@
 ;; buffers
 (global-set-key (kbd "C-x C-b") 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)
+(global-set-key (kbd "C-c s") 'swap-windows)
 
 ;; frame/window
 (global-set-key (kbd "C-x C-j") 'speedbar)

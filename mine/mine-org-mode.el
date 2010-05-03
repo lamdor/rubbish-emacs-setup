@@ -177,9 +177,9 @@
 (autoload 'remember "remember" nil t)
 (org-remember-insinuate)
 (setq org-remember-templates
-      '(("Todo" ?t "* TODO %?\n %i\n %a" "inbox.org" "Inbox")
-        ("Inbox" ?i "* %?" "inbox.org" "Inbox")
+      '(("Inbox" ?i "* %?" "inbox.org" "Inbox")
         ("Misc Task" ?m "* TODO %? %^g\n" "misc-tasks.org" "Misc Tasks")
+        ("Misc Task (In Progress)" ?p "* INPROGRESS %? %^g\n" "misc-tasks.org" "Misc Tasks")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
         ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "financial.org" "Mine Checkbook")))
 

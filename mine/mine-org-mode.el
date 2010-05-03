@@ -97,8 +97,7 @@
 
 (setq org-agenda-custom-commands
       '(("A" "Action List"
-         ((todo "INPROGRESS")
-          (agenda "")
+         ((agenda "")
           (alltodo))
          ((org-agenda-todo-ignore-deadlines t)
           (org-agenda-todo-ignore-scheduled t)

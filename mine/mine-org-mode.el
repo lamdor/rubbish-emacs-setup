@@ -38,9 +38,8 @@
       org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
 
 ;; todo configuration
-(setq org-enforce-todo-dependencies t
-      org-todo-keywords
-      '((sequence "TODO(t)" "WAIT(w@/!)" "|" "DONE(d!)" "CANCELED(c@)"))
+(setq org-enforce-todo-dependencies nil
+      org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "INPROGRESS(i!)" "|" "DONE(d!)" "CANCELED(c)"))
       org-use-fast-todo-selection t
       org-default-priority 85)
 
@@ -98,12 +97,14 @@
 
 (setq org-agenda-custom-commands
       '(("A" "Action List"
-         ((agenda "")
+         ((todo "INPROGRESS")
+          (agenda "")
           (alltodo))
          ((org-agenda-todo-ignore-deadlines t)
           (org-agenda-todo-ignore-scheduled t)
           (org-agenda-todo-ignore-with-date t)
-          (org-agenda-sorting-strategy '(priority-down tag-up))))))
+          (org-agenda-sorting-strategy '(priority-down tag-up))))
+        ("i" todo "INPROGRESS")))
 
 
 (setq mine-batch-export-tags '("@errands"
@@ -180,7 +181,6 @@
       '(("Todo" ?t "* TODO %?\n %i\n %a" "inbox.org" "Inbox")
         ("Inbox" ?i "* %?" "inbox.org" "Inbox")
         ("Misc Task" ?m "* TODO %? %^g\n" "misc-tasks.org" "Misc Tasks")
-        ("Misc ISEBA Task" ?b "* TODO %? :@bigcreek:\n" "bigcreek.org" "ISEBA")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
         ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "financial.org" "Mine Checkbook")))
 

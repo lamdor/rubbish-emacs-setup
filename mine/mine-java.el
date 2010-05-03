@@ -6,8 +6,6 @@
 	    (c-toggle-auto-newline 1)
 	    (c-toggle-syntactic-indentation 1)))
 
-(setenv "JAVA_OPTS" "-d32 -Xms256m -Xmx512m")
-
 (autoload 'mvn-keys "mvn" "Sets Maven Keys")
 (add-hook 'java-mode-hook (lambda () (mvn-keys)))
 

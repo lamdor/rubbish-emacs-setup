@@ -9,6 +9,7 @@
 (defvar *emacs-load-start* (current-time))
 
 (add-path "mine")
+(require 'mine-env)
 (require 'mine-projects)
 (require 'mine-dependencies)
 (require 'mine-misc)

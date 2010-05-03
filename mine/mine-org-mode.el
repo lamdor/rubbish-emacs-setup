@@ -38,7 +38,7 @@
       org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
 
 ;; todo configuration
-(setq org-enforce-todo-dependencies nil
+(setq org-enforce-todo-dependencies t
       org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "INPROGRESS(i!)" "|" "DONE(d!)" "CANCELED(c)"))
       org-use-fast-todo-selection t
       org-default-priority 85)

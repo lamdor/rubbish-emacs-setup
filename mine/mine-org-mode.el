@@ -190,11 +190,17 @@
 
 (defun gtd-agenda ()
   (interactive)
-  (if (equal (buffer-name (current-buffer))
+  (if (and (equal (buffer-name (current-buffer))
              "*Org Agenda*")
+           (equal org-agenda-name
+                  "Action List"))
       (switch-to-buffer (other-buffer))
     (if (get-buffer "*Org Agenda*")
-        (switch-to-buffer "*Org Agenda*")
+        (progn
+          (switch-to-buffer "*Org Agenda*")
+          (delete-other-windows)
+          (if (not (equal org-agenda-name "Action List"))
+              (org-agenda nil "A")))
       (progn
         (org-agenda nil "A")
         (delete-other-windows)))))

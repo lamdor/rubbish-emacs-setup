@@ -39,7 +39,7 @@
 
 ;; todo configuration
 (setq org-enforce-todo-dependencies t
-      org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "INPROGRESS(i!)" "|" "DONE(d!)" "CANCELED(c)"))
+      org-todo-keywords '((sequence "TODO(t)" "WAIT(w@/!)" "INPROGRESS(i!)" "WATCH(a)" "|" "DONE(d!)" "CANCELED(c)"))
       org-use-fast-todo-selection t
       org-default-priority 85)
 
@@ -181,6 +181,7 @@
         ("Misc Task" ?m "* TODO %? %^g\n" "misc-tasks.org" "Misc Tasks")
         ("Misc Task (In Progress)" ?p "* INPROGRESS %? %^g\n" "misc-tasks.org" "Misc Tasks")
         ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
+        ("Watch" ?w "* WATCH %? :@mac:\n\t:SCHEDULED: %^{When to remind}t\n" "watch.org" "Watchlist/Reminders")
         ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "financial.org" "Mine Checkbook")))
 
 ;; navagation helpers

@@ -40,8 +40,8 @@
 ;; Wrap region
 (add-path "site-lisp/wrap-region")
 (require 'wrap-region)
-(wrap-region-global-mode t)
 (setq wrap-region-insert-twice t)
+
 ;; Do not insert-twice in these modes
 (dolist (hook '(emacs-lisp-mode-hook))
   (add-hook hook

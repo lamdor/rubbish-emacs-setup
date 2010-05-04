@@ -38,6 +38,7 @@
              (define-key scala-mode-map (kbd "<f1>") nil) ;; I don't like speedbar popping up
              ))
 
+(add-hook 'scala-mode-hook 'turn-on-wrap-region-mode)
 
 (provide 'mine-scala)
 

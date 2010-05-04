@@ -72,6 +72,7 @@
 	     (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
 		 (flymake-mode))
 	     ))
+(add-hook 'ruby-mode-hook 'turn-on-wrap-region-mode)
 
 (defadvice ruby-indent-command (around yas/try-expand-first activate)
   "Try to expand a snippet before point, then call ruby-indent-command as usual"

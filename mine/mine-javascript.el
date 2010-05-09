@@ -8,4 +8,6 @@
 (setq js-indent-level 2)
 (add-hook 'js-mode-hook 'turn-on-wrap-region-mode)
 
+(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
+
 (provide 'mine-javascript)

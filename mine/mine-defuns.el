@@ -16,15 +16,12 @@
 	)
     (kill-line)))
 
-(defun mine-newline-and-indent ()
+(defun open-line-and-indent ()
   (interactive)
-  "This will either (newline-and-indent) or (newline-and-indent) and start an inner line if there is one character left over (???)"
-  (if (equal 1 (- (point-at-eol) (point)))       ; how to determine if in middle of matching char/phrases
-      (progn
-        (newline-and-indent)
-        (open-line 1)
-        (indent-for-tab-command))
-    (newline-and-indent)))
+  "Opens a line and and indents"
+  (newline-and-indent)
+  (previous-line)
+  (indent-for-tab-command))
 
 (defun other-previous-window ()
   (interactive)

@@ -18,7 +18,7 @@
 ;; Text Editting
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-a") 'beginning-of-line-or-back-to-indention)
-(global-set-key "\r" 'newline-and-indent)
+(global-set-key "\r" 'mine-newline-and-indent)
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-g") 'goto-line)

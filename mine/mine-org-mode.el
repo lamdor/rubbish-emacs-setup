@@ -37,6 +37,12 @@
       org-startup-folded 'content
       org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
 
+;; allow yasnippet
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (org-set-local 'yas/trigger-key [tab])
+             (define-key yas/minor-mode-map [tab] 'yas/expand)))
+
 ;; todo configuration
 (setq org-enforce-todo-dependencies t
       org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "INPROGRESS(i!)" "WATCH(a)" "|" "DONE(d!)" "CANCELED(c)"))
@@ -192,7 +198,7 @@
 (defun gtd-agenda ()
   (interactive)
   (if (and (equal (buffer-name (current-buffer))
-             "*Org Agenda*")
+                  "*Org Agenda*")
            (equal org-agenda-name
                   "Action List"))
       (switch-to-buffer (other-buffer))

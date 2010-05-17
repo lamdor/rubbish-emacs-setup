@@ -5,16 +5,15 @@
 ;; yasnippet
 (add-path "site-lisp/yasnippet-0.6.1c")
 (require 'yasnippet)
-(yas/initialize)
 (setq yas/root-directories
       (list (concat emacs-root "site-lisp/yasnippet-0.6.1c/snippets/")
             (concat emacs-root "site-lisp/cucumber-mode/snippets/")
             (concat emacs-root "mysnippets/")))
 (mapc 'yas/load-directory yas/root-directories)
-
 (setq yas/prompt-functions '(yas/dropdown-prompt
                              yas/ido-prompt
                              yas/no-prompt))
+(yas/global-mode)
 
 ;; Misc Files
 (add-path "el/")

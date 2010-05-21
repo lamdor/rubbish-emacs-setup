@@ -8,9 +8,10 @@
 (setq nxml-slash-auto-complete-flag t)
 
 ;; nxhtml
-(load-file (concat emacs-root "site-lisp/nxhtml-1.75-090112/autostart.el"))
+
+(load-file (concat emacs-root "site-lisp/nxhtml-2.08-100425/autostart.el"))
 ;; nxhtml-global-minor-mode t
-(setq mumamo-chunk-coloring 'submode-colored
+(setq mumamo-chunk-coloring 2
       nxhtml-skip-welcome t
       rng-nxml-auto-validate-flag nil)
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . eruby-nxhtml-mumamo-mode))

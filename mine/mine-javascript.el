@@ -10,4 +10,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
 
+(add-path "site-lisp/couchdb-relax")
+(autoload 'relax "relax" "Time to relax" t)
+
 (provide 'mine-javascript)

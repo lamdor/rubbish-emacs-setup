@@ -1,0 +1,8 @@
+# name : js module patter
+# contributor : Luke Amdor
+# --
+(function(${1:$}) {
+
+  $0
+  
+})(${2:jQuery});

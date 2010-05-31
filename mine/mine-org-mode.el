@@ -132,7 +132,7 @@
                                    (org-defkey org-agenda-mode-map ")" 'org-agenda-date-later)))
 
 ;; org-mobile setup
-(setq org-mobile-directory (my-org-file "stage/"))
+(setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))
 (setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
 
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)

@@ -105,8 +105,22 @@
   (other-window 1))
 
 (defun tail ()
-	"tail the file loaded within the current buffer"
-	(interactive)
-	(auto-revert-tail-mode))
+  "tail the file loaded within the current buffer"
+  (interactive)
+  (auto-revert-tail-mode))
+
+(defun mine-mysql (user password host database)
+  (let ((sql-user user)
+        (sql-password password)
+        (sql-server host)
+        (sql-database database)
+        (sql-buffer-name (concat "*SQL*:" database ":" host)))
+    (when (not (get-buffer sql-buffer-name))
+      (call-interactively 'sql-mysql)
+      (rename-buffer sql-buffer-name))
+    (delete-other-windows)
+    (switch-to-buffer sql-buffer-name)
+    (split-window-vertically)
+    (find-file (concat (getenv "HOME") "/Documents/sql-scripts/" database "_" host ".sql"))))
 
 (provide 'mine-defuns)

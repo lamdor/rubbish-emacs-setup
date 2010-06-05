@@ -138,45 +138,31 @@
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
 
-(setq org-mobile-remote-host "root@coderlukes.com")
-(setq org-mobile-remote-directory "/var/org/")
-(setq org-mobile-remote-scp-string (format "%s:%s" org-mobile-remote-host org-mobile-remote-directory))
+;; org publish projects
 
-
-(defun mine-scp-command (from to)
-  (format "scp %s* %s" from to))
-
-(defun mine-scp-files (from to)
-  (shell-command (mine-scp-command from to)))
-
-(defun mine-scp-files-async (from to)
-  (start-process-shell-command "mine-scp" nil (mine-scp-command from to)))
-
-(defun mine-chown-remote-org-mobile-files ()
-  (start-process-shell-command "mine-chown-remote-org" nil
-                               (format "ssh %s chown www-data %s*" org-mobile-remote-host org-mobile-remote-directory)))
-
-(defun mine-org-push-remote ()
-  (mine-scp-files-async org-mobile-directory org-mobile-remote-scp-string)
-  (mine-chown-remote-org-mobile-files))
-
-(defun mine-org-pull-remote ()
-  (mine-scp-files org-mobile-remote-scp-string org-mobile-directory))
-
-(defun mine-org-pull-remote-async ()
-  (mine-scp-files-async org-mobile-remote-scp-string org-mobile-directory))
-
-(add-hook 'org-mobile-post-push-hook 'mine-org-push-remote)
-(add-hook 'org-mobile-pre-pull-hook 'mine-org-pull-remote)
-(add-hook 'org-mobile-post-pull-hook 'mine-org-push-remote)
-
-(defun mine-org-mobile-sync ()
-  (interactive)
-  (message (format "Syncing org-mobile at %s" (current-time-string)))
-  (mine-org-pull-remote-async)
-  (org-mobile-push))
-
-;; (run-at-time t 7200 'mine-org-mobile-sync)
+(setq org-publish-project-alist
+      '(("absoluterubbish.net"
+         :components ("org-absoluterubbish.net" "org=posts-absoluterubbish.net" "org-posts-absoluterubbish.net-static"))
+        ("org-absoluterubbish.net"
+         :base-directory "~/code/absoluterubbish.net/org/"
+         :base-extension "org"
+         :publishing-directory "~/code/absoluterubbish.net"
+         :publishing-function org-publish-org-to-html
+         :recursive t
+         :body-only t)
+        ("org-posts-absoluterubbish.net"
+         :base-directory "~/code/absoluterubbish.net/org-posts/"
+         :base-extension "org"
+         :publishing-directory "~/code/absoluterubbish.net/_posts"
+         :publishing-function org-publish-org-to-html
+         :recursive t
+         :body-only t)
+        ("org-posts-absoluterubbish.net-static"
+         :base-directory "~/code/absoluterubbish.net/org-posts/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
+         :publishing-directory "~/code/learning/absoluterubbish.net/_posts"
+         :publishing-function org-publish-attachment
+         :recursive t)))
 
 ;; remember-mode setup
 (add-path "site-lisp/remember-mode")

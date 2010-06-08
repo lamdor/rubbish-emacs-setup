@@ -19,6 +19,7 @@
 (global-set-key (kbd "C-x C-k") 'kill-region)
 (global-set-key (kbd "C-a") 'beginning-of-line-or-back-to-indention)
 (global-set-key "\r" 'newline-and-indent)
+(global-set-key (kbd "C-m") 'newline-and-indent)
 (global-set-key (kbd "C-o") 'open-line-and-indent)
 (global-set-key (kbd "C-k") 'kill-to-end-or-join)
 (global-set-key (kbd "C-c r") 'revert-buffer)

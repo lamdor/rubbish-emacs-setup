@@ -1,4 +1,4 @@
-;; ido-mode
+f;; ido-mode
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
@@ -36,7 +36,13 @@
         ("magit" nil nil nil
          (lambda (buf)
            (with-current-buffer buf
-             (not (eq major-mode 'magit-mode)))) nil)))
+             (not (eq major-mode 'magit-mode)))) nil)
+        ("sql" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (and
+              (not (eq major-mode 'sql-mode))
+              (not (eq major-mode 'sql-interactive-mode))))) nil)))
 
 (setq bs-mode-font-lock-keywords
   (list

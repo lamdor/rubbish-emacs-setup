@@ -142,7 +142,7 @@
 
 (setq org-publish-project-alist
       '(("absoluterubbish.net"
-         :components ("org-absoluterubbish.net" "org=posts-absoluterubbish.net" "org-posts-absoluterubbish.net-static"))
+         :components ("org-absoluterubbish.net" "org-posts-absoluterubbish.net" "org-posts-absoluterubbish.net-static"))
         ("org-absoluterubbish.net"
          :base-directory "~/code/absoluterubbish.net/org/"
          :base-extension "org"

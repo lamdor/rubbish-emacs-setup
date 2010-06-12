@@ -40,3 +40,6 @@
 [submodule "site-lisp/couchdb-relax"]
 	path = site-lisp/couchdb-relax
 	url = git@github.com:rubbish/relax.el.git
+[submodule "site-lisp/coffee-mode"]
+	path = site-lisp/coffee-mode
+	url = http://github.com/defunkt/coffee-mode.git

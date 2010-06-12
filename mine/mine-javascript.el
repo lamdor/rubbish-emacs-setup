@@ -13,4 +13,18 @@
 (add-path "site-lisp/couchdb-relax")
 (autoload 'relax "relax" "Time to relax" t)
 
+(add-path "site-lisp/coffee-mode")
+(autoload 'coffee-mode "coffee-mode" "Coffe mode" t)
+
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+(add-to-list 'auto-mode-alist '("Cakefile" . coffee-mode))
+
+(setq coffee-tab-width 2)
+(setq coffee-js-mode 'js-mode)
+
+(add-hook 'coffee-mode-hook '(lambda ()
+                               (set (make-local-variable 'tab-width) 2)
+                               (local-set-key (kbd "C-c C-b") 'coffee-compile-buffer)
+                               (local-set-key (kbd "C-c C-r") 'coffee-compile-region)))
+
 (provide 'mine-javascript)

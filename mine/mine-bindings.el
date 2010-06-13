@@ -3,11 +3,11 @@
 ;; buffers
 (global-set-key (kbd "C-x C-b") 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)
-(global-set-key (kbd "C-c s") 'swap-windows)
 
 ;; frame/window
 (global-set-key (kbd "C-x C-j") 'speedbar)
 (global-set-key (kbd "C-x p") 'other-previous-window)
+(global-set-key (kbd "C-x 9") 'swap-windows)
 
 ;; file navigation
 (global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)

@@ -1,4 +1,7 @@
 ;; Ruby Dependencies
+(add-path "site-lisp/rvm")
+(require 'rvm)
+(rvm-use-default)
 
 (add-path "site-lisp/rinari/")
 

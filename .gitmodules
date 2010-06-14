@@ -43,3 +43,6 @@
 [submodule "site-lisp/coffee-mode"]
 	path = site-lisp/coffee-mode
 	url = http://github.com/defunkt/coffee-mode.git
+[submodule "site-lisp/rvm"]
+	path = site-lisp/rvm
+	url = http://github.com/senny/rvm.el.git

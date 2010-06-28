@@ -3,7 +3,7 @@
 	url = git://github.com/defunkt/gist.el.git
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
-	url = git://gitorious.org/magit/mainline.git
+	url = http://github.com/philjackson/magit.git
 [submodule "site-lisp/clojure-mode"]
 	path = site-lisp/clojure-mode
 	url = git://github.com/jochu/clojure-mode.git

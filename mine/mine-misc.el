@@ -62,12 +62,23 @@
     (subword-mode t)
   (c-subword-mode t))
 
+;; Terminal
 (setq multi-term-program "/bin/zsh")
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
+
+(defun mine-multi-term-next ()
+  (interactive)
+  (let ((buf (buffer-name)))
+    (multi-term-next)
+    (if (eq (buffer-name) buf)
+        (switch-to-other-buffer))))
+
 (add-hook 'term-mode-hook '(lambda ()
                              (local-set-key (kbd "C-c C-j") 'term-line-mode)
                              (local-set-key (kbd "C-c C-k") 'term-char-mode)))
+
+
 
 ;; Use soft tabs
 (setq-default indent-tabs-mode nil)

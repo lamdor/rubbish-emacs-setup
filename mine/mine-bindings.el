@@ -42,8 +42,8 @@
 
 (global-set-key (kbd "C-M-g") 'magit-status)
 
-(global-set-key (kbd "C-c t") 'mine-multi-term-next)
-(global-set-key (kbd "C-c T") 'multi-term)
+(global-set-key (kbd "C-c t") 'mine-multi-shell-next)
+(global-set-key (kbd "C-c T") 'multi-shell-new)
 
 ;; annoying suspend
 (global-unset-key (kbd "C-z"))

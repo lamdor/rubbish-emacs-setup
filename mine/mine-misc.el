@@ -62,15 +62,15 @@
     (subword-mode t)
   (c-subword-mode t))
 
-;; Terminal
-(setq multi-term-program "/bin/zsh")
-(autoload 'multi-term "multi-term" nil t)
-(autoload 'multi-term-next "multi-term" nil t)
+;; multi-shell
+(setq multi-shell-program "/bin/zsh")
+(autoload 'multi-shell-new "multi-shell" nil t)
+(autoload 'multi-shell-next "multi-shell" nil t)
 
-(defun mine-multi-term-next ()
+(defun mine-multi-shell-next ()
   (interactive)
   (let ((buf (buffer-name)))
-    (multi-term-next)
+    (multi-shell-next)
     (if (eq (buffer-name) buf)
         (switch-to-other-buffer))))
 

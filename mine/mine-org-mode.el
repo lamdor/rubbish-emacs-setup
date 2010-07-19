@@ -117,8 +117,10 @@
          ((org-agenda-todo-ignore-with-date t)))
         ("f" "Flat Action List" todo "TODO|INPROGRESS")
         ("i" "In Progress Items" todo "INPROGRESS")
+        ("w" "WAIT Items" todo "WAIT")
         ("A" "A Priority TODOs" tags-todo "PRIORITY=\"A\"")
-        ("w" "WAIT Items" todo "WAIT")))
+        ("B" "B Priority TODOs" tags-todo "PRIORITY=\"B\"")
+        ("C" "C Priority TODOs" tags-todo "PRIORITY=\"C\"")))
 
 ;; org-mobile setup
 (setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))

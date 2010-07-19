@@ -77,7 +77,6 @@
         ("pending" . "shell:showinfinder \"/Users/luke/Desktop/Pending/%s\"")
         ("outbox" . "shell:showinfinder \"/Users/luke/Desktop/Outbox/%s\"")
         ("dump" . "file:///Users/luke/Documents/Dump/%s")
-        ("bcredmine" . "https://redmine.bigcreek.com/issues/show/%s")
         ("geojira" . "https://jira.geolearning.com/browse/%s")
         ("reveal" . "shell:showinfinder \"%s\"")))
 
@@ -91,49 +90,39 @@
 ;; agenda configuraion
 (setq org-agenda-search-headline-for-time nil
       org-agenda-dim-blocked-tasks 'invisible
+      org-agenda-ndays 1
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
-      org-deadline-warning-days 2
-      org-agenda-ndays 1
+      org-agenda-todo-ignore-scheduled 'future
+      org-agenda-todo-ignore-deadlines nil
+      org-deadline-warning-days 3
+      org-agenda-tags-todo-honor-ignore-options t
+      org-agenda-sorting-strategy '(tag-up time-up priority-down)
       org-agenda-compact-blocks t
       org-agenda-tags-column -92
+      org-habit-show-habits-only-for-today nil
       org-habit-preceding-days 20
       org-habit-following-days 3
       org-habit-graph-column 55)
 
 (setq org-agenda-custom-commands
-      '(("A" "Action List"
-         ((agenda "")
-          (alltodo))
-         ((org-agenda-todo-ignore-deadlines t)
-          (org-agenda-todo-ignore-scheduled t)
-          (org-agenda-todo-ignore-with-date t)
-          (org-agenda-sorting-strategy '(priority-down tag-up))))
-        ("i" todo "INPROGRESS")))
-
-
-(setq mine-batch-export-tags '("@errands"
-                               "@groceries"
-                               "@phone"
-                               "@home"))
-
-(dolist (export-tag mine-batch-export-tags)
-  (add-to-list 'org-agenda-custom-commands
-               (list export-tag (format "Exported Actions (%s)" export-tag)
-                     (list (list 'tags-todo export-tag))
-                     '((org-agenda-todo-ignore-deadlines t)
-                       (org-agenda-todo-ignore-scheduled t)
-                       (org-agenda-todo-ignore-with-date t)
-                       (org-agenda-with-colors nil)
-                       (org-agenda-sorting-strategy '(tag-up)))
-                     (my-org-file (format "export/%s.txt" export-tag)))))
-
-(add-hook 'org-agenda-mode-hook '(lambda ()
-                                   (org-defkey org-agenda-mode-map ")" 'org-agenda-date-later)))
+      '(("@" . "Outside Contexts")
+        ("@e" "@errands" tags-todo "@errands")
+        ("@g" "@groceries" tags-todo "@groceries")
+        ("@p" "@phone" tags-todo "@phone")
+        ("@h" "@home" tags-todo "@home")
+        ("g" "Action List"
+         ((agenda)
+          (todo "TODO|INPROGRESS"))
+         ((org-agenda-todo-ignore-with-date t)))
+        ("f" "Flat Action List" todo "TODO|INPROGRESS")
+        ("i" "In Progress Items" todo "INPROGRESS")
+        ("w" "WAIT Items" todo "WAIT")))
 
 ;; org-mobile setup
 (setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))
 (setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
+(setq org-mobile-agendas 'custom)
 
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
@@ -193,9 +182,9 @@
           (switch-to-buffer "*Org Agenda*")
           (delete-other-windows)
           (if (not (equal org-agenda-name "Action List"))
-              (org-agenda nil "A")))
+              (org-agenda nil "g")))
       (progn
-        (org-agenda nil "A")
+        (org-agenda nil "g")
         (delete-other-windows)))))
 
 (defun gtd-find-inbox ()

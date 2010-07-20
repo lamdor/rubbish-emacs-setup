@@ -118,9 +118,10 @@
         ("f" "Flat Action List" todo "TODO|INPROGRESS")
         ("i" "In Progress Items" todo "INPROGRESS")
         ("w" "WAIT Items" todo "WAIT")
-        ("A" "A Priority TODOs" tags-todo "PRIORITY=\"A\"")
-        ("B" "B Priority TODOs" tags-todo "PRIORITY=\"B\"")
-        ("C" "C Priority TODOs" tags-todo "PRIORITY=\"C\"")))
+        ("A" "A Priority TODOs" tags-todo "PRIORITY=\"A\"+TODO=\"TODO\"")
+        ("B" "B Priority TODOs" tags-todo "PRIORITY=\"B\"+TODO=\"TODO\"")
+        ("C" "C Priority TODOs" tags-todo "PRIORITY=\"C\"+TODO=\"TODO\"")
+        ("N" "No Priority TODOs" tags-todo "PRIORITY=\"\"+TODO=\"TODO\"")))
 
 ;; org-mobile setup
 (setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))

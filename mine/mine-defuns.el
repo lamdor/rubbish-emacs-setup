@@ -23,10 +23,6 @@
   (previous-line)
   (indent-for-tab-command))
 
-(defun other-previous-window ()
-  (interactive)
-  (other-window -1))
-
 (defun indent-buffer ()
   (interactive)
   (indent-region (point-min) (point-max)))

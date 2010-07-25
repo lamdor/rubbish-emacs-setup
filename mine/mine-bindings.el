@@ -5,8 +5,6 @@
 (global-set-key (kbd "C-c y") 'bury-buffer)
 
 ;; frame/window
-(global-set-key (kbd "C-x C-j") 'speedbar)
-(global-set-key (kbd "C-x p") 'other-previous-window)
 (global-set-key (kbd "C-x 9") 'swap-windows)
 
 ;; file navigation

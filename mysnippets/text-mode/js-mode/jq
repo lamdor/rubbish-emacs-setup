@@ -1,6 +1,6 @@
-# name : jquery module patter
+# name : jquery module pattern
 # contributor : Luke Amdor
 # --
 (function($) {
   $0
-})(jquery);
+})(jQuery);

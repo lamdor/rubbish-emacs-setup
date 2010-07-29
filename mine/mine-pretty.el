@@ -15,6 +15,7 @@
 (show-paren-mode t)
 
 (transient-mark-mode t)
+(blink-cursor-mode t)
 
 ;; Remove noise
 ;; (global-hl-line-mode t)

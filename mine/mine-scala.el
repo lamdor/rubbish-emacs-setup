@@ -11,6 +11,10 @@
 (autoload 'mvn-keys "mvn" "Sets Maven Keys" t)
 (setq sbt-use-ui t)
 
+(add-path "site-lisp/ensime/dist/elisp")
+(autoload 'ensime-scala-mode-hook "ensime" "ENSIME: The ENhanced Scala Interaction Mode for Emacs (minor-mode)." t)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
 (defun scala-run-scala-sbt ()
   (interactive)
   (let ((sbt-path (sbt-find-path-to-project)))

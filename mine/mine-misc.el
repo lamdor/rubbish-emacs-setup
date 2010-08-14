@@ -57,7 +57,7 @@
    ; Read-only buffers
    '("^[ .*]+\\(\\%\\)" 1 font-lock-variable-name-face)))
 
-(require 'dim-switch-window)
+(require 'switch-window)
 
 ;; Always use subwords to to move around
 (if (fboundp 'subword-mode)

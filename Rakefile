@@ -22,8 +22,12 @@ namespace :submodules do
     submodules.each do |sm|
 
       Dir.chdir(sm) do
+        puts "####"
         puts "#### IN #{sm}, please do your magic (pulling/merging) and then exit the shell"
+        puts "####"
+
         ENV['NO_CDPATH'] = "1"
+        system "git remote update"
         system "/bin/bash -i"
       end
 

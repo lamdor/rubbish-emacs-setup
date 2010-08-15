@@ -234,6 +234,9 @@
 (global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
+(define-key org-mode-map (kbd "C-c C-,") 'org-priority)
+(define-key org-agenda-mode-map (kbd "C-c C-,") 'org-agenda-priority)
+
 
 ;; for a popup window for remember mode
 (defadvice remember-finalize (after delete-remember-frame activate)

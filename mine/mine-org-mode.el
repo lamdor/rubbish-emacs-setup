@@ -123,6 +123,16 @@
         ("C" "C Priority TODOs" tags-todo "PRIORITY=\"C\"+TODO=\"TODO\"")
         ("N" "No Priority TODOs" tags-todo "PRIORITY=\"\"+TODO=\"TODO\"")))
 
+;; org capture setup
+(setq org-default-notes-file (concat org-directory "/inbox.org"))
+(setq org-capture-templates
+      '(("i" "Inbox" entry (file+headline "inbox.org" "Inbox") "* %?")
+        ("m" "Misc Task" entry (file+headline "misc-tasks.org" "Misc Tasks") "* TODO %? %^g\n")
+        ("p" "Misc Task (In Progress)" entry (file+headline "misc-tasks.org" "Misc Tasks") "* INPROGRESS %? %^g\n")
+        ("s" "Someday/Maybe" entry (file+headline "someday-maybe.org" "Someday/Maybe") "* %?\n %i")
+        ("w" "Watch" entry (file+headline "watch.org" "Watchlist/Reminders") "* WATCH %? :@mac:\n\t:SCHEDULED: %^{When to remind}t\n")
+        ("c" "Remember To Checkbook" entry (file+headline "financial.org" "Mine Checkbook") "* TODO remember %? on %u :@desk:\n")))
+
 ;; org-mobile setup
 (setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))
 (setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
@@ -156,18 +166,6 @@
          :publishing-directory "~/code/learning/absoluterubbish.net/_posts"
          :publishing-function org-publish-attachment
          :recursive t)))
-
-;; remember-mode setup
-(add-path "site-lisp/remember-mode")
-(autoload 'remember "remember" nil t)
-(org-remember-insinuate)
-(setq org-remember-templates
-      '(("Inbox" ?i "* %?" "inbox.org" "Inbox")
-        ("Misc Task" ?m "* TODO %? %^g\n" "misc-tasks.org" "Misc Tasks")
-        ("Misc Task (In Progress)" ?p "* INPROGRESS %? %^g\n" "misc-tasks.org" "Misc Tasks")
-        ("Someday/Maybe" ?s "* %?\n %i" "someday-maybe.org" "Someday/Maybe")
-        ("Watch" ?w "* WATCH %? :@mac:\n\t:SCHEDULED: %^{When to remind}t\n" "watch.org" "Watchlist/Reminders")
-        ("Remember To Checkbook" ?c "* TODO remember %? on %t :@desk:\n" "financial.org" "Mine Checkbook")))
 
 ;; navagation helpers
 (defun gtd ()
@@ -223,7 +221,7 @@
 
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cr" 'org-remember)
+(global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cj" 'org-clock-goto)
 (global-set-key "\C-cl" 'org-store-link)
 
@@ -236,30 +234,6 @@
 
 (define-key org-mode-map (kbd "C-c C-,") 'org-priority)
 (define-key org-agenda-mode-map (kbd "C-c C-,") 'org-agenda-priority)
-
-
-;; for a popup window for remember mode
-(defadvice remember-finalize (after delete-remember-frame activate)
-  "Advise remember-finalize to close the frame if it is the remember frame"
-  (if (equal "remember" (frame-parameter nil 'name))
-      (delete-frame)))
-
-(defadvice remember-destroy (after delete-remember-frame activate)
-  "Advise remember-destroy to close the frame if it is the rememeber frame"
-  (if (equal "remember" (frame-parameter nil 'name))
-      (delete-frame)))
-
-;; make the frame contain a single window. by default org-remember
-;; splits the window.
-(add-hook 'remember-mode-hook
-          'delete-other-windows)
-
-(defun make-remember-frame ()
-  "Create a new frame and run org-remember."
-  (interactive)
-  (make-frame '((name . "remember") (width . 80) (height . 10)))
-  (select-frame-by-name "remember")
-  (org-remember))
 
 ;; Colors
 

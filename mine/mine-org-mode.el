@@ -113,11 +113,11 @@
         ("@g" "@groceries" tags-todo "@groceries")
         ("@p" "@phone" tags-todo "@phone")
         ("@h" "@home" tags-todo "@home")
-        ("g" "Action List"
+        ("g" "Action List" todo "TODO|INPROGRESS")
+        ("f" "Daily Forecast"
          ((agenda)
           (todo "TODO|INPROGRESS"))
          ((org-agenda-todo-ignore-with-date t)))
-        ("f" "Flat Action List" todo "TODO|INPROGRESS")
         ("i" "In Progress Items" todo "INPROGRESS")
         ("w" "WAIT Items" todo "WAIT")
         ("A" "A Priority TODOs" tags-todo "PRIORITY=\"A\"+TODO=\"TODO\"")
@@ -179,13 +179,13 @@
   (if (and (equal (buffer-name (current-buffer))
                   "*Org Agenda*")
            (equal org-agenda-name
-                  "Action List"))
+                  "TODO"))
       (switch-to-buffer (other-buffer))
     (if (get-buffer "*Org Agenda*")
         (progn
           (switch-to-buffer "*Org Agenda*")
           (delete-other-windows)
-          (if (not (equal org-agenda-name "Action List"))
+          (if (not (equal org-agenda-name "TODO"))
               (org-agenda nil "g")))
       (progn
         (org-agenda nil "g")

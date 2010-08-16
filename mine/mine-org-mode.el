@@ -22,6 +22,8 @@
                         (mapcar 'my-org-file mine-org-files)
                         mine-outside-org-files))
 
+(setq org-id-locations-file "~/org/.org-id-locations")
+
 ;; automatically save org buffers
 (run-at-time t 300 'org-save-all-org-buffers)
 
@@ -233,7 +235,6 @@
 (global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
 (define-key org-mode-map (kbd "C-c C-,") 'org-priority)
-(define-key org-agenda-mode-map (kbd "C-c C-,") 'org-agenda-priority)
 
 ;; Colors
 

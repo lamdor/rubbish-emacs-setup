@@ -85,6 +85,8 @@
 ;; Use soft tabs
 (setq-default indent-tabs-mode nil)
 
+(autoload 'scratch "scratch" nil t)
+
 ;; Don't make backups
 (setq make-backup-files nil)
 (setq version-control nil)

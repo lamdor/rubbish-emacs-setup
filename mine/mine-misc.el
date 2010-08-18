@@ -17,6 +17,9 @@
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)

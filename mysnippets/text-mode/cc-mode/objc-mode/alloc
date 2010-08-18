@@ -1,0 +1,4 @@
+# name : alloc init
+# contributor : Luke Amdor
+# --
+[[${1:ClassName} alloc] init$2]$0

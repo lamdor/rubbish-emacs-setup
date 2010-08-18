@@ -1,0 +1,6 @@
+# name : @implementation
+# contributor : Luke Amdor
+# --
+@implementation ${1:ClassName}
+                $0
+@end

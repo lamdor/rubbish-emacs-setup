@@ -47,6 +47,7 @@
 
 (add-hook 'objc-mode-hook '(lambda ()
                              (c-set-style "mine-obj-c")
+                             (c-subword-mode t)
                              (local-set-key (kbd "C-x C-v") 'mine-objc-toggle-header-and-source)))
 (add-hook 'objc-mode-hook 'turn-on-wrap-region-mode)
 

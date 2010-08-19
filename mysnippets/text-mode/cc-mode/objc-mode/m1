@@ -1,0 +1,6 @@
+# name : return method with 1 args
+# contributor : Luke Amdor
+# --
+-(${1:NSString*}) ${2:what}: (${3:NSString*}) ${4:what} {
+           $0
+}

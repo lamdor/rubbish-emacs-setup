@@ -169,6 +169,30 @@
          :publishing-function org-publish-attachment
          :recursive t)))
 
+;; org-mode presentation helpers
+(defun mine-org-preso-next-subtree ()
+  (interactive)
+  (widen)
+  (org-forward-same-level 1)
+  (org-narrow-to-subtree))
+
+(defun mine-org-preso-previous-subtree ()
+  (interactive)
+  (widen)
+  (org-backward-same-level 1)
+  (org-narrow-to-subtree))
+
+(defun mine-org-preso-down-subtree ()
+  (interactive)
+  (next-line)
+  (org-narrow-to-subtree))
+
+(defun mine-org-preso-up-subtree ()
+  (interactive)
+  (widen)
+  (outline-up-heading 1)
+  (org-narrow-to-subtree))
+
 ;; navagation helpers
 (defun gtd ()
   (interactive)
@@ -235,6 +259,12 @@
 (global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
 (define-key org-mode-map (kbd "C-c C-,") 'org-priority)
+
+;; for presentations
+(define-key org-mode-map (kbd "<f5>") 'mine-org-preso-previous-subtree)
+(define-key org-mode-map (kbd "<f6>") 'mine-org-preso-next-subtree)
+(define-key org-mode-map (kbd "<f7>") 'mine-org-preso-up-subtree)
+(define-key org-mode-map (kbd "<f8>") 'mine-org-preso-down-subtree)
 
 ;; Colors
 

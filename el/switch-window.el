@@ -1,12 +1,10 @@
-;;; dim-switch-window.el
-;;
-;; Offer a *visual* way to choose a window to switch to
+;;; dim-switch-window.el --- A *visual* way to choose a window to switch to
 ;;
 ;; Copyright (C) 2010 Dimitri Fontaine
 ;;
 ;; Author: Dimitri Fontaine <dim@tapoueh.org>
 ;; URL: http://www.emacswiki.org/emacs/switch-window.el
-;; Version: 0.6
+;; Version: 0.8
 ;; Created: 2010-04-30
 ;; Keywords: window navigation
 ;; Licence: WTFPL, grab your copy here: http://sam.zoy.org/wtfpl/
@@ -14,11 +12,22 @@
 ;; This file is NOT part of GNU Emacs.
 ;;
 ;; Install:
-;;  (require 'dim-switch-window)
+;;  (require 'switch-window)
 ;;
 ;; It'll take over your C-x o binding.
 ;;
 ;; Changelog
+;;
+;; 0.8 - 2010-09-13 - 999
+;;
+;;  - Suport more than 9 windows (with a single key to type)
+;;  - Use quail-keyboard-layout to choose single key labels for windows
+;;
+;; 0.7 - 2010-08-23 - window-dedicated-p
+;;
+;;  - temporarily unset the window dedicated flag for displaying the
+;;    numbers, patch from René Kyllingstad <Rene@Kyllingstad.com>
+;;  - fix timeout and RET handling wrt to not changing window selection
 ;;
 ;; 0.6 - 2010-08-12 - *Minibuf-1*
 ;;
@@ -31,69 +40,85 @@
 ;;  - dim:switch-window-increase is now a maximum value
 ;;
 
-(defgroup dim:switch-window nil "dim:switch-window customization group"
+;; We use loop and subseq
+(require 'cl)
+
+;; We use quail-keyboard-map
+(require 'quail)
+
+(defgroup switch-window nil "switch-window customization group"
   :group 'convenience)
 
-(defcustom dim:switch-window-increase 12
+(defcustom switch-window-increase 12
   "How much to increase text size in the window numbering, maximum"
   :type 'integer
-  :group 'dim:switch-window)
+  :group 'switch-window)
 
-(defcustom dim:switch-window-timeout 5
+(defcustom switch-window-timeout 5
   "After this many seconds, cancel the window switching"
   :type 'integer
-  :group 'dim:switch-window)
+  :group 'switch-window)
 
-(defcustom dim:switch-window-relative nil
+(defcustom switch-window-relative nil
   "Control the ordering of windows, when true this depends on current-window"
   :type 'boolean
-  :group 'dim:switch-window)
+  :group 'switch-window)
 
-(defun dim:switch-window-list (&optional from-current-window)
+(defun switch-window-enumerate ()
+  "Return a list of one-letter strings to label current windows"
+  (subseq
+   (loop with layout = (split-string quail-keyboard-layout "")
+	 for row from 1 to 4
+	 nconc (loop for col from 1 to 10
+		     collect (nth (+ 1 (* 2 col) (* 30 row)) layout)))
+   0 (length (switch-window-list))))
+
+(defun switch-window-label (num)
+  "Return the label to use for a given window number"
+  (nth (- num 1) (switch-window-enumerate)))
+
+(defun switch-window-list (&optional from-current-window)
   "list windows for current frame, starting at top left unless
 from-current-window is not nil"
-  (if (or from-current-window dim:switch-window-relative)
+  (if (or from-current-window switch-window-relative)
       (window-list nil nil)
     (window-list nil nil (window-at 0 0))))
 
-(defun dim:switch-window-display-number (win num)
+(defun switch-window-display-number (win num)
   "prepare a temp buffer to diplay in the window while choosing"
-  (let ((buf (get-buffer-create
-	      (concat " *"
-		      (number-to-string num) 
-		      ": " 
-		      (buffer-name (window-buffer win))
-		      "*"))))
+  (let* ((label (switch-window-label num))
+	 (buf (get-buffer-create
+	       (format " *%s: %s*" label (buffer-name (window-buffer win))))))
     (with-current-buffer buf
       (let* ((w (window-width win))
 	     (h (window-body-height win))
-	     (increased-lines (/ (float h) dim:switch-window-increase))
-	     (scale (if (> increased-lines 1) dim:switch-window-increase h))
+	     (increased-lines (/ (float h) switch-window-increase))
+	     (scale (if (> increased-lines 1) switch-window-increase h))
 	     (lines-before (/ increased-lines 2))
 	     (margin-left (/ w h) ))
-	;; increase to maximum dim:switch-window-increase
+	;; increase to maximum switch-window-increase
 	(text-scale-increase scale)
 	;; make it so that the huge number appears centered
 	(dotimes (i lines-before) (insert "\n"))
 	(dotimes (i margin-left)  (insert " "))
-	(insert (number-to-string num))))
+	(insert label)))
 
     (set-window-buffer win buf)
     buf))
 
-(defun dim:switch-to-window-number (n)
-  "move to given window, target is the place of the window in (dim:switch-window-list)"
+(defun switch-to-window-number (n)
+  "move to given window, target is the place of the window in (switch-window-list)"
   (let ((c 1))
-    (dolist (win (dim:switch-window-list))
+    (dolist (win (switch-window-list))
       (when (eq c n)
 	(select-window win))
       (setq c (1+ c)))
     (unless (minibuffer-window-active-p (selected-window))
-      (message "Moved to %S" 
-	       (substring-no-properties 
+      (message "Moved to %S"
+	       (substring-no-properties
 		(buffer-name (window-buffer (selected-window))))))))
 
-(defun dim:switch-window ()
+(defun switch-window ()
   "Display an overlay in each window showing a unique key, then
 ask user for the window where move to"
   (interactive)
@@ -103,39 +128,49 @@ ask user for the window where move to"
     (let ((config (current-window-configuration))
 	  (num 1)
 	  (minibuffer-num nil)
-	  key buffers)
+	  key buffers
+	  dedicated-windows)
 
       ;; arrange so that C-g will get back to previous window configuration
-      (unwind-protect 
+      (unwind-protect
 	  (progn
 	    ;; display big numbers to ease window selection
-	    (dolist (win (dim:switch-window-list))
+	    (dolist (win (switch-window-list))
+	      (when (window-dedicated-p win)
+		(push (cons win (window-dedicated-p win)) dedicated-windows)
+		(set-window-dedicated-p win nil))
 	      (if (minibuffer-window-active-p win)
 		  (setq minibuffer-num num)
-		(push (dim:switch-window-display-number win num) buffers))
+		(push (switch-window-display-number win num) buffers))
 	      (setq num (1+ num)))
 
 	    (while (not key)
-	      (let ((input 
+	      (let ((input
 		     (event-basic-type
-		      (read-event 
+		      (read-event
 		       (if minibuffer-num
-			   (format "Move to window [minibuffer is %d]: " 
-				   minibuffer-num)
+			   (format "Move to window [minibuffer is %s]: "
+				   (switch-window-label minibuffer-num))
 			 "Move to window: ")
-		       nil dim:switch-window-timeout))))
-		
-		(if (null input) (setq key 1) ; timeout
+		       nil switch-window-timeout))))
+
+		(if (or (null input) (eq input 'return))
+		    (keyboard-quit) ; timeout or RET
 		  (unless (symbolp input)
-		    (if (and (<= ?1 input) (>= ?9 input)) ; 1 to 9
-			(setq key (- input 48))
-		      (keyboard-quit)))))))
+		    (let* ((wchars (mapcar 'string-to-char
+					   (switch-window-enumerate)))
+			   (pos (position input wchars)))
+		      (if pos
+			  (setq key (1+ pos))
+			(keyboard-quit))))))))
 
 	;; get those huge numbers away
 	(mapc 'kill-buffer buffers)
 	(set-window-configuration config)
+	(dolist (w dedicated-windows)
+	  (set-window-dedicated-p (car w) (cdr w)))
 	(when key
-	  (dim:switch-to-window-number key))))))
+	  (switch-to-window-number key))))))
 
-(global-set-key (kbd "C-x o") 'dim:switch-window)
+(global-set-key (kbd "C-x o") 'switch-window)
 (provide 'switch-window)

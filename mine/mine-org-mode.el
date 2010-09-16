@@ -210,7 +210,9 @@
           (switch-to-buffer "*Org Agenda*")
           (if (not (equal org-agenda-name "TODO"))
               (org-agenda nil "g")))
-      (org-agenda nil "g"))))
+      (progn
+        (org-agenda nil "g")
+        (delete-other-windows)))))
 
 (defun gtd-find-inbox ()
   (interactive)

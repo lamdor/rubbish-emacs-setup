@@ -28,6 +28,8 @@
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Buffer selection setup
 (setq bs-configurations
       '(("all" nil nil nil nil nil)

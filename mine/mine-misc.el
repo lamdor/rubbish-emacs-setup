@@ -70,7 +70,7 @@
   (c-subword-mode t))
 
 ;; multi-shell
-(setq multi-shell-program "/bin/zsh")
+(setq multi-shell-command "/bin/zsh")
 (autoload 'multi-shell-new "multi-shell" nil t)
 (autoload 'multi-shell-next "multi-shell" nil t)
 
@@ -80,6 +80,12 @@
     (multi-shell-next)
     (if (eq (buffer-name) buf)
         (switch-to-other-buffer))))
+
+(defun mine-multi-shell-switch-dir ()
+  (interactive)
+  (let ((dir default-directory))
+    (mine-multi-shell-next)
+    (comint-send-string (current-buffer) (concat "cd " dir "\n"))))
 
 (add-hook 'term-mode-hook '(lambda ()
                              (local-set-key (kbd "C-c C-j") 'term-line-mode)

@@ -42,6 +42,7 @@
 
 (global-set-key (kbd "C-c t") 'mine-multi-shell-next)
 (global-set-key (kbd "C-c T") 'multi-shell-new)
+(global-set-key (kbd "C-c M-t") 'mine-multi-shell-switch-dir)
 
 ;; annoying suspend
 (global-unset-key (kbd "C-z"))

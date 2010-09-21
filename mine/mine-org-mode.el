@@ -143,6 +143,10 @@
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
 
+(defadvice org-agenda-todo (before back-to-beginning)
+  (beginning-of-line-or-back-to-indention))
+(ad-activate 'org-agenda-todo)
+
 ;; org publish projects
 
 (setq org-publish-project-alist

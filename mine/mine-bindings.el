@@ -5,7 +5,9 @@
 (global-set-key (kbd "C-c y") 'bury-buffer)
 
 ;; frame/window
-(global-set-key (kbd "C-x 9") 'swap-windows)
+(global-set-key (kbd "C-x 7") 'swap-windows)
+(global-set-key (kbd "C-x 9") 'toggle-window-split)
+
 
 ;; file navigation
 (global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)

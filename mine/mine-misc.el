@@ -85,7 +85,8 @@
   (interactive)
   (let ((dir default-directory))
     (mine-multi-shell-next)
-    (comint-send-string (current-buffer) (concat "cd " dir "\n"))))
+    (comint-send-string (current-buffer) (concat "cd " dir "\n"))
+    (cd dir)))
 
 (add-hook 'term-mode-hook '(lambda ()
                              (local-set-key (kbd "C-c C-j") 'term-line-mode)

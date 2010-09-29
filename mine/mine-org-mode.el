@@ -4,31 +4,10 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; configuration
-(if (not (boundp 'org-directory))
-    (setq org-directory "~/org"))
-(defun my-org-file (file)
-  (concat org-directory "/" file))
-
-;; files
-
-(setq mine-org-files
-      (split-string (save-excursion
-                      (find-file (my-org-file "AGENDA_FILES"))
-                      (buffer-string))))
-
-(setq mine-outside-org-files ())
-
-(setq org-agenda-files (append
-                        (mapcar 'my-org-file mine-org-files)
-                        mine-outside-org-files))
-
-(setq org-id-locations-file "~/org/.org-id-locations")
+(load "~/org/org-custom.el")
 
 ;; automatically save org buffers
 (run-at-time t 300 'org-save-all-org-buffers)
-
-(setq org-global-properties
-      '(("Effort_ALL" . "0 1 2 3 5 8 13 21")))
 
 ;; display configuration
 (setq org-completion-use-ido t
@@ -51,43 +30,15 @@
       org-use-fast-todo-selection t
       org-default-priority 85)
 
-;; tag configuration
-(setq org-tag-alist
-      '((:startgroup . nil)
-        ("@mac" . ?m)
-        ("@development" . ?d)
-        ("@bigcreek" . ?b)
-        ("@email" . ?e)
-        ("@home" . ?h)
-        ("@phone" . ?p)
-        ("@desk" . ?a)
-        ("@read" . ?d)
-        ("@errands" . ?r)
-        ("@groceries" . ?g)
-        ("@geo" . ?o)
-        ("@kate" . ?k)
-        (:endgroup . nil)))
-
 ;; logging configuration
 (setq org-log-into-drawer "LOGBOOK"
       org-log-done 'time)
 
 ;; link configuration
 (setq org-confirm-shell-link-function 'y-or-n-p)
-(setq org-link-abbrev-alist
-      '(("google" . "http://www.google.com/search?q=%s")
-        ("pending" . "shell:showinfinder \"/Users/luke/Desktop/Pending/%s\"")
-        ("outbox" . "shell:showinfinder \"/Users/luke/Desktop/Outbox/%s\"")
-        ("dump" . "file:///Users/luke/Documents/Dump/%s")
-        ("geojira" . "https://jira.geolearning.com/browse/%s")
-        ("reveal" . "shell:showinfinder \"%s\"")))
 
 ;; refiling configuration
-(setq org-refile-use-outline-path nil
-      org-refile-targets (append
-                          (mapcar '(lambda (orgf)
-                                     (append (list orgf) '(:maxlevel . 3))) mine-org-files)
-                          '(("someday-maybe.org" :level . 1))))
+(setq org-refile-use-outline-path nil)
 
 ;; agenda configuraion
 (setq org-agenda-search-headline-for-time nil
@@ -107,38 +58,6 @@
       org-habit-following-days 3
       org-habit-graph-column 55)
 
-(setq org-agenda-custom-commands
-      '(("@" . "Outside Contexts")
-        ("@e" "@errands" tags-todo "@errands")
-        ("@g" "@groceries" tags-todo "@groceries")
-        ("@p" "@phone" tags-todo "@phone")
-        ("@h" "@home" tags-todo "@home")
-        ("g" "Action List" todo "TODO|INPROGRESS")
-        ("f" "Daily Forecast"
-         ((agenda)
-          (todo "TODO|INPROGRESS"))
-         ((org-agenda-todo-ignore-with-date t)))
-        ("i" "In Progress Items" todo "INPROGRESS")
-        ("w" "WAIT Items" todo "WAIT")
-        ("A" "A Priority TODOs" tags-todo "PRIORITY=\"A\"+TODO=\"TODO\"")
-        ("B" "B Priority TODOs" tags-todo "PRIORITY=\"B\"+TODO=\"TODO\"")
-        ("C" "C Priority TODOs" tags-todo "PRIORITY=\"C\"+TODO=\"TODO\"")
-        ("N" "No Priority TODOs" tags-todo "PRIORITY=\"\"+TODO=\"TODO\"")))
-
-;; org capture setup
-(setq org-default-notes-file (concat org-directory "/inbox.org"))
-(setq org-capture-templates
-      '(("i" "Inbox" entry (file+headline "inbox.org" "Inbox") "* %?")
-        ("m" "Misc Task" entry (file+headline "misc-tasks.org" "Misc Tasks") "* TODO %? %^g\n")
-        ("p" "Misc Task (In Progress)" entry (file+headline "misc-tasks.org" "Misc Tasks") "* INPROGRESS %? %^g\n")
-        ("s" "Someday/Maybe" entry (file+headline "someday-maybe.org" "Someday/Maybe") "* %?\n %i")
-        ("w" "Watch" entry (file+headline "watch.org" "Watchlist/Reminders") "* WATCH %? :@mac:\n\t:SCHEDULED: %^{When to remind}t\n")
-        ("c" "Remember To Checkbook" entry (file+headline "financial.org" "Mine Checkbook") "* TODO remember %? on %u :@desk:\n")))
-
-;; org-mobile setup
-(setq org-mobile-directory (concat (getenv "HOME") "/Dropbox" "/MobileOrg"))
-(setq org-mobile-inbox-for-pull (my-org-file "from-mobile.org"))
-(setq org-mobile-agendas 'custom)
 
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
@@ -146,32 +65,6 @@
 (defadvice org-agenda-todo (before back-to-beginning)
   (beginning-of-line-or-back-to-indention))
 (ad-activate 'org-agenda-todo)
-
-;; org publish projects
-
-(setq org-publish-project-alist
-      '(("absoluterubbish.net"
-         :components ("org-absoluterubbish.net" "org-posts-absoluterubbish.net" "org-posts-absoluterubbish.net-static"))
-        ("org-absoluterubbish.net"
-         :base-directory "~/code/absoluterubbish.net/org/"
-         :base-extension "org"
-         :publishing-directory "~/code/absoluterubbish.net"
-         :publishing-function org-publish-org-to-html
-         :recursive t
-         :body-only t)
-        ("org-posts-absoluterubbish.net"
-         :base-directory "~/code/absoluterubbish.net/org-posts/"
-         :base-extension "org"
-         :publishing-directory "~/code/absoluterubbish.net/_posts"
-         :publishing-function org-publish-org-to-html
-         :recursive t
-         :body-only t)
-        ("org-posts-absoluterubbish.net-static"
-         :base-directory "~/code/absoluterubbish.net/org-posts/"
-         :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|php"
-         :publishing-directory "~/code/learning/absoluterubbish.net/_posts"
-         :publishing-function org-publish-attachment
-         :recursive t)))
 
 ;; org-mode presentation helpers
 (defun mine-org-preso-next-subtree ()
@@ -198,9 +91,6 @@
   (org-narrow-to-subtree))
 
 ;; navagation helpers
-(defun gtd ()
-  (interactive)
-  (find-file (my-org-file "gtd.org")))
 
 (defun gtd-agenda ()
   (interactive)
@@ -237,16 +127,11 @@
 
 (defun gtd-someday-maybe ()
   (interactive)
-  (find-file (my-org-file "someday-maybe.org")))
+  (if (equal (buffer-name (current-buffer))
+             "someday-maybe.org")
+      (switch-to-buffer (other-buffer))
+    (switch-to-buffer "someday-maybe.org")))
 
-(defun gtd-jump ()
-  (interactive)
-  (find-file (my-org-file "gtd.org"))
-  (org-goto))
-
-(defun gtd-pomodori ()
-  (interactive)
-  (find-file (my-org-file "pomodori.org")))
 
 ;; key bindings
 (global-set-key "\C-ca" 'org-agenda)
@@ -256,9 +141,7 @@
 
 (global-set-key (kbd "C-c g g") 'gtd-agenda)
 (global-set-key (kbd "C-c g a") 'gtd-switch-to-agenda)
-(global-set-key (kbd "C-c g p") 'gtd-pomodori)
 (global-set-key (kbd "C-c g i") 'gtd-find-inbox)
-(global-set-key (kbd "C-c g j") 'gtd-jump)
 (global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
 (define-key org-mode-map (kbd "C-c C-,") 'org-priority)

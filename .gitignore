@@ -14,3 +14,4 @@ semantic.cache
 /tramp
 /.emacs.desktop
 /.emacs.desktop.lock
+/ac-comphist.dat

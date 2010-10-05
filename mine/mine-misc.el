@@ -71,6 +71,7 @@
 
 ;; multi-shell
 (setq multi-shell-command "/bin/zsh")
+(setq multi-shell-revert-window-after-complete nil)
 (autoload 'multi-shell-new "multi-shell" nil t)
 (autoload 'multi-shell-next "multi-shell" nil t)
 

@@ -18,6 +18,8 @@
       org-startup-folded 'content
       org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
 
+(setq org-use-property-inheritance t)
+
 ;; allow yasnippet
 (add-hook 'org-mode-hook
           '(lambda ()

@@ -36,6 +36,11 @@
 (setq org-log-into-drawer "LOGBOOK"
       org-log-done 'time)
 
+
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (toggle-truncate-lines nil)))
+
 ;; link configuration
 (setq org-confirm-shell-link-function 'y-or-n-p)
 

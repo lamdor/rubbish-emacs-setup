@@ -137,7 +137,7 @@
   (if (equal (buffer-name (current-buffer))
              "someday-maybe.org")
       (switch-to-buffer (other-buffer))
-    (switch-to-buffer "someday-maybe.org")))
+    (find-file (concat org-directory "/someday-maybe.org"))))
 
 
 ;; key bindings

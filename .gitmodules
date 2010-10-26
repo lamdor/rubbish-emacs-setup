@@ -49,3 +49,6 @@
 [submodule "site-lisp/ensime"]
 	path = site-lisp/ensime
 	url = http://github.com/aemoncannon/ensime.git
+[submodule "site-lisp/enclose"]
+	path = site-lisp/enclose
+	url = http://github.com/rejeep/enclose.git

@@ -7,6 +7,7 @@
 
 (setq js-indent-level 2)
 (add-hook 'js-mode-hook 'turn-on-wrap-region-mode)
+(add-hook 'js-mode-hook 'turn-on-enclose-mode)
 
 (add-to-list 'auto-mode-alist '("\\.json$" . js-mode))
 
@@ -27,5 +28,6 @@
                                (local-set-key (kbd "C-c C-b") 'coffee-compile-buffer)
                                (local-set-key (kbd "C-c C-r") 'coffee-compile-region)))
 (add-hook 'coffee-mode-hook 'turn-on-wrap-region-mode)
+(add-hook 'coffee-mode-hook 'turn-on-enclose-mode)
 
 (provide 'mine-javascript)

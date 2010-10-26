@@ -27,6 +27,7 @@
              (define-key ensime-mode-map (kbd "C-c C-a") 'sbt-switch)))
 
 (add-hook 'scala-mode-hook 'turn-on-wrap-region-mode)
+(add-hook 'scala-mode-hook 'turn-on-enclose-mode)
 
 
 

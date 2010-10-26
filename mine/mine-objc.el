@@ -72,5 +72,6 @@ End Tell"))
                              (local-set-key (kbd "C-c ;") 'xcode:build)
                              (local-set-key (kbd "C-c '") 'xcode:build-and-run)))
 (add-hook 'objc-mode-hook 'turn-on-wrap-region-mode)
+(add-hook 'objc-mode-hook 'turn-on-enclose-mode)
 
 (provide 'mine-objc)

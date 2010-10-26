@@ -36,17 +36,12 @@
 (require 'unit-test)
 
 ;; wrap-region
-;; Wrap region
 (add-path "site-lisp/wrap-region")
 (require 'wrap-region)
-(setq wrap-region-insert-twice t)
 
-;; Do not insert-twice in these modes
-(dolist (hook '(emacs-lisp-mode-hook))
-  (add-hook hook
-           '(lambda ()
-              (make-local-variable 'wrap-region-insert-twice)
-              (setq wrap-region-insert-twice nil))))
+;; enslose
+(add-path "site-lisp/enclose")
+(require 'enclose)
 
 ;; typing-of-emacs
 (setq toe-starting-time-per-word 20)

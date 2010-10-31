@@ -5,7 +5,6 @@
 
 (add-path "site-lisp/rinari/")
 
-(require 'ruby-electric)
 (require 'rdebug)
 (require 'ruby-style)
 (autoload 'ruby-mode "ruby-mode" "Major mode for editing Ruby code" t)
@@ -59,16 +58,6 @@
 (add-to-list 'auto-mode-alist '("[Rr]akefile" . ruby-mode))
 
 ;; Hooks
-(add-hook 'ruby-mode-hook
-          ;; let wrap-region take care of these
-           '(lambda ()
-              (define-key ruby-mode-map "{" nil)
-              (define-key ruby-mode-map "(" nil)
-              (define-key ruby-mode-map "[" nil)
-              (define-key ruby-mode-map "\"" nil)
-              (define-key ruby-mode-map "\'" nil)))
-(add-hook 'ruby-mode-hook
-           '(lambda () (ruby-electric-mode t)))
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))
 (add-hook 'ruby-mode-hook
           '(lambda ()
@@ -77,6 +66,9 @@
 	     ))
 (add-hook 'ruby-mode-hook 'turn-on-wrap-region-mode)
 (add-hook 'ruby-mode-hook 'turn-on-enclose-mode)
+(enclose-add-encloser "|" "|")
+(add-path "site-lisp/ruby-end")
+(require 'ruby-end)
 
 (defadvice ruby-indent-command (around yas/try-expand-first activate)
   "Try to expand a snippet before point, then call ruby-indent-command as usual"

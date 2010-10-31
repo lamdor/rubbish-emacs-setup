@@ -52,3 +52,6 @@
 [submodule "site-lisp/enclose"]
 	path = site-lisp/enclose
 	url = http://github.com/rejeep/enclose.git
+[submodule "site-lisp/ruby-end"]
+	path = site-lisp/ruby-end
+	url = http://github.com/rejeep/ruby-end.git

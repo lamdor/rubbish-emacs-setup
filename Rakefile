@@ -18,17 +18,27 @@ end
 namespace :submodules do
   desc "Pull/merge git submodules"
   task :pull do
+    require 'rubygems'
+    require 'term/ansicolor'
+    include Term::ANSIColor
+
     submodules = `git submodule`.split("\n").map { |l| l.split[1] }
     submodules.each do |sm|
 
       Dir.chdir(sm) do
-        puts "####"
-        puts "#### IN #{sm}, please do your magic (pulling/merging) and then exit the shell"
-        puts "####"
+        puts bold("Updating #{sm}")
 
         ENV['NO_CDPATH'] = "1"
-        system "git remote update"
-        system "/bin/bash -i"
+        output = `git remote update 2>&1`
+        puts output
+        if output =~ /origin\//m || ENV["STOP"]
+          puts green("####")
+          puts green("#### IN #{sm}, please do your magic (pulling/merging) and then exit the shell")
+          puts green("####")
+          system "/bin/bash -i"
+        else
+          puts red("#### NOTHING FETCHED")
+        end
       end
 
       system "git add #{sm}"

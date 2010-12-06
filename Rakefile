@@ -50,7 +50,7 @@ namespace :submodules do
 
   desc "update submodules"
   task :update do
-    system "git submodule update --init --recursive"
+    system "git submodule update --init"
   end
 end
 

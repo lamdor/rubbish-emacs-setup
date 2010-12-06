@@ -62,6 +62,7 @@
 
 ;; ack
 ;; (autoload 'ack "ack" "Search using ack" t)
+(add-path "site-lisp/full-ack")
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)

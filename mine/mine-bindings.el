@@ -9,7 +9,7 @@
 (global-set-key (kbd "C-x 9") 'toggle-window-split)
 
 ;; file navigation
-(global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)
+(global-set-key (kbd "C-x C-M-f") 'ack-find-file)
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "M-.") 'ido-find-tag)
 (global-set-key (kbd "C-x C-i") 'ido-imenu)

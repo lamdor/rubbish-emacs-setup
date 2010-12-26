@@ -1,6 +1,6 @@
 [submodule "site-lisp/gist"]
 	path = site-lisp/gist
-	url = git://github.com/defunkt/gist.el.git
+	url = http://github.com/rubbish/gist.el.git
 [submodule "site-lisp/magit"]
 	path = site-lisp/magit
 	url = http://github.com/philjackson/magit.git

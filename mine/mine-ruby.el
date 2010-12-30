@@ -56,6 +56,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("config\\.ru\\'" . ruby-mode))
 (add-to-list 'auto-mode-alist '("[Rr]akefile" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 
 ;; Hooks
 (add-hook 'ruby-mode-hook '(lambda() (inf-ruby-keys)))

@@ -31,6 +31,7 @@
 (require 'mine-csharp)
 (require 'mine-objc)
 (require 'mine-erlang)
+(require 'mine-haskell)
 (require 'mine-html-xml)
 (require 'mine-javascript)
 (require 'mine-groovy)

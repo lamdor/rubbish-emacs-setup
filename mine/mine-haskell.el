@@ -5,4 +5,4 @@
 
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
 
-(provide 'haskell)
+(provide 'mine-haskell)

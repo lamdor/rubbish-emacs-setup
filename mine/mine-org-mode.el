@@ -29,7 +29,7 @@
 
 ;; todo configuration
 (setq org-enforce-todo-dependencies t
-      org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "INPROGRESS(i!)" "WATCH(a)" "REVIEW(r!)" "|" "DONE(d!)" "CANCELED(c)"))
+      org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "INPROGRESS(i!)" "WATCH(a)" "HOLD(h!)" "REVIEW(r!)" "|" "DONE(d!)" "CANCELED(c)"))
       org-use-fast-todo-selection t
       org-default-priority 85)
 

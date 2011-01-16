@@ -21,5 +21,6 @@
 
 (add-hook 'haskell-mode-hook 'enclose-mode)
 (add-hook 'haskell-mode-hook 'wrap-region-mode)
+(add-hook 'haskell-mode-hook 'subword-mode)
 
 (provide 'mine-haskell)

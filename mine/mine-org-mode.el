@@ -99,18 +99,20 @@
   (org-narrow-to-subtree))
 
 ;; navagation helpers
+(defun gtd-current-agenda-is-major-p ()
+  (member org-agenda-name (list "TODO"
+                                "TAGS PRIORITY=\"A\"+TODO=\"TODO\"|PRIORITY=\"A\"+TODO=\"INPROGRESS\"")))
 
 (defun gtd-agenda ()
   (interactive)
   (if (and (equal (buffer-name (current-buffer))
                   "*Org Agenda*")
-           (equal org-agenda-name
-                  "TODO"))
+           (gtd-current-agenda-is-major-p))
       (switch-to-buffer (other-buffer))
     (if (get-buffer "*Org Agenda*")
         (progn
           (switch-to-buffer "*Org Agenda*")
-          (if (not (equal org-agenda-name "TODO"))
+          (if (not (gtd-current-agenda-is-major-p))
               (org-agenda nil "g")))
       (progn
         (org-agenda nil "g")

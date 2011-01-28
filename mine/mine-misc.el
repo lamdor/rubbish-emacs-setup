@@ -17,6 +17,10 @@
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
+(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
+
 (require 'undo-tree)
 (global-undo-tree-mode)
 

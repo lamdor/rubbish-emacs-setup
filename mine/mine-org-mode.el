@@ -64,7 +64,8 @@
       org-habit-show-habits-only-for-today nil
       org-habit-preceding-days 20
       org-habit-following-days 3
-      org-habit-graph-column 55)
+      org-habit-graph-column 55
+      org-agenda-repeating-timestamp-show-all nil)
 
 
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)

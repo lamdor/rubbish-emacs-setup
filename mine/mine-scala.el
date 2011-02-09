@@ -10,6 +10,7 @@
 
 (add-path "site-lisp/ensime/dist/elisp")
 (autoload 'ensime-scala-mode-hook "ensime" "ENSIME: The ENhanced Scala Interaction Mode for Emacs (minor-mode)." t)
+(autoload 'ensime-config-gen "ensime" "Generate an ensime config." t)
 
 (setq sbt-use-ui t)
 (add-hook 'scala-mode-hook

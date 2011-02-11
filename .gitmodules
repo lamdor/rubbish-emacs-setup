@@ -55,3 +55,6 @@
 [submodule "site-lisp/full-ack"]
 	path = site-lisp/full-ack
 	url = https://github.com/nschum/full-ack.git
+[submodule "site-lisp/elein"]
+	path = site-lisp/elein
+	url = https://github.com/remvee/elein.git

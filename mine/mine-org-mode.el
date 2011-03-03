@@ -100,21 +100,13 @@
   (org-narrow-to-subtree))
 
 ;; navagation helpers
-(defun gtd-current-agenda-is-major-p ()
-  (member org-agenda-name (list "TODO"
-                                "TAGS PRIORITY=\"A\"+TODO=\"TODO\"|PRIORITY=\"A\"+TODO=\"INPROGRESS\"")))
-
 (defun gtd-agenda ()
   (interactive)
   (if (and (equal (buffer-name (current-buffer))
-                  "*Org Agenda*")
-           (gtd-current-agenda-is-major-p))
+                  "*Org Agenda*"))
       (switch-to-buffer (other-buffer))
     (if (get-buffer "*Org Agenda*")
-        (progn
-          (switch-to-buffer "*Org Agenda*")
-          (if (not (gtd-current-agenda-is-major-p))
-              (org-agenda nil "g")))
+        (switch-to-buffer "*Org Agenda*")
       (progn
         (org-agenda nil "g")
         (delete-other-windows)))))
@@ -125,16 +117,6 @@
              "inbox.org")
       (switch-to-buffer (other-buffer))
     (switch-to-buffer "inbox.org")))
-
-(defun gtd-switch-to-agenda ()
-  (interactive)
-  (if (get-buffer "*Org Agenda*")
-      (progn
-        (split-window-vertically)
-        (other-window 1)
-        (switch-to-buffer "*Org Agenda*")
-        (org-fit-agenda-window))
-    (org-agenda nil "A")))
 
 (defun gtd-someday-maybe ()
   (interactive)

@@ -42,7 +42,8 @@
 ;; system specific loading
 (case system-type
   ('windows-nt (require 'mine-windows))
-  ('darwin (require 'mine-macosx)))
+  ('darwin (require 'mine-macosx))
+  ('gnu/linux (require 'mine-linux)))
 ;;
 
 (setq debug-on-error nil)

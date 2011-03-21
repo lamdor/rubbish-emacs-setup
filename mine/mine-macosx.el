@@ -1,3 +1,4 @@
+(global-set-key (kbd "<f1>") 'ns-toggle-fullscreen)
 (setq ns-command-modifier (quote meta))
 
 (add-hook 'server-visit-hook '(lambda ()

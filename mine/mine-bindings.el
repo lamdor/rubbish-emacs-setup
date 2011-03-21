@@ -1,5 +1,3 @@
-(global-set-key (kbd "<f1>") 'ns-toggle-fullscreen)
-
 ;; buffers
 (global-set-key [remap list-buffers] 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)

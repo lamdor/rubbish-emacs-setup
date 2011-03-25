@@ -4,6 +4,7 @@
 (setq x-select-enable-clipboard t)
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
+(setq ack-executable "ack-grep")
 
 (defun toggle-fullscreen (&optional f)
   (interactive)

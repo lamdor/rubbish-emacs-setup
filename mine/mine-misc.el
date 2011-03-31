@@ -73,6 +73,14 @@
     (subword-mode t)
   (c-subword-mode t))
 
+(add-hook 'dired-load-hook
+          (lambda ()
+            (load "dired-x")
+            ;; Set dired-x global variables here.  For example:
+            ;; (setq dired-guess-shell-gnutar "gtar")
+            ;; (setq dired-x-hands-off-my-keys nil)
+            ))
+
 ;; multi-shell
 (setq multi-shell-command "/bin/zsh")
 (setq multi-shell-revert-window-after-complete nil)

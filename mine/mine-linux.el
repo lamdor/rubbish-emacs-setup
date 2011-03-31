@@ -5,6 +5,7 @@
 (setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
 
 (setq ack-executable "ack-grep")
+(setq scala-interpreter "~/tools/scala-2.8.1.final/bin/scala")
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium-browser")

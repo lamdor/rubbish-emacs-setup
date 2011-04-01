@@ -46,6 +46,10 @@
          (lambda (buf)
            (with-current-buffer buf
              (not (eq major-mode 'magit-mode)))) nil)
+        ("ensime" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (string-prefix-p "*inferior-ensime" (buffer-name buf))))) nil)
         ("sql" nil nil nil
          (lambda (buf)
            (with-current-buffer buf

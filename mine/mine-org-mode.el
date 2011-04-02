@@ -21,6 +21,9 @@
 
 (setq org-use-property-inheritance t)
 
+;; no extra line at the end
+(add-hook 'org-mode-hook 'mine-leave-whitespace-in-buffer)
+
 ;; allow yasnippet
 (add-hook 'org-mode-hook
           '(lambda ()

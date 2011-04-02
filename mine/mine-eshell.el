@@ -53,13 +53,13 @@
 (setq eshell-prompt-function
       (lambda ()
         (concat
-         (mine-time-ps1)
-         " "
+         ;; (mine-time-ps1)
+         ;; " "
          (mine-cwd-ps1)
-         " "
+         ;; " "
          (mine-git-ps1)
-         "\n"
-         "-> ")))
+         ;; "\n"
+         " $ ")))
 
 (setq eshell-prompt-regexp "^\\(->\\|>\\|mysql>\\|irb(main):.+[>*]\\) ")
 

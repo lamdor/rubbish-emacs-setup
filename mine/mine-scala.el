@@ -24,8 +24,7 @@
              (define-key scala-mode-map (kbd "<f1>") nil) ;; I don't like speedbar popping up
 
              (ensime-scala-mode-hook)
-             ;; ensime does have its own sbt switch, but I just like mine a little more
-             (define-key ensime-mode-map (kbd "C-c C-a") 'sbt-switch)))
+             (define-key ensime-mode-map (kbd "C-c C-a") 'ensime-sbt-switch)))
 
 (add-hook 'scala-mode-hook 'turn-on-wrap-region-mode)
 (add-hook 'scala-mode-hook 'turn-on-enclose-mode)

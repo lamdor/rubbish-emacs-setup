@@ -22,6 +22,7 @@
 (require 'mine-vc)
 (require 'mine-org-mode)
 (require 'mine-pomodoro)
+(require 'mine-desktop)
 
 ;; Languages
 (require 'mine-ruby)

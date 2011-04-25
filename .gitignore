@@ -16,3 +16,4 @@ semantic.cache
 /.emacs.desktop.lock
 /ac-comphist.dat
 /session.*
+/emacs-desktop

@@ -2,6 +2,7 @@
 (require 'org)
 (add-to-list 'org-modules 'org-habit)
 (add-to-list 'org-modules 'org-protocol)
+(add-to-list 'org-modules 'org-timer)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; configuration
@@ -77,6 +78,25 @@
 (defadvice org-agenda-todo (before back-to-beginning)
   (beginning-of-line-or-back-to-indention))
 (ad-activate 'org-agenda-todo)
+
+;; org-timer pomodoro stuff
+(defun org-timer-pomodoro-message (msg)
+  (start-process "pomodoro"
+                 nil
+                 "/usr/bin/notify-send"
+                 msg))
+
+(setq org-timer-default-timer 25)
+
+(add-hook 'org-timer-set-hook '(lambda () (org-timer-pomodoro-message "Starting pomodoro")))
+(add-hook 'org-timer-done-hook '(lambda () (org-timer-pomodoro-message "End of pomodoro: take a break")))
+(add-hook 'org-timer-cancel-hook '(lambda () (org-timer-pomodoro-message "Canceling pomodoro")))
+
+(add-hook 'org-clock-in-hook '(lambda () (if (not org-timer-current-timer)
+                                             (org-timer-set-timer))))
+(add-hook 'org-clock-out-hook '(lambda () (if org-timer-current-timer
+                                              (org-timer-cancel-timer))))
+
 
 ;; org-mode presentation helpers
 (defun mine-org-preso-next-subtree ()

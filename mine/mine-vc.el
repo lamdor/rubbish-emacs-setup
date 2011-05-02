@@ -2,6 +2,8 @@
 (add-path "site-lisp/magit/")
 (autoload 'magit-status "magit" "use magit git magic" t)
 
+(setq vc-follow-symlinks t)
+
 (setq magit-remote-ref-format 'remote-slash-branch)
 
 ;; (defun ask-for-jira-line (line)

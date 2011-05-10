@@ -64,6 +64,18 @@
       (rename-file file-to-move (concat "~/Documents/Dump/" file-name) t)))
   (revert-buffer))
 
+(defun dired-reveal (file)
+  "Reveals the file inside of a dired buffer"
+  (let* ((full-file (expand-file-name file))
+        (dir (file-name-directory full-file)))
+    (dired dir)
+    (dired-goto-file full-file)))
+
+(defun dired-xdg-open ()
+  "Invoke xdg-open on the file at point"
+  (interactive)
+  (shell-command (concat "xdg-open " (dired-file-name-at-point))))
+
 (defun switch-to-other-buffer ()
   (interactive)
   (switch-to-buffer (other-buffer)))

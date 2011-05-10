@@ -80,10 +80,12 @@
 (add-hook 'dired-load-hook
           (lambda ()
             (load "dired-x")
+
             ;; Set dired-x global variables here.  For example:
             ;; (setq dired-guess-shell-gnutar "gtar")
             ;; (setq dired-x-hands-off-my-keys nil)
             ))
+(define-key dired-mode-map (kbd "M-RET") 'dired-xdg-open)
 
 ;; multi-shell
 (setq multi-shell-command "/bin/zsh")

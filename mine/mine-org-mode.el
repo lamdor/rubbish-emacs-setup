@@ -80,17 +80,33 @@
 (ad-activate 'org-agenda-todo)
 
 ;; org-timer pomodoro stuff
-(defun org-timer-pomodoro-message (msg)
+(defun org-timer-pomodoro-message-notify (msg)  
   (start-process "pomodoro"
                  nil
                  "/usr/bin/notify-send"
                  msg))
 
+(defun org-timer-pomodoro-message-with-buffer (msg)
+  (let ((pomodoro-buffer (get-buffer-create "*Pomodoro*")))
+    (switch-to-buffer pomodoro-buffer)
+    (delete-other-windows)
+    (toggle-read-only -1)
+    (erase-buffer)
+    (insert msg)
+    (toggle-read-only t)))
+
+(defun org-timer-pomodoro-message-all (msg)
+  (org-timer-pomodoro-notify-message msg)
+  (org-timer-pomodoro-message-with-buffer msg))
+
 (setq org-timer-default-timer 25)
 
-(add-hook 'org-timer-set-hook '(lambda () (org-timer-pomodoro-message "Starting pomodoro")))
-(add-hook 'org-timer-done-hook '(lambda () (org-timer-pomodoro-message "End of pomodoro: take a break")))
-(add-hook 'org-timer-cancel-hook '(lambda () (org-timer-pomodoro-message "Canceling pomodoro")))
+(add-hook 'org-timer-set-hook '(lambda () (org-timer-pomodoro-message-notify "Starting pomodoro")))
+(add-hook 'org-timer-done-hook
+          '(lambda ()
+             (org-timer-pomodoro-message-all "End of pomodoro: take a break")
+             (org-clock-out t)))
+(add-hook 'org-timer-cancel-hook '(lambda () (org-timer-pomodoro-message-notify "Canceling pomodoro")))
 
 (add-hook 'org-clock-in-hook '(lambda () (if (not org-timer-current-timer)
                                              (org-timer-set-timer))))

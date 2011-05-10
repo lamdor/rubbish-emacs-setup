@@ -41,6 +41,29 @@
                 "-m" msg
                 "-p" (format "%s" (if priority priority 0))))
 
+(defun move-to-pending ()
+  "Moves marked files in dired buffer to pending and creates pending links for them in the inbox.org file"
+  (interactive)
+  (dolist (file-to-move (mapcar (function car) (dired-map-over-marks
+                                               (cons (dired-get-filename) (point)) nil)))
+    (let ((file-name (file-name-nondirectory file-to-move))
+          (org-capture-link-is-already-stored t))
+      (message "Moving file %s to pending" file-name)
+      (org-store-link-props :annotation (org-make-link-string (concat "pending:" file-name) file-name))
+      (org-capture nil "l")
+      (rename-file file-to-move (concat "~/Desktop/Pending/" file-name) t)))
+  (revert-buffer))
+
+(defun move-to-dump ()
+  "Moves marked files in dired buffer to pending and creates pending links for them in the inbox.org file"
+  (interactive)
+  (dolist (file-to-move (mapcar (function car) (dired-map-over-marks
+                                               (cons (dired-get-filename) (point)) nil)))
+    (let ((file-name (file-name-nondirectory file-to-move)))
+      (message "Moving file %s to dump" file-name)
+      (rename-file file-to-move (concat "~/Documents/Dump/" file-name) t)))
+  (revert-buffer))
+
 (defun switch-to-other-buffer ()
   (interactive)
   (switch-to-buffer (other-buffer)))

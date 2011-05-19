@@ -2,7 +2,8 @@
 (require 'ido)
 (ido-mode t)
 (ido-everywhere t)
-
+(setq ido-default-file-method 'selected-window
+      ido-default-buffer-method 'selected-window)
 ;; ido setup
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t

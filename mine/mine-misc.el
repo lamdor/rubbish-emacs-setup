@@ -133,7 +133,7 @@
   (make-variable-buffer-local 'mine-leave-whitespace)
   (setq mine-delete-trailing-whitespace nil))
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))
-(add-hook 'snippet-mode-hook 'mine-leave-whitespace-in-buffer)
+;; (add-hook 'snippet-mode-hook 'mine-leave-whitespace-in-buffer)
 
 ;; auto indentation of yanked/pasted text
 (setq major-modes-to-auto-indent-yanked-text '(emacs-lisp-mode

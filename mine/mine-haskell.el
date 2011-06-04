@@ -11,6 +11,9 @@
                                 (local-set-key "\r" 'newline)))
 (add-hook 'haskell-mode-hook '(lambda ()
                                 (local-set-key (kbd "C-o") 'open-line)))
+(add-hook 'haskell-mode-hook '(lambda ()
+                                (enclose-remove-encloser "'")
+                                (enclose-remove-encloser "|")))
 
 (defun mine-haskell-indent-buffer ()
   (interactive)

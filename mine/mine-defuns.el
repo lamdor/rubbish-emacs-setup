@@ -54,15 +54,21 @@
       (rename-file file-to-move (concat "~/Desktop/Pending/" file-name) t)))
   (revert-buffer))
 
-(defun move-to-dump ()
-  "Moves marked files in dired buffer to pending and creates pending links for them in the inbox.org file"
-  (interactive)
+(defun move-marked-dired-files (destination-dir)
   (dolist (file-to-move (mapcar (function car) (dired-map-over-marks
                                                (cons (dired-get-filename) (point)) nil)))
     (let ((file-name (file-name-nondirectory file-to-move)))
-      (message "Moving file %s to dump" file-name)
-      (rename-file file-to-move (concat "~/Documents/Dump/" file-name) t)))
+      (message "Moving file %s to %s" file-name destination-dir)
+      (rename-file file-to-move (concat destination-dir file-name) t)))
   (revert-buffer))
+
+(defun move-to-documents ()
+  (interactive)
+  (move-marked-dired-files "~/Documents/"))
+
+(defun move-to-private ()
+  (interactive)
+  (move-marked-dired-files "~/Private/"))
 
 (defun dired-reveal (file)
   "Reveals the file inside of a dired buffer"

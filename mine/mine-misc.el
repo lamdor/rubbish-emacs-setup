@@ -158,4 +158,7 @@
 (mouse-wheel-mode t)
 (setq visible-bell t)
 
+;; Protobuf files are like c
+(add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
+
 (provide 'mine-misc)

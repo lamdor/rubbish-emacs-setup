@@ -45,7 +45,7 @@
   "Moves marked files in dired buffer to pending and creates pending links for them in the inbox.org file"
   (interactive)
   (dolist (file-to-move (mapcar (function car) (dired-map-over-marks
-                                               (cons (dired-get-filename) (point)) nil)))
+                                                (cons (dired-get-filename) (point)) nil)))
     (let ((file-name (file-name-nondirectory file-to-move))
           (org-capture-link-is-already-stored t))
       (message "Moving file %s to pending" file-name)
@@ -56,7 +56,7 @@
 
 (defun move-marked-dired-files (destination-dir)
   (dolist (file-to-move (mapcar (function car) (dired-map-over-marks
-                                               (cons (dired-get-filename) (point)) nil)))
+                                                (cons (dired-get-filename) (point)) nil)))
     (let ((file-name (file-name-nondirectory file-to-move)))
       (message "Moving file %s to %s" file-name destination-dir)
       (rename-file file-to-move (concat destination-dir file-name) t)))
@@ -73,14 +73,14 @@
 (defun dired-reveal (file)
   "Reveals the file inside of a dired buffer"
   (let* ((full-file (expand-file-name file))
-        (dir (file-name-directory full-file)))
+         (dir (file-name-directory full-file)))
     (dired dir)
     (dired-goto-file full-file)))
 
 (defun dired-xdg-open ()
   "Invoke xdg-open on the file at point"
   (interactive)
-  (shell-command (concat "xdg-open " (dired-file-name-at-point))))
+  (call-process "xdg-open" nil 0 nil (expand-file-name (dired-file-name-at-point))))
 
 (defun switch-to-other-buffer ()
   (interactive)
@@ -179,16 +179,16 @@ frames with exactly two windows."
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
   (let ((name (buffer-name))
-    (filename (buffer-file-name)))
+        (filename (buffer-file-name)))
     (if (not filename)
-    (message "Buffer '%s' is not visiting a file!" name)
+        (message "Buffer '%s' is not visiting a file!" name)
       (if (get-buffer new-name)
-      (message "A buffer named '%s' already exists!" new-name)
-    (progn
-      (rename-file name new-name 1)
-      (rename-buffer new-name)
-      (set-visited-file-name new-name)
-      (set-buffer-modified-p nil))))))
+          (message "A buffer named '%s' already exists!" new-name)
+        (progn
+          (rename-file name new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
 
 (defun mine-mysql (user password host database)
   (let ((sql-user user)

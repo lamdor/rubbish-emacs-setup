@@ -2,8 +2,10 @@
 
 (autoload 'haskell-mode "haskell-mode" "Major mode for editing Haskell programs." t)
 (autoload 'switch-to-haskell "inf-haskell" "Show the inferior-haskell buffer.  Start the process if needed." t)
+(autoload 'haskell-cabal-mode "haskell-cabal" "Major mode for Cabal package description files." t)
 
 (add-to-list 'auto-mode-alist '("\\.hs\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)

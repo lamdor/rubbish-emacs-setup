@@ -37,9 +37,11 @@
 (defun growl-message (msg &optional priority)
   "Sends a message to grow"
   (interactive "sMessage: ")
-  (call-process "growlnotify" nil nil nil
-                "-m" msg
-                "-p" (format "%s" (if priority priority 0))))
+  (start-process "growl"
+                 nil
+                 "growlnotify"
+                 "-m" msg
+                 "-p 0")  )
 
 (defun move-to-pending ()
   "Moves marked files in dired buffer to pending and creates pending links for them in the inbox.org file"

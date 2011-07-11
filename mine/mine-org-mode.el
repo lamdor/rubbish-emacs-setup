@@ -80,11 +80,15 @@
 (ad-activate 'org-agenda-todo)
 
 ;; org-timer pomodoro stuff
-(defun org-timer-pomodoro-message-notify (msg)  
-  (start-process "pomodoro"
-                 nil
-                 "/usr/bin/notify-send"
-                 msg))
+(defun org-timer-pomodoro-message-notify (msg)
+  (case system-type
+    ('darwin
+     (growl-message msg))
+    ('gnu/linux
+     (start-process "pomodoro"
+                    nil
+                    "/usr/bin/notify-send"
+                    msg))))
 
 (defun org-timer-pomodoro-message-with-buffer (msg)
   (let ((pomodoro-buffer (get-buffer-create "*Pomodoro*")))

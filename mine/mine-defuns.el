@@ -79,10 +79,22 @@
     (dired dir)
     (dired-goto-file full-file)))
 
+(defun dired-mac-open ()
+  "Invoke xdg-open on the file at point"
+  (interactive)
+  (call-process "open" nil 0 nil (expand-file-name (dired-file-name-at-point))))
+
 (defun dired-xdg-open ()
   "Invoke xdg-open on the file at point"
   (interactive)
   (call-process "xdg-open" nil 0 nil (expand-file-name (dired-file-name-at-point))))
+
+(defun dired-external-open ()
+  "Opens the file at point in an external viewer"
+  (interactive)
+  (case system-type
+    ('darwin (dired-mac-open))
+    ('gnu/linux (dired-xdg-open))))
 
 (defun switch-to-other-buffer ()
   (interactive)

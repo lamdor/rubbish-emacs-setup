@@ -62,7 +62,7 @@
       org-agenda-todo-ignore-deadlines nil
       org-deadline-warning-days 3
       org-agenda-tags-todo-honor-ignore-options t
-      org-agenda-sorting-strategy '(tag-up time-up priority-down)
+      org-agenda-sorting-strategy '(tag-up time-up todo-state-down priority-down)
       org-agenda-compact-blocks t
       org-agenda-tags-column -92
       org-habit-show-habits-only-for-today nil

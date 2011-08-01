@@ -5,6 +5,7 @@
 (load-file (concat emacs-root "site-lisp/zen-and-art/zen-and-art.el"))
 ;; (load-file (concat emacs-root "el/color-theme-twilight.el"))
 (color-theme-zen-and-art)
+(setq frame-background-mode 'dark)
 
 (require 'ansi-color)
 (ansi-color-for-comint-mode-on)

@@ -81,7 +81,7 @@
 (add-hook 'dired-load-hook
           (lambda ()
             (load "dired-x")
-            (define-key dired-mode-map (kbd "M-RET") 'dired-xdg-open)
+            (define-key dired-mode-map (kbd "M-RET") 'dired-external-open)
             ;; Set dired-x global variables here.  For example:
             ;; (setq dired-guess-shell-gnutar "gtar")
             ;; (setq dired-x-hands-off-my-keys nil)

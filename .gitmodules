@@ -6,7 +6,7 @@
 	url = http://github.com/philjackson/magit.git
 [submodule "site-lisp/clojure-mode"]
 	path = site-lisp/clojure-mode
-	url = git://github.com/jochu/clojure-mode.git
+	url = https://github.com/technomancy/clojure-mode.git
 [submodule "site-lisp/slime"]
 	path = site-lisp/slime
 	url = git://github.com/nablaone/slime.git

@@ -24,7 +24,7 @@
 	url = git://repo.or.cz/remember-el.git
 [submodule "site-lisp/sbt"]
 	path = site-lisp/sbt
-	url = git@github.com:rubbish/sbt.el.git
+	url = http://github.com:rubbish/sbt.el.git
 [submodule "site-lisp/smex"]
 	path = site-lisp/smex
 	url = git://github.com/nonsequitur/smex.git
@@ -36,7 +36,7 @@
 	url = git://github.com/rejeep/wrap-region.git
 [submodule "site-lisp/couchdb-relax"]
 	path = site-lisp/couchdb-relax
-	url = git@github.com:rubbish/relax.el.git
+	url = http://github.com/rubbish/relax.el.git
 [submodule "site-lisp/coffee-mode"]
 	path = site-lisp/coffee-mode
 	url = http://github.com/defunkt/coffee-mode.git

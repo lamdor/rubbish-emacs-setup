@@ -24,7 +24,7 @@
 	url = git://repo.or.cz/remember-el.git
 [submodule "site-lisp/sbt"]
 	path = site-lisp/sbt
-	url = http://github.com:rubbish/sbt.el.git
+	url = http://github.com/rubbish/sbt.el.git
 [submodule "site-lisp/smex"]
 	path = site-lisp/smex
 	url = git://github.com/nonsequitur/smex.git

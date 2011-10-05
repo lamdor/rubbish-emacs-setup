@@ -155,7 +155,7 @@
 (require 'midnight)
 
 ;; Miscallaneous Things
-(mouse-wheel-mode t)
+(if (fboundp 'mouse-wheel-mode) (mouse-wheel-mode t))
 (setq visible-bell t)
 
 ;; Protobuf files are like c

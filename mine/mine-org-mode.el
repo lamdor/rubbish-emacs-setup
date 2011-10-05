@@ -6,7 +6,9 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
 ;; configuration
-(load "~/org/org-custom.el")
+(setq org-custom-el "~/org/org-custom.el")
+(if (file-exists-p org-custom-el)
+ (load org-custom-el))
 
 ;; automatically save org buffers
 (run-at-time t 300 'org-save-all-org-buffers)

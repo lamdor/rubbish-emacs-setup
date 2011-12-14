@@ -24,11 +24,12 @@
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c o") 'indent-buffer)
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; Use regex searches
 (global-set-key [remap isearch-forward] 'isearch-forward-regexp)
 (global-set-key [remap isearch-backward] 'isearch-backward-regexp)
-(global-set-key [remap isearch-forward-regexp] 'isearch-forward)
+(global-set-key [remap isearch-forward-regexp] 'ack)
 (global-set-key [remap isearch-backward-regexp] 'isearch-backward)
 (global-set-key [remap query-replace] 'query-replace-regexp)
 

@@ -35,6 +35,9 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(setq enable-recursive-minibuffers t)
+(minibuffer-depth-indicate-mode t)
+
 ;; Buffer selection setup
 (setq bs-configurations
       '(("all" nil nil nil nil nil)

@@ -25,6 +25,7 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c o") 'indent-buffer)
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
+(global-set-key (kbd "C-x a r") 'align-regexp)
 
 ;; Use regex searches
 (global-set-key [remap isearch-forward] 'isearch-forward-regexp)

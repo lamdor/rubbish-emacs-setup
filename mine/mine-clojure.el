@@ -8,7 +8,6 @@
 (add-to-list 'auto-mode-alist '("\\.cljs$" . clojurescript-mode))
 
 (add-hook 'clojure-mode-hook (lambda () (paredit-mode t)))
-(add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'clojure-mode-hook (lambda () (clojure-test-mode t)))
 
 (add-path "site-lisp/elein")

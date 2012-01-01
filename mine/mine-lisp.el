@@ -2,12 +2,10 @@
 
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
-             (paredit-mode t)
              (eldoc-mode t)))
 
 (add-hook 'scheme-mode-hook
           '(lambda ()
-             (paredit-mode t)
              (slime-mode t)))
 
 (add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))

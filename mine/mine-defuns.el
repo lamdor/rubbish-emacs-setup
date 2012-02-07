@@ -238,4 +238,10 @@ frames with exactly two windows."
       (message "Opening file...")
     (message "Aborting")))
 
+
+(defun comint-clear-buffer-or-region ()
+  (interactive)
+  (delete-region (point-min) (point-max))
+  (comint-send-input))
+
 (provide 'mine-defuns)

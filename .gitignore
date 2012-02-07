@@ -17,3 +17,4 @@ semantic.cache
 /ac-comphist.dat
 /session.*
 /emacs-desktop
+swank

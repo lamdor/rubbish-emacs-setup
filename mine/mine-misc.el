@@ -97,6 +97,9 @@
 (autoload 'multi-shell-new "multi-shell" nil t)
 (autoload 'multi-shell-next "multi-shell" nil t)
 
+;; Tramp Optimizations
+(setq tramp-default-method "ssh")
+
 (defun mine-multi-shell-next ()
   (interactive)
   (let ((buf (buffer-name)))

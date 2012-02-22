@@ -204,19 +204,19 @@ frames with exactly two windows."
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 
-(defun mine-mysql (user password host database)
+(defun mine-sql (method user password host database root-sql-script-dir)
   (let ((sql-user user)
         (sql-password password)
         (sql-server host)
         (sql-database database)
         (sql-buffer-name (concat "*SQL*:" database ":" host)))
     (when (not (get-buffer sql-buffer-name))
-      (call-interactively 'sql-mysql)
+      (call-interactively method)
       (rename-buffer sql-buffer-name))
     (delete-other-windows)
     (switch-to-buffer sql-buffer-name)
     (split-window-vertically)
-    (find-file (concat (getenv "HOME") "/Documents/sql-scripts/" database "_" host ".sql"))))
+    (find-file (concat root-sql-script-dir database "_" host ".sql"))))
 
 (defun delete-this-buffer-and-file ()
   "Removes file connected to current buffer and kills buffer."

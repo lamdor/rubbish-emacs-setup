@@ -17,6 +17,7 @@ semantic.cache
 /ac-comphist.dat
 /session.*
 /emacs-desktop
+/custom
 swank
 /eshell/history
 /eshell/lastdir

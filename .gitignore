@@ -18,3 +18,5 @@ semantic.cache
 /session.*
 /emacs-desktop
 swank
+/eshell/history
+/eshell/lastdir

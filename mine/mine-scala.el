@@ -8,7 +8,7 @@
 (autoload 'sbt "sbt" "sbt shell" t)
 (autoload 'sbt-switch "sbt" "sbt shell switch" t)
 
-(add-path "site-lisp/ensime/dist/elisp")
+(add-path "site-lisp/ensime/dist_2.9.2-SNAPSHOT/elisp")
 (autoload 'ensime-scala-mode-hook "ensime" "ENSIME: The ENhanced Scala Interaction Mode for Emacs (minor-mode)." t)
 (autoload 'ensime-config-gen "ensime" "Generate an ensime config." t)
 

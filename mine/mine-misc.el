@@ -76,6 +76,11 @@
 
 (require 'switch-window)
 
+;; edit server for chrome
+(require 'edit-server)
+(setq edit-server-new-frame t)
+(edit-server-start)
+
 ;; Always use subwords to to move around
 (if (fboundp 'subword-mode)
     (subword-mode t)

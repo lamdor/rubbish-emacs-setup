@@ -25,6 +25,8 @@
 (require 'undo-tree)
 (global-undo-tree-mode)
 
+(winner-mode t)
+
 ;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)

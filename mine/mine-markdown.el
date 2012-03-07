@@ -6,6 +6,13 @@
 
 (setq markdown-command "Markdown.pl")
 
+(defadvice markdown-cycle (around yas/try-expand-first activate)
+  "Try to expand a snippet before point, then call markdown-cycle as usual"
+  (let ((yas/fallback-behavior nil))
+    (unless (and (interactive-p)
+                 (yas/expand))
+      ad-do-it)))
+
 (add-hook 'markdown-mode-hook
           '(lambda ()
              (local-set-key (kbd "C-c C-l") 'markdown-insert-link)))

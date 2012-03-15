@@ -6,7 +6,7 @@
 (global-set-key (kbd "C-x 7") 'swap-windows)
 (global-set-key (kbd "C-x 9") 'toggle-window-split)
 (global-set-key (kbd "C-M-9") 'winner-undo)
-(global-set-key (kbd "C-M-0") 'winner-undo)
+(global-set-key (kbd "C-M-0") 'winner-redo)
 
 ;; file navigation
 (global-set-key (kbd "C-x C-M-f") 'ack-find-file)

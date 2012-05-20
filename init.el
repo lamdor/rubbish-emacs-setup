@@ -1,19 +1,27 @@
-;; el-get setup
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get") 
+(setq debug-on-error t)
 
-(unless (require 'el-get nil t) 
-  (with-current-buffer (url-retrieve-synchronously "https://raw.github.com/dimitri/el-get/master/el-get-install.el") (goto-char (point-max)) (eval-print-last-sexp)))
+(defvar *emacs-load-start* (current-time))
 
-(el-get 'sync)
+(add-to-list 'load-path "~/.emacs.d/mine")
 
+(require 'mine-el-get) ;; for pkg mgt
+(require 'mine-env)
+(require 'mine-misc) ;; builtin deps
+(require 'mine-dependencies) ;; external deps
+(require 'mine-defuns)
+(require 'mine-customizations) ;; emacs built-in customize things
+(require 'mine-bindings)
+(require 'mine-pretty)
+(require 'mine-desktop)
 
- ;; local sources 
-;; (setq el-get-sources 
-;;       '(
-;; 	(:name magit :after (lambda () (global-set-key (kbd "C-x C-z") 'magit-status)))
-;; 	(:name asciidoc :type elpa :after (lambda () (autoload 'doc-mode "doc-mode" nil t) (add-to-list 'auto-mode-alist '("\\.adoc$" . doc-mode)) (add-hook 'doc-mode-hook '(lambda () (turn-on-auto-fill) (require 'asciidoc)))))
-;; 	(:name lisppaste :type elpa) (:name emacs-goodies-el :type apt-get)))
+(require 'mine-lisp)
 
-;;  (setq my-packages (append '(el-get switch-window vkill google-maps nxhtml xcscope yasnippet) (mapcar 'el-get-source-name el-get-sources))) 
+(require 'mine-linux)
 
-;; (el-get 'sync my-packages)
+(setq debug-on-error nil)
+
+(cd (getenv "HOME"))
+(mine-normal-display)
+(server-start)
+
+(message "My .emacs loaded in %ds." (destructuring-bind (hi lo ms) (current-time) (- (+ hi lo) (+ (first *emacs-load-start*) (second *emacs-load-start*)))))

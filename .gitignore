@@ -21,3 +21,4 @@ semantic.cache
 swank
 /eshell/history
 /eshell/lastdir
+/el-get/

@@ -1,4 +1,4 @@
-(setq mine-normal-font "Monaco 13")
+(setq mine-normal-font "Monaco 11")
 (setq mine-big-font "Monaco 20")
 
 (setq x-select-enable-clipboard t)

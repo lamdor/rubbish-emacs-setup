@@ -1,3 +1,6 @@
+;; move help
+(define-key key-translation-map [?\C-h] [?\C-?])
+
 ;; buffers
 (global-set-key [remap list-buffers] 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)
@@ -28,6 +31,7 @@
 (global-set-key (kbd "C-c o") 'indent-buffer)
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-set-key (kbd "C-x a r") 'align-regexp)
+(global-set-key (kbd "C-M-h") 'backward-kill-word)
 
 ;; Use regex searches
 (global-set-key [remap isearch-forward] 'isearch-forward-regexp)

@@ -19,8 +19,9 @@
         color-theme-zen-and-art
         highlight-parentheses
         paredit
-        magit))
+        magit
+        scala-mode))
 
-(el-get 'sync mine-packages)
+(el-get nil mine-packages)
 
 (provide 'mine-dependencies)

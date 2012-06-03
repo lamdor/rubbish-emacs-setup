@@ -4,11 +4,12 @@
 (ido-everywhere t)
 (setq ido-default-file-method 'selected-window
       ido-default-buffer-method 'selected-window)
+
 ;; ido setup
 (setq ido-enable-prefix nil
       ido-enable-flex-matching t
       ido-create-new-buffer 'always
-      ido-use-filename-at-point t
+      ido-use-filename-at-point nil
       ido-max-prospects 10
       ido-show-dot-for-dired nil)
 
@@ -78,9 +79,9 @@
     (subword-mode t)
   (c-subword-mode t))
 
+(require 'dired-x)
 (add-hook 'dired-load-hook
           (lambda ()
-            (load "dired-x")
             (define-key dired-mode-map (kbd "M-RET") 'dired-external-open)))
 
 ;; Tramp Optimizations

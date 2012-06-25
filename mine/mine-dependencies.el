@@ -20,8 +20,9 @@
         highlight-parentheses
         paredit
         magit
-        scala-mode))
+        scala-mode
+        markdown-mode))
 
-(el-get nil mine-packages)
+(el-get 'sync mine-packages)
 
 (provide 'mine-dependencies)

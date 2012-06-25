@@ -84,6 +84,8 @@
           (lambda ()
             (define-key dired-mode-map (kbd "M-RET") 'dired-external-open)))
 
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+
 ;; Tramp Optimizations
 (setq tramp-default-method "ssh")
 

@@ -23,8 +23,7 @@
         paredit
         magit
         scala-mode
-        markdown-mode
-        ace-jump-mode))
+        markdown-mode))
 
 (el-get 'wait (append mine-packages
                       (mapcar 'el-get-source-name el-get-sources)))

@@ -7,6 +7,8 @@
 (color-theme-initialize)
 (setq color-theme-is-global t)
 
+(setq el-get-sources nil)
+
 (setq mine-packages
       '(wrap-region
         enclose
@@ -24,6 +26,7 @@
         markdown-mode
         ace-jump-mode))
 
-(el-get 'sync mine-packages)
+(el-get 'wait (append mine-packages
+                      (mapcar 'el-get-source-name el-get-sources)))
 
 (provide 'mine-dependencies)

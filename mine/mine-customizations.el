@@ -1,4 +1,4 @@
-(setq custom-file "~/.emacs.d/mine/mine-customizations.el")
+(setq custom-file (expand-file-name "~/.emacs.d/mine/mine-customizations.el"))
 
 (provide 'mine-customizations)
 

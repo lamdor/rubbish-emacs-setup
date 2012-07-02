@@ -21,7 +21,8 @@
         paredit
         magit
         scala-mode
-        markdown-mode))
+        markdown-mode
+        ace-jump-mode))
 
 (el-get 'sync mine-packages)
 

@@ -33,6 +33,8 @@
 ;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
+(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
+
 
 ;; Use regex searches
 (global-set-key [remap isearch-forward] 'isearch-forward-regexp)

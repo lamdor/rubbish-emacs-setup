@@ -8,10 +8,6 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
-;; FIXME(needs deps) (el-get 'sync 'gist)
-
-;; FIXME(needs new github) (el-get 'sync 'yasnippet)
-
 (setq el-get-sources '((:name enclose
                               :description "Enclose cursor within punctuation pairs"
                               :type elpa
@@ -69,7 +65,8 @@
          wrap-region
          switch-window
          scratch
-         magit)
+         magit
+         yasnippet)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)

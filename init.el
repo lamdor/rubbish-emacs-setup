@@ -5,6 +5,7 @@
 (require 'mine-defuns)
 (require 'mine-advice)
 (require 'mine-bindings)
+(require 'mine-desktop)
 (require 'mine-pretty)
 
 (require 'mine-pkgmgt)

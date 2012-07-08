@@ -6,6 +6,4 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
-(el-get 'sync)
-
 (provide 'mine-el-get)

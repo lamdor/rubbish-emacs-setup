@@ -19,6 +19,29 @@
                               :prepare (progn
                                          (autoload 'enclose-global-mode "enclose" nil t)
                                          (autoload 'enclose-mode "enclose" nil t)))
+                       (:name logito
+                              :website "https://github.com/sigma/logito"
+                              :description "tiny logging framework for Emacs"
+                              :type github
+                              :pkgname "sigma/logito")
+                       (:name pcache
+                              :website "https://github.com/sigma/pcache"
+                              :description "persistent caching for Emacs"
+                              :type github
+                              :pkgname "sigma/pcache")
+                       (:name github
+                              :website "https://github.com/sigma/gh.el"
+                              :description "GitHub API library for Emacs"
+                              :type github
+                              :depends (pcache logito)
+                              :pkgname "sigma/gh.el")
+                       (:name gist
+                              :website "http://github.com/defunkt/gist.el"
+                              :description "Emacs integration for gist.github.com"
+                              :type github
+                              :pkgname "defunkt/gist.el"
+                              :depends github
+                              :features gist)
                        (:name zen-and-art-theme
                               :description "A port of the zen-and-art color theme using the new deftheme format."
                               :type elpa

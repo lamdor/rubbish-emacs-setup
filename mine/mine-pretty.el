@@ -1,6 +1,3 @@
-;; Color theme
-(setq frame-background-mode 'dark)
-
 (require 'ansi-color)
 (ansi-color-for-comint-mode-on)
 

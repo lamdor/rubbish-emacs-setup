@@ -1,3 +1,13 @@
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil t)
+  (with-current-buffer
+      (url-retrieve-synchronously "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch el-get-install-skip-emacswiki-recipes)
+      (goto-char (point-max)) (eval-print-last-sexp))))
+
+(setq el-get-user-package-directory "~/.emacs.d/init")
+
 ;; FIXME(needs deps) (el-get 'sync 'gist)
 
 ;; FIXME(needs new github) (el-get 'sync 'yasnippet)
@@ -12,7 +22,7 @@
 
 (setq el-get-sources nil)
 
-(setq mine-packages
+(setq mine-pkgs-to-install-bak
       '(wrap-region
         enclose
         smex
@@ -27,7 +37,10 @@
         scala-mode
         markdown-mode))
 
-(el-get 'wait (append mine-packages
-                      (mapcar 'el-get-source-name el-get-sources)))
+(setq mine-pkgs-to-install
+      '(highlight-parentheses
+        paredit))
 
-(provide 'mine-dependencies)
+(el-get 'sync mine-pkgs-to-install)
+
+(provide 'mine-pkgmgt)

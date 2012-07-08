@@ -1,5 +1,4 @@
 ;; Color theme
-(color-theme-zen-and-art)
 (setq frame-background-mode 'dark)
 
 (require 'ansi-color)
@@ -14,8 +13,8 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(defvar mine-normal-font nil "*The main font")
-(defvar mine-big-font nil "*The fon mainly used in pairing and presentation modes")
+(defvar mine-normal-font "Monaco 11" "*The main font")
+(defvar mine-big-font "Monaco 20" "*The fon mainly used in pairing and presentation modes")
 
 ;; display settings
 (defun mine-use-normal-font ()

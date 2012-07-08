@@ -1,2 +1,2 @@
-(autoload 'enclose-global-mode "enclose" nil t)
 (enclose-global-mode t)
+(remhash "'" enclose-table) ;; perhaps leave this in in ruby-mode???

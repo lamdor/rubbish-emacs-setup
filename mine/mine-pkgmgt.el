@@ -12,18 +12,19 @@
 
 ;; FIXME(needs new github) (el-get 'sync 'yasnippet)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/color-theme-6.6.0")
-(require 'color-theme)
-(color-theme-initialize)
-(setq color-theme-is-global t)
-
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(setq el-get-sources '(
-                       ;; enclose from elpa
-                       ;; zen-and-art theme from melpa
-                       ))
+(setq el-get-sources '((:name enclose
+                              :description "Enclose cursor within punctuation pairs"
+                              :type elpa
+                              :autoloads nil
+                              :prepare (progn
+                                         (autoload 'enclose-global-mode "enclose" nil t)
+                                         (autoload 'enclose-mode "enclose" nil t)))
+                       (:name zen-and-art-theme
+                              :description "A port of the zen-and-art color theme using the new deftheme format."
+                              :type elpa
+                              :repo ("melpa" . "http://melpa.milkbox.net/packages/")
+                              :post-init (progn
+                                           (add-to-list 'custom-theme-load-path default-directory)))))
 
 (setq mine-pkgs-to-install
       (append
@@ -46,7 +47,7 @@
          switch-window
          scratch
          magit)
-       (mapcar 'el-get-sourcename el-get-sources)))
+       (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)
 

@@ -15,5 +15,5 @@
 (load custom-file)
 
 (cd (getenv "HOME"))
-;; (mine-normal-display)
+(mine-normal-display)
 (server-start)

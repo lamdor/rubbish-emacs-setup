@@ -7,7 +7,7 @@
 (require 'mine-bindings)
 (require 'mine-pretty)
 
-;; (require 'mine-pkgmgt)
+(require 'mine-pkgmgt)
 
 ;; load files under custom/*.el
 

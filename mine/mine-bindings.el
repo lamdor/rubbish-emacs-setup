@@ -36,7 +36,6 @@
 ;; Use regex searches
 (global-set-key [remap isearch-forward] 'isearch-forward-regexp)
 (global-set-key [remap isearch-backward] 'isearch-backward-regexp)
-(global-set-key [remap isearch-forward-regexp] 'ack)
 (global-set-key [remap isearch-backward-regexp] 'isearch-backward)
 (global-set-key [remap query-replace] 'query-replace-regexp)
 

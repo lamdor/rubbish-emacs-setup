@@ -1,4 +1,3 @@
-(smex-initialize)
 (smex-auto-update)
 
 (global-set-key [remap execute-extended-command] 'smex)

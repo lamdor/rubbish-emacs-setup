@@ -20,26 +20,33 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-(setq el-get-sources nil)
-
-(setq mine-pkgs-to-install-bak
-      '(wrap-region
-        enclose
-        smex
-        full-ack
-        undo-tree
-        switch-window
-        scratch
-        color-theme-zen-and-art ;; switch this out
-        highlight-parentheses
-        paredit
-        magit
-        scala-mode
-        markdown-mode))
+(setq el-get-sources '(
+                       ;; enclose from elpa
+                       ;; zen-and-art theme from melpa
+                       ))
 
 (setq mine-pkgs-to-install
-      '(highlight-parentheses
-        paredit))
+      (append
+       '(;; lisp
+         highlight-parentheses
+         paredit
+
+         ;; scala
+         scala-mode
+         ;; ensime
+
+         ;; markdown
+         markdown-mode
+
+         ;; misc
+         smex
+         full-ack
+         undo-tree
+         wrap-region
+         switch-window
+         scratch
+         magit)
+       (mapcar 'el-get-sourcename el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)
 

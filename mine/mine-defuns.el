@@ -193,7 +193,7 @@ frames with exactly two windows."
 (defun mine-sql (product sql-user sql-password sql-server sql-database root-sql-script-dir)
   (let* ((sql-text-buffer (find-file (concat root-sql-script-dir sql-database "_" sql-server ".sql")))
          (new-name (concat sql-user "@" sql-database "." sql-server))
-         (sqli-buffer (sql-product-interactive product new-name)))
+         (sqli-buffer (if sql-buffer (progn (split-window) sql-buffer) (sql-product-interactive product new-name))))
     (switch-to-buffer sql-text-buffer nil t)
     (set (make-local-variable 'sql-buffer) sqli-buffer)
     (switch-to-buffer sqli-buffer nil t)))

@@ -141,6 +141,7 @@
       browse-url-generic-program "chromium-browser")
 
 ;; Protobuf files are like c
+(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
 
 (provide 'mine-builtin)

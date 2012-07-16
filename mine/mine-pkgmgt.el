@@ -43,7 +43,21 @@
                               :type elpa
                               :repo ("melpa" . "http://melpa.milkbox.net/packages/")
                               :post-init (progn
-                                           (add-to-list 'custom-theme-load-path default-directory)))))
+                                           (add-to-list 'custom-theme-load-path default-directory)))
+                       (:name restclient
+                              :website "https://github.com/pashky/restclient.el"
+                              :description "HTTP REST client tool for emacs"
+                              :type github
+                              :pkgname "pashky/restclient.el"
+                              :prepare (progn
+                                         (autoload 'restclient-mode "restclient" nil t)
+                                         (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))))
+                       (:name sbt
+                              :website "https://github.com/rubbish/sbt.el"
+                              :description "support for running sbt in inferior mode."
+                              :type github
+                              :pkgname "rubbish/sbt.el"
+                              :prepare (add-hook 'scala-mode-hook 'turn-on-sbt-mode))))
 
 (setq mine-pkgs-to-install
       (append

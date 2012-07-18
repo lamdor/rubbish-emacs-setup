@@ -10,7 +10,3 @@
              (set (make-local-variable 'whitespace-style) '(face lines-tail))
              (set (make-local-variable 'whitespace-line-column) 72)
              (whitespace-mode t)))
-
-(add-hook 'magit-status-mode-hook '(lambda ()
-                                     (if (sbt-find-path-to-project)
-                                         (turn-on-sbt-mode))))

@@ -69,6 +69,9 @@
          scala-mode
          ;; ensime
 
+         ;; ruby
+         rinari
+
          ;; markdown
          markdown-mode
 

@@ -80,6 +80,7 @@
          full-ack
          undo-tree
          wrap-region
+         expand-region
          switch-window
          scratch
          magit

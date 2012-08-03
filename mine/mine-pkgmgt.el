@@ -85,7 +85,8 @@
          switch-window
          scratch
          magit
-         yasnippet)
+         yasnippet
+         htmlize)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)

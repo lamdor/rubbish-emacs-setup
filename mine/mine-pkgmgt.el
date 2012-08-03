@@ -75,17 +75,19 @@
          ;; markdown
          markdown-mode
 
-         ;; misc
-         smex
-         full-ack
+         ;; text editting
          undo-tree
          wrap-region
          mark-multiple
          expand-region
+         yasnippet
+
+         ;; commands
+         smex
+         full-ack
          switch-window
          scratch
          magit
-         yasnippet
          htmlize)
        (mapcar 'el-get-source-name el-get-sources)))
 

@@ -3,7 +3,7 @@
 (unless (require 'el-get nil t)
   (with-current-buffer
       (url-retrieve-synchronously "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch el-get-install-skip-emacswiki-recipes)
+    (let (el-get-master-branch)
       (goto-char (point-max)) (eval-print-last-sexp))))
 
 (setq el-get-user-package-directory "~/.emacs.d/init")
@@ -80,6 +80,7 @@
          full-ack
          undo-tree
          wrap-region
+         mark-multiple
          expand-region
          switch-window
          scratch

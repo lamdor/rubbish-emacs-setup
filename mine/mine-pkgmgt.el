@@ -77,6 +77,9 @@
          ;; markdown
          markdown-mode
 
+         ;; organization
+         deft
+
          ;; text editting
          undo-tree
          wrap-region

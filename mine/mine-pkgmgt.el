@@ -69,6 +69,8 @@
          scala-mode
          ;; ensime
 
+         haskell-mode
+
          ;; ruby
          rinari
 

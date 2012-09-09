@@ -8,6 +8,8 @@
 (require 'mine-desktop)
 (require 'mine-pretty)
 
+(require 'mine-rcirc)
+
 (require 'mine-pkgmgt)
 
 ;; load files under custom/*.el

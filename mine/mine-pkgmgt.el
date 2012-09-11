@@ -65,6 +65,10 @@
                               :pkgname "emacsmirror/rcirc-color"
                               :autoloads nil
                               :features "rcirc-color")
+                       (:name rcirc-auto-away
+                              :website "http://www.emacswiki.org/emacs/rcircAutoAway"
+                              :type emacswiki
+                              :autoloads nil)
                        (:name evernote
                               :website "http://code.google.com/p/emacs-evernote-mode"
                               :description "Functions for editing Evernote notes directly from Emacs"

@@ -232,4 +232,24 @@ frames with exactly two windows."
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 
+(require 'dbus)
+(eval-after-load 'rcirc
+  '(defun-rcirc-command np (whatever)
+     "Now playing in spotify"
+     (interactive "i")
+     (let* ((metadata (dbus-get-property
+                       :session
+                       "org.mpris.MediaPlayer2.spotify"
+                       "/org/mpris/MediaPlayer2"
+                       "org.mpris.MediaPlayer2.Player"
+                       "Metadata"))
+            (artist (caaar (cdr (assoc "xesam:artist" metadata))))
+            (title (caar (cdr (assoc "xesam:title" metadata))))
+            (album (caar (cdr (assoc "xesam:album" metadata))))
+            (uri (caar (cdr (assoc "xesam:url" metadata))))
+            (uri-parts (split-string uri ":"))
+            (url (concat "http://open.spotify.com/" (cadr uri-parts) "/" (caddr uri-parts))))
+       (rcirc-send-message process target
+                           (concat "Spotify: " artist " - " title " (" album ") -- " url)))))
+
 (provide 'mine-defuns)

@@ -15,29 +15,6 @@
                               :prepare (progn
                                          (autoload 'enclose-global-mode "enclose" nil t)
                                          (autoload 'enclose-mode "enclose" nil t)))
-                       (:name logito
-                              :website "https://github.com/sigma/logito"
-                              :description "tiny logging framework for Emacs"
-                              :type github
-                              :pkgname "sigma/logito")
-                       (:name pcache
-                              :website "https://github.com/sigma/pcache"
-                              :description "persistent caching for Emacs"
-                              :type github
-                              :pkgname "sigma/pcache")
-                       (:name github
-                              :website "https://github.com/sigma/gh.el"
-                              :description "GitHub API library for Emacs"
-                              :type github
-                              :depends (pcache logito)
-                              :pkgname "sigma/gh.el")
-                       (:name gist
-                              :website "http://github.com/defunkt/gist.el"
-                              :description "Emacs integration for gist.github.com"
-                              :type github
-                              :pkgname "defunkt/gist.el"
-                              :depends github
-                              :features gist)
                        (:name zen-and-art-theme
                               :description "A port of the zen-and-art color theme using the new deftheme format."
                               :type elpa
@@ -63,12 +40,15 @@
                               :description "color nicks in rcirc"
                               :type github
                               :pkgname "emacsmirror/rcirc-color"
-                              :autoloads nil
-                              :features "rcirc-color")
+                              :features (rcirc-color))
                        (:name rcirc-auto-away
                               :website "http://www.emacswiki.org/emacs/rcircAutoAway"
-                              :type emacswiki
-                              :autoloads nil)
+                              :type emacswiki)
+                       (:name rcirc-notify
+                              :website "https://github.com/nicferrier/rcirc-notify"
+                              :type elpa
+                              :repo ("marmalade" . "http://marmalade-repo.org/packages/")
+                              :after (add-hook 'rcirc-mode-hook 'rcirc-notify-add-hooks))
                        (:name evernote
                               :website "http://code.google.com/p/emacs-evernote-mode"
                               :description "Functions for editing Evernote notes directly from Emacs"
@@ -97,13 +77,14 @@
          haskell-mode
 
          ;; ruby
-         rinari
+         rvm
 
          ;; markdown
          markdown-mode
 
          ;; organization
          deft
+         todotxt
 
          ;; text editting
          undo-tree
@@ -117,6 +98,7 @@
          full-ack
          switch-window
          scratch
+         gist
          magit
          htmlize)
        (mapcar 'el-get-source-name el-get-sources)))

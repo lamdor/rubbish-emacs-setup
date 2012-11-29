@@ -10,3 +10,13 @@
              (set (make-local-variable 'whitespace-style) '(face lines-tail))
              (set (make-local-variable 'whitespace-line-column) 72)
              (whitespace-mode t)))
+
+(setq magit-wazzup-only-branches t)
+
+(defun mine-magit-hub-browse-commit ()
+  (interactive)
+  (let ((sha (magit-section-action (item info)
+                  ((commit) info))))
+   (start-process "hub-browse-commit" nil
+                  "hub" "browse" "--"
+                  (format "commit/%s" sha))))

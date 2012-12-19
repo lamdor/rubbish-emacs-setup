@@ -4,13 +4,14 @@
 (show-paren-mode t)
 (transient-mark-mode t)
 (blink-cursor-mode t)
+(set-cursor-color "gray")
 
 ;; Remove noise
-;; (global-hl-line-mode t)
+(global-hl-line-mode t)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(defvar mine-normal-font "Monaco 11" "*The main font")
+(defvar mine-normal-font "Monaco 13" "*The main font")
 (defvar mine-big-font "Monaco 20" "*The fon mainly used in pairing and presentation modes")
 
 ;; display settings

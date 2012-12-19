@@ -12,6 +12,10 @@
 
 (require 'mine-pkgmgt)
 
+(case system-type
+  ('darwin (require 'mine-macosx))
+  ('gnu/linux (require 'mine-linux)))
+
 ;; load files under custom/*.el
 (let ((custom-files (directory-files "~/.emacs.d/custom/" t "\.el$")))
   (mapcar 'load-file custom-files))

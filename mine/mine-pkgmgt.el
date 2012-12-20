@@ -8,7 +8,12 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
-(setq el-get-sources '((:name enclose
+(setq el-get-sources '((:name wgrep
+                              :description "Writable grep buffer and apply the changes to files"
+                              :website "https://github.com/mhayashi1120/Emacs-wgrep"
+                              :type github
+                              :pkgname "mhayashi1120/Emacs-wgrep")
+                       (:name enclose
                               :description "Enclose cursor within punctuation pairs"
                               :type elpa
                               :autoloads nil

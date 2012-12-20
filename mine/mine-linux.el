@@ -4,4 +4,6 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
 
+(setq ack-executable "ack-grep")
+
 (provide 'mine-linux)

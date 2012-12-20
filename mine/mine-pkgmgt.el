@@ -54,6 +54,7 @@
 (setq mine-pkgs-to-install
       (append
        '(;; extensions
+         diminish
          smex
          full-ack
          switch-window

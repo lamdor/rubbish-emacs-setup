@@ -53,38 +53,34 @@
 
 (setq mine-pkgs-to-install
       (append
-       '(;; lisp
-         highlight-parentheses
-         paredit
-
-         ;; scala
-         ;; scala-mode
-         ;; ensime
-
-         haskell-mode
-
-         ;; markdown
-         markdown-mode
-
-         ;; organization
-         deft
-         todotxt
-
-         ;; text editting
-         ;; undo-tree
+       '(;; extensions
+         smex
+         full-ack
+         switch-window
+         scratch
+         htmlize
          wrap-region
          mark-multiple
          expand-region
          yasnippet
 
-         ;; commands
-         smex
-         full-ack
-         switch-window
-         scratch
+         ;; prettiness
+         powerline
+
+         ;; organization
+         deft
+         todotxt
          gist
+
          magit
-         htmlize)
+
+         ;; lisp
+         highlight-parentheses
+         paredit
+
+         ;; langs
+         haskell-mode
+         markdown-mode)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)

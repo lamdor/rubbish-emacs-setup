@@ -54,7 +54,13 @@
                               :website "http://orgmode.org/"
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
                               :type elpa
-                              :repo ("org" . "http://orgmode.org/elpa/"))))
+                              :repo ("org" . "http://orgmode.org/elpa/"))
+                       (:name powerline
+                              :website "https://github.com/milkypostman/powerline"
+                              :description "emacs powerline"
+                              :type github
+                              :pkgname "milkypostman/powerline"
+                              :features powerline)))
 
 (setq mine-pkgs-to-install
       (append
@@ -69,9 +75,6 @@
          mark-multiple
          expand-region
          yasnippet
-
-         ;; prettiness
-         powerline
 
          ;; organization
          deft

@@ -4,7 +4,7 @@
 (show-paren-mode t)
 (transient-mark-mode t)
 (blink-cursor-mode t)
-(set-cursor-color "gray")
+(add-to-list 'default-frame-alist '(cursor-color . "gray"))
 
 ;; Remove noise
 (global-hl-line-mode t)

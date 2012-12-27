@@ -1,42 +1,105 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-;; move to custom file
 (setq org-directory "~/notes")
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
-(setq org-mobile-inbox-for-pull (concat org-directory "/from-mobile.org"))
 
-;; automatically save org buffers
-(run-at-time t 300 'org-save-all-org-buffers)
+;; The structure of this follows the Org manual: http://orgmode.org/org.html
 
-;; display configuration
-(setq org-completion-use-ido t
-      org-tags-column -92
-      org-startup-folded 'content
-      org-columns-default-format "%75ITEM %TODO %Effort{+} %TAGS")
-(add-hook 'org-mode-hook 'org-indent-mode)
-(add-hook 'org-mode-hook
-          '(lambda () (toggle-truncate-lines nil)))
+;; Introduction
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
 
-(setq org-use-property-inheritance t)
+;; Structure
+(setq org-blank-before-new-entry nil
+      org-startup-indented t
+      org-startup-folded 'content)
 
-;; no extra line at the end
-(add-hook 'org-mode-hook 'mine-leave-whitespace-in-buffer)
-
-;; heading configuration
-(setq org-blank-before-new-entry nil)
-
-;; todo configuration
-(setq org-enforce-todo-dependencies t
-      org-todo-keywords '((sequence "TODO(t)" "WAIT(w!)" "INPROGRESS(i!)" "WATCH(a)" "REVIEW(r!)" "DELEGATED(l!)" "|" "DONE(d!)" "CANCELED(c)"))
-      org-default-priority 85)
-
-;; link configuration
+;; Hyperlinks
 (setq org-confirm-shell-link-function 'y-or-n-p)
 
-;; agenda configuraion
-(setq org-agenda-search-headline-for-time nil
+;; TODO Items
+(setq org-enforce-todo-dependencies t
+      org-todo-keywords '((sequence "TODO(t)" "WAIT(w!/!)" "STARTED(s!)" "REVIEW(r!)" "DELEGATED(l!)" "|" "DONE(d!)" "CANCELED(c@)"))
+      org-todo-keyword-faces '(("TODO" . org-warning)
+                               ("STARTED" . (:foreground "yellow"))
+                               ("REVIEW" . (:background "blue" :foreground "white" :weight bold)))
+      org-default-priority 85
+      org-log-done 'time)
+
+;; Tags
+(setq org-tags-column -84)
+
+;; Properties and Columns
+(setq org-use-property-inheritance t
+      org-columns-default-format "%69ITEM %TODO %Effort{+} %TAGS")
+
+;; Dates and Times
+(global-set-key (kbd "C-c C-x C-x") 'org-clock-in-last)
+(global-set-key (kbd "C-c C-x C-o") 'org-clock-out)
+(global-set-key (kbd "C-c C-x C-j") 'org-clock-goto)
+(setq org-clock-idle-time 15)
+
+;; Capture - Refile - Archive
+(setq org-capture-templates
+      `(("c" "Capture to Inbox" entry
+         (file+headline ,(concat org-directory "/todo.org") "Inbox")
+         "* %?\n")
+        ("l" "Capture Link to Inbox" entry
+         (file+headline ,(concat org-directory "/todo.org") "Inbox") 
+         "* %c %?\n")
+        ("s" "Capture Link and Selection to Inbox" entry
+         (file+headline ,(concat org-directory "/todo.org") "Inbox") 
+         "* %c %?\n%i\n")))
+
+(setq mine-capture-frame-name "Capture")
+
+(add-hook 'org-capture-mode-hook '(lambda ()
+                                    (if (equal mine-capture-frame-name (frame-parameter nil 'name))
+                                        (delete-other-windows))))
+
+(defun mine-clean-up-org-capture-frame (&optional frame)
+  (delete-frame frame))
+
+(defun mine-set-capture-frame-parameters (frame)
+  (modify-frame-parameters frame `((width . 87)
+                                   (height . 12)
+                                   (name . ,mine-capture-frame-name)))
+  (set-frame-position frame 360 200))
+
+(defun mine-make-org-capture-frame ()
+  "Create a new org-capture frame"
+  (interactive)
+  (let ((f (make-frame)))
+    (mine-set-capture-frame-parameters f)
+    (select-frame f)
+    (condition-case err (org-capture)
+      (error (mine-clean-up-org-capture-frame f)))))
+
+(defadvice org-switch-to-buffer-other-window (around dont-split-in-capture-frame activate)
+  (if (equal mine-capture-frame-name (frame-parameter nil 'name))
+      (switch-to-buffer (ad-get-arg 0))
+    ad-do-it))
+
+(defadvice org-capture-finalize (after delete-capture-frame-if-necessary activate)
+  "Advise org-capture-finalize to delete the frame if a capture frame"
+  (if (equal mine-capture-frame-name (frame-parameter nil 'name))
+      (mine-clean-up-org-capture-frame)))
+
+(global-set-key "\C-cc" 'org-capture)
+
+(require 'org-protocol)
+
+(defadvice org-protocol-capture (before make-capture-frame activate)
+  (mine-set-capture-frame-parameters (selected-frame)))
+
+(setq org-refile-use-outline-path t
+      org-outline-path-complete-in-steps nil
+      org-refile-targets '((nil . (:maxlevel . 2))))
+
+;; Agenda vieww
+(setq org-agenda-files (list (concat org-directory "/todo.org"))
+      org-agenda-search-headline-for-time nil
       org-agenda-dim-blocked-tasks 'invisible
-      org-agenda-ndays 1
+      org-agenda-ndays 5
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-todo-ignore-scheduled 'future
@@ -45,24 +108,46 @@
       org-agenda-tags-todo-honor-ignore-options t
       org-agenda-sorting-strategy '(tag-up time-up todo-state-down priority-down)
       org-agenda-compact-blocks t
-      org-agenda-tags-column -92
-      org-agenda-repeating-timestamp-show-all nil)
+      org-agenda-tags-column -84
+      org-agenda-repeating-timestamp-show-all nil
+      org-agenda-start-with-clockreport-mode nil)
 
-;; (setq org-file-apps
-;;       (append org-file-apps '((directory . emacs))))
+(setq org-agenda-custom-commands
+      '(("n" "Next actions"
+         ((agenda nil ((org-agenda-ndays 1)))
+          (alltodo)))))
 
+(setq org-stuck-projects
+      '("CATEGORY=\"Projects\"+LEVEL=2" ("TODO") ""))
+
+;; MobileOrg
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
+(setq org-mobile-directory "~/Dropbox/MobileOrg")
+(setq org-mobile-inbox-for-pull (concat org-directory "/from-mobile.org"))
 
-(add-hook 'org-clock-in-hook '(lambda () (if (not org-timer-current-timer)
-                                             (org-timer-set-timer))))
-(add-hook 'org-clock-out-hook '(lambda () (if org-timer-current-timer
-                                              (org-timer-cancel-timer))))
+;; Miscellaneous
+(setq org-completion-use-ido t)
+(run-at-time t 300 'org-save-all-org-buffers)
+(add-hook 'org-mode-hook 'mine-leave-whitespace-in-buffer)
+(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil)))
 
-;; Keys
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
+(defun gtd-find-todo ()
+  (interactive)
+  (if (equal (buffer-name (current-buffer))
+             "todo.org")
+      (switch-to-buffer (other-buffer))
+    (switch-to-buffer "todo.org")))
+
+(defun gtd-someday-maybe ()
+  (interactive)
+  (if (equal (buffer-name (current-buffer))
+             "someday-maybe.org")
+      (switch-to-buffer (other-buffer))
+    (find-file (concat org-directory "/someday-maybe.org"))))
+
+(global-set-key (kbd "C-c g g") 'gtd-find-todo)
+(global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
 
 ;; Colors
 (custom-set-faces

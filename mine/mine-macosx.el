@@ -8,4 +8,10 @@
                 (if (display-graphic-p f) ;; is a graphical frame
                     (ns-raise-emacs))))
 
+(defun mine-hide-emacs-frame (&optional frame)
+  (interactive)
+  (ns-do-hide-emacs))
+
+(add-to-list 'delete-frame-functions 'mine-hide-emacs-frame)
+
 (provide 'mine-macosx)

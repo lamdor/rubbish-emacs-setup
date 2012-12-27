@@ -11,6 +11,7 @@
 (global-set-key (kbd "C-x 9") 'toggle-window-split)
 (global-set-key (kbd "C-M-9") 'winner-undo)
 (global-set-key (kbd "C-M-0") 'winner-redo)
+(global-set-key [f1] 'mine-toggle-fullscreen)
 
 ;; file navigation
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)

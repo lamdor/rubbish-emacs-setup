@@ -25,10 +25,11 @@
   (set-frame-parameter (selected-frame) 'font mine-big-font)
   (add-to-list 'default-frame-alist (cons 'font mine-big-font)))
 
-(defun mine-use-fullscreen ()
+(defun mine-toggle-fullscreen ()
   (interactive)
-  (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)
-  (add-to-list 'default-frame-alist '(fullscreen . 'fullboth)))
+  (if (frame-parameter (selected-frame) 'fullscreen)
+      (set-frame-parameter (selected-frame) 'fullscreen nil)
+      (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)))
 
 (defun mine-use-transparency ()
   (interactive)

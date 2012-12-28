@@ -143,4 +143,9 @@
 ;; auto revert logs by tail
 ;; (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
 
+;; Save point position between sessions
+(require 'saveplace)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+(setq-default save-place t)
+
 (provide 'mine-builtin)

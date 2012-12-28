@@ -78,7 +78,6 @@
 
          ;; organization
          deft
-         todotxt
          gist
 
          magit

@@ -245,6 +245,18 @@ frames with exactly two windows."
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 
+(defun mine-command-line-tool (command &optional history where working-dir)
+  (let* ((rest-of-command (read-string (concat command " ") nil history))
+         (command-with-args (append (split-string command) (split-string rest-of-command)))
+         (args (cdr command-with-args))
+         (command (or where (car command-with-args)))
+         (name (mapconcat 'identity command-with-args " "))
+         (buffer-name (concat "*" name "*"))
+         (buffer (get-buffer-create buffer-name)))
+    (switch-to-buffer buffer)
+    (if working-dir (cd working-dir))
+    (apply 'make-comint-in-buffer name buffer command nil args)))
+
 (require 'dbus)
 (eval-after-load 'rcirc
   '(defun-rcirc-command np (whatever)

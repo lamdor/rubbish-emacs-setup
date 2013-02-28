@@ -245,6 +245,18 @@ frames with exactly two windows."
                            (progn (setq old-fullscreen current-value)
                                   'fullboth)))))
 
+(defun dired-ediff-marked-files ()
+  "Run ediff on marked ediff files."
+  (interactive)
+  (set 'marked-files (dired-get-marked-files))
+  (when (= (safe-length marked-files) 2)
+    (ediff-files (nth 0 marked-files) (nth 1 marked-files)))
+  
+  (when (= (safe-length marked-files) 3)
+    (ediff3 (buffer-file-name (nth 0 marked-files))
+            (buffer-file-name (nth 1 marked-files)) 
+            (buffer-file-name (nth 2 marked-files)))))
+
 (defun mine-command-line-tool (command &optional history where working-dir)
   (let* ((rest-of-command (read-string (concat command " ") nil history))
          (command-with-args (append (split-string command) (split-string rest-of-command)))

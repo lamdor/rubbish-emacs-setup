@@ -269,6 +269,12 @@ frames with exactly two windows."
     (if working-dir (cd working-dir))
     (apply 'make-comint-in-buffer name buffer command nil args)))
 
+(defun mine-clear-log-buffers ()
+  (interactive)
+  (dolist (buffer (buffer-list))
+    (if (string-match ".+\\.log:?" (buffer-name buffer))
+        (kill-buffer buffer))))
+
 (require 'dbus)
 (eval-after-load 'rcirc
   '(defun-rcirc-command np (whatever)

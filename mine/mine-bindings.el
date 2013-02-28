@@ -27,7 +27,7 @@
 (global-set-key [remap newline] 'newline-and-indent)
 (global-set-key [remap open-line] 'open-line-and-indent)
 (global-set-key (kbd "<C-return>") 'open-line-below)
-(global-set-key (kbd "<C-S-return>") 'open-line-above)
+(global-set-key (kbd "<C-S-up>") 'move-line-up)
 (global-set-key [remap kill-line] 'kill-to-end-or-join)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
@@ -43,6 +43,8 @@
 (global-set-key [remap query-replace] 'query-replace-regexp)
 
 (global-set-key (kbd "C-x M-`") 'previous-error)
+
+(global-set-key (kbd "C-x C-r") 'rename-file-and-buffer)
 
 ; annoying suspend
 (global-unset-key (kbd "C-z"))

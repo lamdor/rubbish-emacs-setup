@@ -2,6 +2,8 @@
 (setq magit-remote-ref-format 'remote-slash-branch)
 
 (global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-g") 'magit-status)
+(global-set-key (kbd "C-x G") 'magit-blame-mode)
 
 (add-hook 'magit-log-edit-mode-hook '(lambda () (flyspell-mode t)))
 

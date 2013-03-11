@@ -9,6 +9,7 @@
 (require 'mine-desktop)
 (require 'mine-pretty)
 
+(require 'mine-eshell)
 (require 'mine-rcirc)
 
 (require 'mine-pkgmgt)

@@ -47,6 +47,10 @@
          (lambda (buf)
            (with-current-buffer buf
              (not (eq major-mode 'dired-mode)))) nil)
+        ("eshell" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (eq major-mode 'eshell-mode)))) nil)
         ("magit" nil nil nil
          (lambda (buf)
            (with-current-buffer buf

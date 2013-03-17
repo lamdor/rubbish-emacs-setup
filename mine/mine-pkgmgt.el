@@ -79,6 +79,7 @@
          ;; organization
          deft
          gist
+         org-tree-slide
 
          magit
 

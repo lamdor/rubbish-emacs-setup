@@ -1,7 +1,5 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-(setq org-directory "~/notes")
-
 ;; The structure of this follows the Org manual: http://orgmode.org/org.html
 
 ;; Introduction
@@ -18,10 +16,6 @@
 
 ;; TODO Items
 (setq org-enforce-todo-dependencies t
-      org-todo-keywords '((sequence "TODO(t)" "WAIT(w!/!)" "STARTED(s!)" "REVIEW(r!)" "DELEGATED(l!)" "|" "DONE(d!)" "CANCELED(c@)"))
-      org-todo-keyword-faces '(("TODO" . org-warning)
-                               ("STARTED" . (:foreground "yellow"))
-                               ("REVIEW" . (:background "blue" :foreground "white" :weight bold)))
       org-default-priority 85
       org-log-done 'time)
 
@@ -38,17 +32,23 @@
 (global-set-key (kbd "C-c C-x C-j") 'org-clock-goto)
 (setq org-clock-idle-time 15)
 
-;; Capture - Refile - Archive
-(setq org-capture-templates
-      `(("c" "Capture to Inbox" entry
-         (file+headline ,(concat org-directory "/todo.org") "Inbox")
-         "* %?\n")
-        ("l" "Capture Link to Inbox" entry
-         (file+headline ,(concat org-directory "/todo.org") "Inbox") 
-         "* %c %?\n")
-        ("s" "Capture Link and Selection to Inbox" entry
-         (file+headline ,(concat org-directory "/todo.org") "Inbox") 
-         "* %c %?\n%i\n")))
+(setq org-clock-in-hook nil)
+(add-hook 'org-clock-in-hook '(lambda () (org-with-clock (cons org-clock-marker org-clock-start-time)
+                                           (unless
+                                               (string-equal "STARTED" (cdr (assoc "TODO" (org-entry-properties))))
+                                             (org-todo "STARTED")))))
+
+(defun mine-org-archive-subtree ()
+  (let ((headline (buffer-substring-no-properties (point-at-bol) (point-at-eol))))
+    (if (or (string-match "^\*.* DONE" headline)
+            (string-match "^\*.* CANCELED" headline))
+        (setq org-map-continue-from (point-at-bol))
+      (setq org-map-continue-from nil)))
+  (org-archive-subtree))
+
+(defun mine-org-archive-done-entries ()
+  (interactive)
+  (org-map-entries 'mine-org-archive-subtree "/DONE|CANCELED" 'tree))
 
 (setq mine-capture-frame-name "Capture")
 
@@ -92,12 +92,10 @@
   (mine-set-capture-frame-parameters (selected-frame)))
 
 (setq org-refile-use-outline-path t
-      org-outline-path-complete-in-steps nil
-      org-refile-targets '((nil . (:maxlevel . 2))))
+      org-outline-path-complete-in-steps nil)
 
 ;; Agenda vieww
-(setq org-agenda-files (list (concat org-directory "/todo.org"))
-      org-agenda-search-headline-for-time nil
+(setq org-agenda-search-headline-for-time nil
       org-agenda-dim-blocked-tasks 'invisible
       org-agenda-ndays 5
       org-agenda-skip-scheduled-if-done t
@@ -112,19 +110,9 @@
       org-agenda-repeating-timestamp-show-all nil
       org-agenda-start-with-clockreport-mode nil)
 
-(setq org-agenda-custom-commands
-      '(("n" "Next actions"
-         ((agenda nil ((org-agenda-ndays 1)))
-          (alltodo)))))
-
-(setq org-stuck-projects
-      '("CATEGORY=\"Projects\"+LEVEL=2" ("TODO") ""))
-
 ;; MobileOrg
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
-(setq org-mobile-inbox-for-pull (concat org-directory "/from-mobile.org"))
 
 ;; Miscellaneous
 (setq org-completion-use-ido t)
@@ -132,24 +120,11 @@
 (add-hook 'org-mode-hook 'mine-leave-whitespace-in-buffer)
 (add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil)))
 
-(defun gtd-find-todo ()
-  (interactive)
-  (if (equal (buffer-name (current-buffer))
-             "todo.org")
-      (switch-to-buffer (other-buffer))
-    (switch-to-buffer "todo.org")))
-
-(defun gtd-someday-maybe ()
-  (interactive)
-  (if (equal (buffer-name (current-buffer))
-             "someday-maybe.org")
-      (switch-to-buffer (other-buffer))
-    (find-file (concat org-directory "/someday-maybe.org"))))
-
-(global-set-key (kbd "C-c g g") 'gtd-find-todo)
-(global-set-key (kbd "C-c g s") 'gtd-someday-maybe)
+(eval-after-load "org-agenda"
+  '(define-key org-agenda-mode-map "q" 'bury-buffer))
 
 ;; Colors
+(setq org-src-fontify-natively t)
 (custom-set-faces
  '(outline-1 ((t (:foreground "#D6B163" :bold t))))
  '(outline-2 ((t (:foreground "#A5F26E" :bold t))))

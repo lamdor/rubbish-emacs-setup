@@ -97,8 +97,7 @@
 ;; Use soft tabs
 (setq-default indent-tabs-mode nil)
 
-;; Don't make backups
-(setq make-backup-files nil)
+;; Backups
 (setq version-control nil)
 
 ;; Allow to be able to select text and start typing or delete
@@ -108,6 +107,16 @@
 (setq mine-delete-trailing-whitespace t)
 (defun mine-leave-whitespace-in-buffer ()
   (interactive)
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+(setq create-lockfiles nil)
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+(setq create-lockfiles nil)
   (make-variable-buffer-local 'mine-leave-whitespace)
   (setq mine-delete-trailing-whitespace nil))
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))

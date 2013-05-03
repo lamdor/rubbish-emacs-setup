@@ -51,14 +51,22 @@
          (lambda (buf)
            (with-current-buffer buf
              (not (eq major-mode 'eshell-mode)))) nil)
+        ("rcirc" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (eq major-mode 'rcirc-mode)))) nil)
         ("magit" nil nil nil
          (lambda (buf)
            (with-current-buffer buf
-             (not (eq major-mode 'magit-mode)))) nil)
-        ("ensime" nil nil nil
+             (not (eq major-mode 'magit-status-mode)))) nil)
+        ("sbt" nil nil nil
          (lambda (buf)
            (with-current-buffer buf
-             (not (string-prefix-p "*inferior-ensime" (buffer-name buf))))) nil)
+             (not (string-prefix-p "*sbt:" (buffer-name buf))))) nil)
+        ("bub" nil nil nil
+         (lambda (buf)
+           (with-current-buffer buf
+             (not (string-prefix-p "*bub " (buffer-name buf))))) nil)
         ("sql" nil nil nil
          (lambda (buf)
            (with-current-buffer buf
@@ -99,6 +107,11 @@
 
 ;; Backups
 (setq version-control nil)
+(setq backup-directory-alist
+          `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+(setq create-lockfiles nil)
 
 ;; Allow to be able to select text and start typing or delete
 (delete-selection-mode t)
@@ -107,16 +120,6 @@
 (setq mine-delete-trailing-whitespace t)
 (defun mine-leave-whitespace-in-buffer ()
   (interactive)
-(setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-(setq create-lockfiles nil)
-(setq backup-directory-alist
-          `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-(setq create-lockfiles nil)
   (make-variable-buffer-local 'mine-leave-whitespace)
   (setq mine-delete-trailing-whitespace nil))
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))

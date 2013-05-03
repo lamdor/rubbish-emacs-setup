@@ -260,7 +260,7 @@ frames with exactly two windows."
     (if working-dir (cd working-dir))
     (apply 'make-comint-in-buffer name buffer command nil args)))
 
-(defun mine-clear-log-buffers ()
+(defun mine-kill-log-buffers ()
   (interactive)
   (dolist (buffer (buffer-list))
     (if (string-match ".+\\.log:?" (buffer-name buffer))

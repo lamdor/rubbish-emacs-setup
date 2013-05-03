@@ -60,7 +60,12 @@
                               :description "emacs powerline"
                               :type github
                               :pkgname "milkypostman/powerline"
-                              :features powerline)))
+                              :features powerline)
+                       (:name pomodoro
+                              :website "https://github.com/rubbish/pomodoro.el"
+                              :description "Run pomodoros"
+                              :type github
+                              :pkgname "rubbish/pomodoro.el")))
 
 (setq mine-pkgs-to-install
       (append

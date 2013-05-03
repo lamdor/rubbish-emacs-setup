@@ -1,3 +1,9 @@
+(setq eshell-path-env (getenv "PATH"))
+
+(setq eshell-buffer-shorthand t)
+
+;; eshell buffer name
+
 (defun mine-eshell-rename-buffer-pwd ()
   (let ((pwd (eshell/pwd)))
     (rename-buffer
@@ -5,6 +11,10 @@
              "eshell " "<" pwd ">"
              "*")
      t)))
+
+(add-hook 'eshell-directory-change-hook 'mine-eshell-rename-buffer-pwd)
+
+;; eshell switching
 
 (defun mine-eshell-buffer-p (buffer)
   (and (eq 'eshell-mode (buffer-local-value 'major-mode buffer))
@@ -55,7 +65,7 @@
 
 (global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
 
-(add-hook 'eshell-directory-change-hook 'mine-eshell-rename-buffer-pwd)
+;; Prompt
 
 (setq eshell-highlight-prompt t)
 (custom-set-faces '(eshell-prompt ((t (:foreground "Purple" :bold t)))))
@@ -69,3 +79,5 @@
   (interactive)
   (let ((dir (or dir default-directory)))
     (dired dir)))
+
+(provide 'mine-eshell)

@@ -110,6 +110,9 @@
       org-agenda-repeating-timestamp-show-all nil
       org-agenda-start-with-clockreport-mode nil)
 
+;; Publishing
+(require 'ox-md)
+
 ;; MobileOrg
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)

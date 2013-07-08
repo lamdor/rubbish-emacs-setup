@@ -8,7 +8,8 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
-(setq el-get-sources '((:name wgrep
+(setq el-get-sources '(
+                       (:name wgrep
                               :description "Writable grep buffer and apply the changes to files"
                               :website "https://github.com/mhayashi1120/Emacs-wgrep"
                               :type github
@@ -55,12 +56,12 @@
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
                               :type elpa
                               :repo ("org" . "http://orgmode.org/elpa/"))
-                       (:name powerline
-                              :website "https://github.com/milkypostman/powerline"
-                              :description "emacs powerline"
-                              :type github
-                              :pkgname "milkypostman/powerline"
-                              :features powerline)
+                       ;; (:name powerline
+                       ;;        :website "https://github.com/milkypostman/powerline"
+                       ;;        :description "emacs powerline"
+                       ;;        :type github
+                       ;;        :pkgname "milkypostman/powerline"
+                       ;;        :features powerline)
                        (:name pomodoro
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"
@@ -76,10 +77,12 @@
          switch-window
          scratch
          htmlize
+         dash ;; needed for wrap-region
          wrap-region
          mark-multiple
          expand-region
          yasnippet
+         browse-kill-ring
 
          ;; organization
          deft
@@ -93,8 +96,10 @@
          paredit
 
          ;; langs
-         haskell-mode
-         markdown-mode)
+         ;; haskell-mode
+         markdown-mode
+         ruby-end
+         coffee-mode)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)

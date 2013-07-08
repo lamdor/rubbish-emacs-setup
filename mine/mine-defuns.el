@@ -287,4 +287,8 @@ frames with exactly two windows."
        (rcirc-send-message process target
                            (concat "Spotify: " artist " - " title " (" album ") -- " url)))))
 
+(defun insert-random-uuid ()
+  (interactive)
+  (shell-command "uuidgen | tr -d '\n' | tr '[A-Z]' '[a-z]'" t))
+
 (provide 'mine-defuns)

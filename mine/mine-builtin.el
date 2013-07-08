@@ -152,8 +152,6 @@
 (setq visible-bell t)
 
 ;; Protobuf files are like c
-(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
 
 ;; auto revert logs by tail

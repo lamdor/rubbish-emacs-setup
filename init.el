@@ -11,6 +11,7 @@
 
 (require 'mine-eshell)
 (require 'mine-rcirc)
+(require 'mine-ruby)
 
 (require 'mine-pkgmgt)
 

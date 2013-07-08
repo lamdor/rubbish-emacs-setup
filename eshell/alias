@@ -1,0 +1,5 @@
+alias bu bundle update
+alias be bundle exec $*
+alias l ls -al
+alias ll ls -al
+alias bi bundle install

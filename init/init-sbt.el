@@ -11,3 +11,5 @@
 (add-hook 'conf-unix-mode-hook '(lambda ()
                                   (if (sbt-find-path-to-project)
                                       (turn-on-sbt-mode))))
+
+(setq sbt-run-task "re-start")

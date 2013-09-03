@@ -104,7 +104,6 @@
          paredit
 
          ;; langs
-         ;; haskell-mode
          markdown-mode
          ruby-end
          coffee-mode)

@@ -25,3 +25,4 @@ swank
 /var/pcache/
 /.places
 /bookmarks
+/el-get.bak

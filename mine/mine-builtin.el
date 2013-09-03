@@ -113,6 +113,9 @@
       `((".*" ,temporary-file-directory t)))
 (setq create-lockfiles nil)
 
+;; search
+(setq search-upper-case t)
+
 ;; Allow to be able to select text and start typing or delete
 (delete-selection-mode t)
 

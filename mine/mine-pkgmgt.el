@@ -56,12 +56,6 @@
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
                               :type elpa
                               :repo ("org" . "http://orgmode.org/elpa/"))
-                       ;; (:name powerline
-                       ;;        :website "https://github.com/milkypostman/powerline"
-                       ;;        :description "emacs powerline"
-                       ;;        :type github
-                       ;;        :pkgname "milkypostman/powerline"
-                       ;;        :features powerline)
                        (:name pomodoro
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"

@@ -15,10 +15,3 @@
 
 (setq magit-wazzup-only-branches t)
 
-(defun mine-magit-hub-browse-commit ()
-  (interactive)
-  (let ((sha (magit-section-action (item info)
-                  ((commit) info))))
-   (start-process "hub-browse-commit" nil
-                  "hub" "browse" "--"
-                  (format "commit/%s" sha))))

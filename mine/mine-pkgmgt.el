@@ -9,6 +9,13 @@
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
 (setq el-get-sources '(
+                       (:name gh
+                              :type github
+                              :pkgname "sigma/gh.el"
+                              :checkout "7c66958" ;; specific version since the last commit broke gist.el
+                              :depends (pcache logito)
+                              :description "Github API client libraries"
+                              :website "http://github.com/sigma/gh.el")
                        (:name wgrep
                               :description "Writable grep buffer and apply the changes to files"
                               :website "https://github.com/mhayashi1120/Emacs-wgrep"
@@ -27,13 +34,6 @@
                               :repo ("melpa" . "http://melpa.milkbox.net/packages/")
                               :post-init (progn
                                            (add-to-list 'custom-theme-load-path default-directory)))
-                       (:name scala-mode2
-                              :website "https://github.com/hvesalai/scala-mode2"
-                              :type github
-                              :pkgname "hvesalai/scala-mode2")
-                       (:name sbt
-                              :website "https://github.com/rubbish/sbt.el"
-                              :description "support for running sbt in inferior mode."
                        (:name elixir-mode
                               :description "Emacs major mode for Elixir"
                               :type elpa
@@ -41,6 +41,13 @@
                               :post-init (progn
                                            (add-to-list 'auto-mode-alist '("\.ex$" . elixir-mode))
                                            (add-to-list 'auto-mode-alist '("\.elixir$" . elixir-mode))))
+                       (:name scala-mode2
+                              :website "https://github.com/hvesalai/scala-mode2"
+                              :type github
+                              :pkgname "hvesalai/scala-mode2")
+                       (:name sbt
+                              :website "https://github.com/rubbish/sbt.el"
+                              :description "support for running sbt in inferior mode."
                               :type github
                               :pkgname "rubbish/sbt.el"
                               :prepare (add-hook 'scala-mode-hook 'turn-on-sbt-mode))

@@ -34,6 +34,13 @@
                        (:name sbt
                               :website "https://github.com/rubbish/sbt.el"
                               :description "support for running sbt in inferior mode."
+                       (:name elixir-mode
+                              :description "Emacs major mode for Elixir"
+                              :type elpa
+                              :repo ("melpa" . "http://melpa.milkbox.net/packages/")
+                              :post-init (progn
+                                           (add-to-list 'auto-mode-alist '("\.ex$" . elixir-mode))
+                                           (add-to-list 'auto-mode-alist '("\.elixir$" . elixir-mode))))
                               :type github
                               :pkgname "rubbish/sbt.el"
                               :prepare (add-hook 'scala-mode-hook 'turn-on-sbt-mode))

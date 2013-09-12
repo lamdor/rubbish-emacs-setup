@@ -1,5 +1,0 @@
-#name : begin
-# --
-#+BEGIN_${1:what}
-$0
-#+END_$1

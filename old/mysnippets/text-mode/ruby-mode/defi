@@ -1,6 +1,0 @@
-#name : def initialize; ...; end
-#group : general
-# --
-def initialize
-  $0
-end

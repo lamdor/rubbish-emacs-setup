@@ -1,6 +1,0 @@
-# name : jauery each 
-# contributor : Luke Amdor
-# --
-$.each(${1:items}, function(${2:index}, ${3:item}) {
-  $0
-});

@@ -1,6 +1,0 @@
-# name : void with 0 args
-# contributor : Luke Amdor
-# --
--(void) ${1:what} {
-           $0
-}

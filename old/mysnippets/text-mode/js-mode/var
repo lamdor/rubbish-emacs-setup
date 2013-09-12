@@ -1,4 +1,0 @@
-# name : declare a var 
-# contributor : Luke Amdor
-# --
-var ${1:varname} = $0;

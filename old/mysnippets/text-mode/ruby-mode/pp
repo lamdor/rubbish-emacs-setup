@@ -1,4 +1,0 @@
-#name : p [:name, name]
-#group : general
-# --
-p [:${1:what}, $1]$0

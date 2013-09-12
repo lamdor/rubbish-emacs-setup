@@ -1,6 +1,0 @@
-# name : jquery module pattern
-# contributor : Luke Amdor
-# --
-(function($) {
-  $0
-})(jQuery);

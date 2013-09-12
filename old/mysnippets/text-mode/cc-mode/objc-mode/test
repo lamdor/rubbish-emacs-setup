@@ -1,6 +1,0 @@
-# name : SenTest
-# contributor : Luke Amdor
-# --
--(void) test_${1:what} {
-           $0
-}

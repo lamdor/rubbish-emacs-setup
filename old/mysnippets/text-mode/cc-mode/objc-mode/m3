@@ -1,6 +1,0 @@
-# name : return method with 3 args
-# contributor : Luke Amdor
-# --
--(${1:NSString*}) ${2:what}: (${3:NSString*}) ${4:what} ${5:andWhat}: (${6:NSString*}) ${7:what} ${8:andWhat}: (${9:NSString*}) ${10:what} {
-           $0
-}

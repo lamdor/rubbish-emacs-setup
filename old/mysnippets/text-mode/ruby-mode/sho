@@ -1,6 +1,0 @@
-#name : should
-#group : shoulda
-# --
-should ${1:"${2:be awesome}"} do
-  $0
-end

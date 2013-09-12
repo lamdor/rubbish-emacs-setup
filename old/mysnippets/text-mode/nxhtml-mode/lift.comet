@@ -1,5 +1,0 @@
-#name : <lift:comet type="ClassName">...</lift:comet>
-# --
-<lift:comet type="${1:ClassName}">
-  $0
-</lift:comet>

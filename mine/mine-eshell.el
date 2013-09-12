@@ -2,6 +2,8 @@
 
 (setq eshell-buffer-shorthand t)
 
+(setq eshell-aliases-file (concat user-emacs-directory "/custom/eshell/alias"))
+
 ;; eshell buffer name
 
 (defun mine-eshell-rename-buffer-pwd ()

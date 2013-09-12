@@ -86,7 +86,13 @@
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"
                               :type github
-                              :pkgname "rubbish/pomodoro.el")))
+                              :pkgname "rubbish/pomodoro.el")
+
+                       (:name magit ;; more stable magit (from melpa, not from the master branch
+                              :website "https://github.com/magit/magit#readme"
+                              :description "It's Magit! An Emacs mode for Git."
+                              :type elpa
+                              :repo ("melpa" . "http://melpa.milkbox.net/packages/"))))
 
 (setq mine-pkgs-to-install
       (append

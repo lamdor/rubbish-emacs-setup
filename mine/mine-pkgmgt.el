@@ -110,12 +110,10 @@
          yasnippet
          browse-kill-ring
 
-         ;; organization
+         ;; organization/presentations
          deft
          gist
-         org-tree-slide
-
-         magit
+         org-reveal
 
          ;; lisp
          highlight-parentheses

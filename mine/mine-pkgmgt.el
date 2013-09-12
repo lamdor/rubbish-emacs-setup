@@ -12,13 +12,6 @@
 (setq el-get-user-package-directory "~/.emacs.d/init")
 
 (setq el-get-sources '(
-                       (:name gh
-                              :type github
-                              :pkgname "sigma/gh.el"
-                              :checkout "7c66958" ;; specific version since the last commit broke gist.el
-                              :depends (pcache logito)
-                              :description "Github API client libraries"
-                              :website "http://github.com/sigma/gh.el")
                        (:name wgrep
                               :description "Writable grep buffer and apply the changes to files"
                               :website "https://github.com/mhayashi1120/Emacs-wgrep"
@@ -31,6 +24,17 @@
                                :prepare (progn
                                           (autoload 'enclose-global-mode "enclose" nil t)
                                           (autoload 'enclose-mode "enclose" nil t)))
+                        (:name wrap-region
+                               :description "Wrap text with punctation or tag"
+                               :type elpa
+                               :depends (dash) ;; not depended on within elpa :(
+                               :prepare
+                               (progn
+                                 (autoload 'wrap-region-mode "wrap-region" nil t)
+                                 (autoload 'turn-on-wrap-region-mode "wrap-region" nil t)
+                                 (autoload 'turn-off-wrap-region-mode "wrap-region" nil t)
+                                 (autoload 'wrap-region-global-mode "wrap-region" nil t)))
+
                        (:name yasnippet
                               :website "https://github.com/capitaomorte/yasnippet.git"
                               :description "YASnippet is a template system for Emacs."
@@ -38,12 +42,14 @@
                               :pkgname "capitaomorte/yasnippet"
                               :features "yasnippet"
                               :compile "yasnippet.el")
+
                        (:name zen-and-art-theme
                               :description "A port of the zen-and-art color theme using the new deftheme format."
                               :type elpa
                               :repo ("melpa" . "http://melpa.milkbox.net/packages/")
                               :post-init (progn
                                            (add-to-list 'custom-theme-load-path default-directory)))
+
                        (:name elixir-mode
                               :description "Emacs major mode for Elixir"
                               :type elpa
@@ -51,6 +57,7 @@
                               :post-init (progn
                                            (add-to-list 'auto-mode-alist '("\.ex$" . elixir-mode))
                                            (add-to-list 'auto-mode-alist '("\.elixir$" . elixir-mode))))
+
                        (:name scala-mode2
                               :website "https://github.com/hvesalai/scala-mode2"
                               :type github
@@ -61,6 +68,7 @@
                               :type github
                               :pkgname "rubbish/sbt.el"
                               :prepare (add-hook 'scala-mode-hook 'turn-on-sbt-mode))
+
                        (:name rcirc-color
                               :website "http://emacswiki.org/emacs/rcirc-color.el"
                               :description "color nicks in rcirc"
@@ -75,6 +83,7 @@
                               :type elpa
                               :repo ("marmalade" . "http://marmalade-repo.org/packages/")
                               :after (add-hook 'rcirc-mode-hook 'rcirc-notify-add-hooks))
+
                        (:name org-mode
                               :website "http://orgmode.org/"
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
@@ -91,11 +100,20 @@
                                           (list "make" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
                                         '("oldorg"))
                               :load-path ("." "lisp" "contrib/lisp"))
+
                        (:name pomodoro
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"
                               :type github
                               :pkgname "rubbish/pomodoro.el")
+
+                       (:name gh
+                              :type github
+                              :pkgname "sigma/gh.el"
+                              :checkout "7c66958" ;; specific version since the last commit broke gist.el
+                              :depends (pcache logito)
+                              :description "Github API client libraries"
+                              :website "http://github.com/sigma/gh.el")
 
                        (:name magit ;; more stable magit (from melpa, not from the master branch
                               :website "https://github.com/magit/magit#readme"
@@ -112,8 +130,6 @@
          switch-window
          scratch
          htmlize
-         dash ;; needed for wrap-region
-         wrap-region
          mark-multiple
          expand-region
          browse-kill-ring
@@ -123,11 +139,9 @@
          gist
          org-reveal
 
-         ;; lisp
+         ;; langs
          highlight-parentheses
          paredit
-
-         ;; langs
          markdown-mode
          ruby-end
          coffee-mode)

@@ -22,13 +22,20 @@
                               :website "https://github.com/mhayashi1120/Emacs-wgrep"
                               :type github
                               :pkgname "mhayashi1120/Emacs-wgrep")
-                       (:name enclose
-                              :description "Enclose cursor within punctuation pairs"
-                              :type elpa
-                              :autoloads nil
-                              :prepare (progn
-                                         (autoload 'enclose-global-mode "enclose" nil t)
-                                         (autoload 'enclose-mode "enclose" nil t)))
+                        (:name enclose
+                               :description "Enclose cursor within punctuation pairs"
+                               :type elpa
+                               :autoloads nil
+                               :prepare (progn
+                                          (autoload 'enclose-global-mode "enclose" nil t)
+                                          (autoload 'enclose-mode "enclose" nil t)))
+                       (:name yasnippet
+                              :website "https://github.com/capitaomorte/yasnippet.git"
+                              :description "YASnippet is a template system for Emacs."
+                              :type github
+                              :pkgname "capitaomorte/yasnippet"
+                              :features "yasnippet"
+                              :compile "yasnippet.el")
                        (:name zen-and-art-theme
                               :description "A port of the zen-and-art color theme using the new deftheme format."
                               :type elpa
@@ -107,7 +114,6 @@
          wrap-region
          mark-multiple
          expand-region
-         yasnippet
          browse-kill-ring
 
          ;; organization/presentations

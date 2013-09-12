@@ -1,6 +1,11 @@
 (autoload 'magit-status "magit" nil t)
 (setq magit-remote-ref-format 'remote-slash-branch)
 
+(add-hook 'magit-status-mode-hook
+          '(lambda ()
+             (set-face-attribute 'magit-item-highlight nil
+                      :background "black")))
+
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-g") 'magit-status)
 (global-set-key (kbd "C-x G") 'magit-blame-mode)
@@ -14,4 +19,3 @@
              (whitespace-mode t)))
 
 (setq magit-wazzup-only-branches t)
-

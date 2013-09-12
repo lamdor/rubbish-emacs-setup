@@ -1,5 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+(package-initialize t)
+
 (setq el-get-install-skip-emacswiki-recipes t)
 (unless (require 'el-get nil t)
   (with-current-buffer

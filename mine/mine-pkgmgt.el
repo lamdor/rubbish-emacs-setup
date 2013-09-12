@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
+(setq el-get-install-skip-emacswiki-recipes t)
 (unless (require 'el-get nil t)
   (with-current-buffer
       (url-retrieve-synchronously "https://raw.github.com/dimitri/el-get/master/el-get-install.el")

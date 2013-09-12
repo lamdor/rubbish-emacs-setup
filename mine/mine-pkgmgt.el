@@ -65,11 +65,22 @@
                               :type elpa
                               :repo ("marmalade" . "http://marmalade-repo.org/packages/")
                               :after (add-hook 'rcirc-mode-hook 'rcirc-notify-add-hooks))
-                       (:name org
+                       (:name org-mode
                               :website "http://orgmode.org/"
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."
-                              :type elpa
-                              :repo ("org" . "http://orgmode.org/elpa/"))
+                              :type git
+                              :url "git://orgmode.org/org-mode.git"
+                              :checkout "maint"
+                              :info "doc"
+                              :build/berkeley-unix `,(mapcar
+                                                      (lambda (target)
+                                                        (list "gmake" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                                                      '("oldorg"))
+                              :build `,(mapcar
+                                        (lambda (target)
+                                          (list "make" target (concat "EMACS=" (shell-quote-argument el-get-emacs))))
+                                        '("oldorg"))
+                              :load-path ("." "lisp" "contrib/lisp"))
                        (:name pomodoro
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"

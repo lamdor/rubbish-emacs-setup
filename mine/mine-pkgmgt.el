@@ -119,7 +119,7 @@
                               :website "https://github.com/magit/magit#readme"
                               :description "It's Magit! An Emacs mode for Git."
                               :type elpa
-                              :repo ("melpa" . "http://melpa.milkbox.net/packages/"))))
+                              :repo ("marmalade" . "http://marmalade-repo.org/packages/"))))
 
 (setq mine-pkgs-to-install
       (append

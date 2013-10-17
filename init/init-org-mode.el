@@ -113,6 +113,14 @@
 ;; Publishing
 (require 'ox-md)
 
+;; org-babel
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((emacs-lisp . t)
+   (sh . t)
+   (ruby . t)))
+;; (setq org-confirm-babel-evaluate nil)
+
 ;; MobileOrg
 (autoload 'org-mobile-push "org-mobile" "Push the state of the org files to org-mobile-directory" t)
 (autoload 'org-mobile-pull "org-mobile" "Pull the contents of org-mobile-capture-file" t)

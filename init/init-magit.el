@@ -1,10 +1,11 @@
 (autoload 'magit-status "magit" nil t)
 (setq magit-remote-ref-format 'remote-slash-branch)
 
-(add-hook 'magit-status-mode-hook
-          '(lambda ()
-             (set-face-attribute 'magit-item-highlight nil
-                      :background "black")))
+;; only necessary in magit > 1.2
+;; (add-hook 'magit-status-mode-hook
+;;           '(lambda ()
+;;              (set-face-attribute 'magit-item-highlight nil
+;;                       :background "black")))
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-g") 'magit-status)

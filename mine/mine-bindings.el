@@ -23,6 +23,7 @@
 
 ;; Text Editting
 (global-set-key (kbd "C-x C-k") 'kill-region)
+(global-set-key (kbd "C-M-k") 'kill-whole-line)
 (global-set-key [remap move-beginning-of-line] 'beginning-of-line-or-back-to-indention)
 (global-set-key [remap newline] 'newline-and-indent)
 (global-set-key [remap open-line] 'open-line-and-indent)

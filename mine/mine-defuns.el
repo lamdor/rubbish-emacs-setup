@@ -83,6 +83,10 @@
     (dired dir)
     (dired-goto-file full-file)))
 
+(defun dired-reveal-current-file ()
+  (interactive)
+  (dired-reveal (file-truename buffer-file-name)))
+
 (defun dired-mac-open ()
   "Invoke xdg-open on the file at point"
   (interactive)

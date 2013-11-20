@@ -1,7 +1,6 @@
 (add-to-list 'load-path (concat user-emacs-directory "/mine"))
 
 
-(require 'mine-env)
 (require 'mine-builtin) ;; split up
 (require 'mine-defuns)
 (require 'mine-advice)

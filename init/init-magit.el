@@ -1,4 +1,5 @@
-(autoload 'magit-status "magit" nil t)
+(require 'magit)
+
 (setq magit-remote-ref-format 'remote-slash-branch)
 
 ;; only necessary in magit > 1.2
@@ -20,3 +21,22 @@
              (whitespace-mode t)))
 
 (setq magit-wazzup-only-branches t)
+
+(defun mine-magit-create-topic-branch (name)
+    (interactive (list (read-string "Topic branch: ")))
+    (magit-create-branch name "master")
+    (magit-merge "origin/master"))
+
+(define-key magit-mode-map (kbd "T") 'mine-magit-create-topic-branch)
+
+(defun mine-magit-git-sweep ()
+  (interactive)
+  (mine-command-line-tool "git-cleanup-and-prune"))
+
+(define-key magit-mode-map (kbd "W") 'mine-magit-git-sweep)
+
+(defun hub-pull-request ()
+  (interactive)
+  (async-shell-command "EDITOR=/usr/local/bin/emacsclient hub pull-request" "*hub pull-request*"))
+
+(define-key magit-mode-map (kbd "H") 'hub-pull-request)

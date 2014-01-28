@@ -8,10 +8,12 @@
                 (if (display-graphic-p f) ;; is a graphical frame
                     (ns-raise-emacs))))
 
-(defun mine-hide-emacs-frame (&optional frame)
-  (interactive)
-  (ns-do-hide-emacs))
+(defun ns-raise-chrome ()
+  (ns-do-applescript "tell application \"Google Chrome\" to activate"))
 
-(add-to-list 'delete-frame-functions 'mine-hide-emacs-frame)
+(defadvice org-capture-finalize (after switch-back-to-chrome activate)
+  "Advise org-capture-finalize to switch back to Chrome if a capture frame"
+  (if (equal mine-capture-frame-name (frame-parameter nil 'name))
+      (ns-raise-chrome)))
 
 (provide 'mine-macosx)

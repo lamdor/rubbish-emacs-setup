@@ -125,6 +125,11 @@
                               :website "https://github.com/magit/magit#readme"
                               :description "It's Magit! An Emacs mode for Git."
                               :type elpa
+                              :repo ("marmalade" . "http://marmalade-repo.org/packages/"))
+                       (:name haskell-mode ;; more stable
+                              :website "https://github.com/haskell/haskell-mode"
+                              :description "Emacs mode for haskell"
+                              :type elpa
                               :repo ("marmalade" . "http://marmalade-repo.org/packages/"))))
 
 (setq mine-pkgs-to-install
@@ -150,7 +155,8 @@
          paredit
          markdown-mode
          ruby-end
-         coffee-mode)
+         coffee-mode
+         clojure-mode cider)
        (mapcar 'el-get-source-name el-get-sources)))
 
 (el-get 'sync mine-pkgs-to-install)

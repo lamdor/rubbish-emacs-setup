@@ -165,4 +165,11 @@
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 (setq-default save-place t)
 
+;; ssh sudo
+(require 'tramp)
+(add-to-list 'tramp-default-proxies-alist
+             '(nil "\\`root\\'" "/ssh:%h:"))
+(add-to-list 'tramp-default-proxies-alist
+             '((regexp-quote (system-name)) nil nil))
+
 (provide 'mine-builtin)

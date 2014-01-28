@@ -209,7 +209,12 @@ frames with exactly two windows."
 
 (defun mine-sql (product sql-user sql-password sql-server sql-database root-sql-script-dir)
   (let* ((today (format-time-string "%Y-%m-%d"))
-         (sql-text-buffer (find-file (concat root-sql-script-dir today "_" sql-database "_" sql-server ".sql")))
+         (sql-text-buffer
+          (if (eq major-mode 'sql-mode)
+              (progn
+                (set (make-local-variable 'sql-buffer) nil)
+                (current-buffer))
+            (find-file (concat root-sql-script-dir today "_" sql-database "_" sql-server ".sql"))))
          (new-name (concat sql-user "@" sql-database "." sql-server))
          (sqli-buffer (if sql-buffer (progn (split-window) sql-buffer) (sql-product-interactive product new-name))))
     (switch-to-buffer sql-text-buffer nil t)

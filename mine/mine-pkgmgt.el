@@ -62,12 +62,11 @@
                               :website "https://github.com/hvesalai/scala-mode2"
                               :type github
                               :pkgname "hvesalai/scala-mode2")
-                       (:name sbt
-                              :website "https://github.com/rubbish/sbt.el"
-                              :description "support for running sbt in inferior mode."
+                       (:name sbt-mode
+                              :website "https://github.com/hvesalai/sbt-mode"
+                              :description "An emacs mode for interacting with scala sbt and projects"
                               :type github
-                              :pkgname "rubbish/sbt.el"
-                              :prepare (add-hook 'scala-mode-hook 'turn-on-sbt-mode))
+                              :pkgname "hvesalai/sbt-mode")
 
                        (:name rcirc-color
                               :website "http://emacswiki.org/emacs/rcirc-color.el"

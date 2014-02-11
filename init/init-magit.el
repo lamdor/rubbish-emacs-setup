@@ -40,3 +40,9 @@
   (async-shell-command "EDITOR=/usr/local/bin/emacsclient hub pull-request" "*hub pull-request*"))
 
 (define-key magit-mode-map (kbd "H") 'hub-pull-request)
+
+(defun hub-browse ()
+  (interactive)
+  (async-shell-command "hub browse" "*hub browse*"))
+
+(define-key magit-mode-map (kbd "O") 'hub-browse)

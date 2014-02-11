@@ -87,6 +87,17 @@
   (interactive)
   (dired-reveal (file-truename buffer-file-name)))
 
+(defun dired-mac-reveal ()
+  (interactive)
+  (ns-do-applescript
+   (format "tell application \"Finder\" to reveal {\"%s\" as POSIX file}" (expand-file-name (dired-file-name-at-point))))
+  (ns-do-applescript"tell application \"Finder\" to activate"))
+
+(defun dired-external-reveal ()
+  (interactive)
+  (case system-type
+    ('darwin (dired-mac-reveal))))
+
 (defun dired-mac-open ()
   "Invoke xdg-open on the file at point"
   (interactive)

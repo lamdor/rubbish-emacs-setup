@@ -143,6 +143,7 @@
          ruby-end
          coffee-mode
          yaml-mode
+         dockerfile-mode
          clojure-mode cider)
        (mapcar 'el-get-source-name el-get-sources)))
 

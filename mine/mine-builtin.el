@@ -51,10 +51,6 @@
          (lambda (buf)
            (with-current-buffer buf
              (not (eq major-mode 'eshell-mode)))) nil)
-        ("rcirc" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (eq major-mode 'rcirc-mode)))) nil)
         ("magit" nil nil nil
          (lambda (buf)
            (with-current-buffer buf

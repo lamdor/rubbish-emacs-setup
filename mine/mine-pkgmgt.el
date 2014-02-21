@@ -68,21 +68,6 @@
                               :type github
                               :pkgname "hvesalai/sbt-mode")
 
-                       (:name rcirc-color
-                              :website "http://emacswiki.org/emacs/rcirc-color.el"
-                              :description "color nicks in rcirc"
-                              :type github
-                              :pkgname "emacsmirror/rcirc-color"
-                              :features (rcirc-color))
-                       (:name rcirc-auto-away
-                              :website "http://www.emacswiki.org/emacs/rcircAutoAway"
-                              :type emacswiki)
-                       (:name rcirc-notify
-                              :website "https://github.com/nicferrier/rcirc-notify"
-                              :type elpa
-                              :repo ("marmalade" . "http://marmalade-repo.org/packages/")
-                              :after (add-hook 'rcirc-mode-hook 'rcirc-notify-add-hooks))
-
                        (:name org-mode
                               :website "http://orgmode.org/"
                               :description "Org-mode is for keeping notes, maintaining ToDo lists, doing project planning, and authoring with a fast and effective plain-text system."

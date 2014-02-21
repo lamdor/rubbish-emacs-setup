@@ -19,4 +19,15 @@
 
 (define-key isearch-mode-map (kbd "C-o") 'isearch-occur-search-string)
 
+(defun isearch-ag-search-string ()
+  (interactive)
+  (isearch-done)
+  (isearch-clean-overlays)
+  (let ((case-fold-search isearch-case-fold-search))
+    (projectile-ag (if isearch-regexp isearch-string
+             (regexp-quote isearch-string)))
+    (pop-to-mark-command)))
+
+(define-key isearch-mode-map (kbd "C-a") 'isearch-ag-search-string)
+
 (provide 'mine-isearch)

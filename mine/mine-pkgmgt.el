@@ -155,6 +155,7 @@
          markdown-mode
          ruby-end
          coffee-mode
+         yaml-mode
          clojure-mode cider)
        (mapcar 'el-get-source-name el-get-sources)))
 

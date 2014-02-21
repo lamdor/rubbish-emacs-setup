@@ -62,7 +62,7 @@
         ("sbt" nil nil nil
          (lambda (buf)
            (with-current-buffer buf
-             (not (string-prefix-p "*sbt:" (buffer-name buf))))) nil)
+             (not (string-prefix-p "*sbt" (buffer-name buf))))) nil)
         ("bub" nil nil nil
          (lambda (buf)
            (with-current-buffer buf

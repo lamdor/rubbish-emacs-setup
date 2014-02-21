@@ -79,6 +79,7 @@
 (add-hook 'dired-mode-hook 'mine-set-sbt-keys-if-possible)
 (add-hook 'text-mode-hook 'mine-set-sbt-keys-if-possible)
 (add-hook 'magit-mode-hook 'mine-set-sbt-keys-if-possible)
+(add-hook 'conf-unix-mode-hook 'mine-set-sbt-keys-if-possible)
 (add-hook 'sbt-mode-hook 'mine-set-sbt-keys-if-possible)
 
 (add-hook 'sbt-mode-hook '(lambda ()

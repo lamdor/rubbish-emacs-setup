@@ -121,7 +121,7 @@
        '(;; extensions
          diminish
          smex
-         full-ack
+         ag
          switch-window
          scratch
          htmlize

@@ -9,7 +9,7 @@
 (require 'mine-pretty)
 
 (require 'mine-eshell)
-(require 'mine-rcirc)
+(require 'mine-isearch)
 (require 'mine-ruby)
 
 (require 'mine-pkgmgt)

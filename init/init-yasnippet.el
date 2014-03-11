@@ -5,3 +5,8 @@
 (setq yas-snippet-dirs (remove "~/.emacs.d/snippets" yas-snippet-dirs))
 (add-to-list 'yas-snippet-dirs "~/.emacs.d/custom/snippets")
 (yas/reload-all)
+
+(add-hook 'term-mode-hook (lambda()
+        (setq yas-dont-activate t)))
+
+

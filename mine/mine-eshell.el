@@ -82,4 +82,8 @@
   (let ((dir (or dir default-directory)))
     (dired dir)))
 
+(defun eshell/ansi ()
+  (interactive)
+  (ansi-term "/bin/zsh" (format "*ansi-term <%s>*" (expand-file-name default-directory))))
+
 (provide 'mine-eshell)

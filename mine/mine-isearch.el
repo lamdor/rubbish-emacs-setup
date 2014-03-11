@@ -17,7 +17,7 @@
              (regexp-quote isearch-string)))
     (pop-to-mark-command)))
 
-(define-key isearch-mode-map (kbd "C-o") 'isearch-occur-search-string)
+(define-key isearch-mode-map (kbd "M-o") 'isearch-occur-search-string)
 
 (defun isearch-ag-search-string ()
   (interactive)
@@ -28,6 +28,6 @@
              (regexp-quote isearch-string)))
     (pop-to-mark-command)))
 
-(define-key isearch-mode-map (kbd "C-a") 'isearch-ag-search-string)
+(define-key isearch-mode-map (kbd "M-a") 'isearch-ag-search-string)
 
 (provide 'mine-isearch)

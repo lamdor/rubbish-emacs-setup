@@ -49,6 +49,12 @@
                               :repo ("melpa" . "http://melpa.milkbox.net/packages/")
                               :post-init (progn
                                            (add-to-list 'custom-theme-load-path default-directory)))
+                       (:name monokai-theme
+                              :description "A port of the zen-and-art color theme using the new deftheme format."
+                              :url "https://github.com/lvillani/el-monokai-theme"
+                              :type elpa
+                              :post-init (progn
+                                           (add-to-list 'custom-theme-load-path default-directory)))
 
                        (:name elixir-mode
                               :description "Emacs major mode for Elixir"

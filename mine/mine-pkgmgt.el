@@ -134,7 +134,6 @@
          mark-multiple
          expand-region
          browse-kill-ring
-         flx
          projectile
 
          ;; organization/presentations

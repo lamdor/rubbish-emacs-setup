@@ -101,6 +101,7 @@
       org-agenda-skip-scheduled-if-done t
       org-agenda-skip-deadline-if-done t
       org-agenda-todo-ignore-scheduled 'future
+      org-agenda-todo-ignore-time-comparison-use-seconds t
       org-agenda-todo-ignore-deadlines nil
       org-deadline-warning-days 5
       org-agenda-tags-todo-honor-ignore-options t

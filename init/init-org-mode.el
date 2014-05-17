@@ -132,11 +132,13 @@
 (add-hook 'org-mode-hook 'mine-leave-whitespace-in-buffer)
 (add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines nil)))
 
+
 (eval-after-load "org-agenda"
   '(define-key org-agenda-mode-map "q" 'bury-buffer))
 
 ;; Colors
-(setq org-src-fontify-natively t)
+(setq org-src-fontify-natively t
+      org-fontify-done-headline t)
 (custom-set-faces
  '(outline-1 ((t (:foreground "#D6B163" :bold t))))
  '(outline-2 ((t (:foreground "#A5F26E" :bold t))))
@@ -158,6 +160,8 @@
  '(org-tag ((t (:inherit font-lock-comment-delimiter-face))))
  '(org-hide ((t (:foreground "#191919"))))
  '(org-todo ((t (:background "DarkRed" :foreground "white" :box (:line-width 1 :style released-button)))))
- '(org-done ((t (:background "DarkGreen" :foreground "white" :box (:line-width 1 :style released-button)))))
+ '(org-done ((t (:background "DarkGreen" :foreground "white" :strike-through t :box (:line-width 1 :style released-button)))))
+ '(org-headline-done ((t (:inherit org-archived  :strike-through t))))
+ '(org-agenda-done ((t (:inherit org-archived  :strike-through t))))
  '(org-column ((t (:background "#222222"))))
  '(org-column-title ((t (:background "DarkGreen" :foreground "white" :bold t :box (:line-width 1 :style released-button))))))

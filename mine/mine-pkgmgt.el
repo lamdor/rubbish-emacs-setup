@@ -91,12 +91,6 @@
                                         '("oldorg"))
                               :load-path ("." "lisp" "contrib/lisp"))
 
-                       (:name jabber
-                              :website "http://emacs-jabber.sourceforge.net/"
-                              :description "jabber.el is a Jabber client for Emacs."
-                              :type git
-                              :url "git://git.code.sf.net/p/emacs-jabber/git")
-
                        (:name pomodoro
                               :website "https://github.com/rubbish/pomodoro.el"
                               :description "Run pomodoros"

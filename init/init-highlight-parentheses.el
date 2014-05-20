@@ -1,3 +1,3 @@
 (add-hook 'lisp-mode '(lambda () (highlight-parentheses-mode t)))
 (add-hook 'emacs-lisp-mode-hook '(lambda () (highlight-parentheses-mode t)))
-(diminish 'highlight-parentheses-mode)
+(eval-after-load 'highlight-parentheses '(diminish 'highlight-parentheses-mode))

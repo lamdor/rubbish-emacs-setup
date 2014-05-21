@@ -84,7 +84,7 @@
   :ensure t
   :idle (enclose-global-mode t)
   :diminish enclose-mode
-  :config (remhash "'" enclose-table))
+  :config (enclose-remove-encloser "'"))
 
 (use-package wrap-region
   :ensure t

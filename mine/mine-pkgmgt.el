@@ -124,8 +124,8 @@
 
 (use-package yasnippet
   :ensure t
-  :diminish yas-minor-mode
-  :idle (yas/global-mode t)
+  :diminish yas-global-mode
+  :idle (yas-global-mode t)
   :config
   (progn
     (setq yas-snippet-dirs (remove "~/.emacs.d/snippets" yas-snippet-dirs))
@@ -138,6 +138,11 @@
   :ensure t)
 
 ;; langs
+
+(use-package flycheck
+  :ensure t
+  :idle (global-flycheck-mode)
+  :config (diminish 'flycheck-mode " Φ"))
 
 (use-package markdown-mode
   :ensure t)

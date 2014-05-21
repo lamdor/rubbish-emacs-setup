@@ -9,8 +9,8 @@
 (require 'mine-os)
 (require 'mine-eshell)
 (require 'mine-isearch)
-(require 'mine-pkgmgt)
-(require 'mine-load-custom)
+(if (require 'mine-pkgmgt)
+    (require 'mine-load-custom))
 
 (cd (getenv "HOME"))
 (mine-normal-display)

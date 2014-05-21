@@ -11,11 +11,8 @@
 
 ;; use-package
 ;; https://github.com/jwiegley/use-package
-
-(setq use-package-dir (concat user-emacs-directory "/lisp/use-package"))
-(if (not (file-exists-p use-package-dir))
-    (error "use-package is missing; git submodule init; git submodule update"))
-(add-to-list 'load-path use-package-dir)
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
 
 ;; general

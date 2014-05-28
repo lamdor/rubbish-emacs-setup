@@ -63,7 +63,7 @@
   :ensure t
   :idle (projectile-global-mode)
   :diminish projectile-mode
-  :bind ("C-c p a" . projectile-ag))
+  :config (define-key projectile-command-map (kbd "a") 'projectile-ag))
 
 (use-package magit
   :ensure t

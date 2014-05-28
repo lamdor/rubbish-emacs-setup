@@ -80,23 +80,18 @@
                       (whitespace-mode t)))))
 
 ;; text editing
-(use-package enclose
-  :ensure t
-  :idle (enclose-global-mode t)
-  :diminish enclose-mode
-  :config (enclose-remove-encloser "'"))
 
-(use-package wrap-region
+(use-package smartparens
   :ensure t
-  :idle (wrap-region-global-mode t)
-  :diminish wrap-region-mode)
+  :diminish smartparens-mode
+  :idle (smartparens-global-mode t)
+  :config (require 'smartparens-config))
 
-(use-package mark-multiple
+(use-package multiple-cursors
   :ensure t
-  :bind (("C-x r t" . inline-string-rectangle)
-         ("C-<" . mark-previous-like-this)
-         ("C->" . mark-next-like-this)
-         ("C-*" . mark-all-like-this)))
+  :bind (("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-*" . mc/mark-all-like-this)))
 
 (use-package expand-region
   :ensure t
@@ -106,25 +101,10 @@
   :ensure t
   :bind ("C-c y" . browse-kill-ring))
 
-(use-package highlight-parentheses
-  :ensure t
-  :diminish highlight-parentheses-mode
-  :config
-  (progn
-    (add-hook 'lisp-mode '(lambda () (highlight-parentheses-mode t)))
-    (add-hook 'emacs-lisp-mode-hook '(lambda () (highlight-parentheses-mode t)))))
-
-(use-package paredit
-  :ensure t
-  :diminish paredit-mode
-  :config
-  (progn
-    (add-hook 'lisp-mode-hook (lambda () (paredit-mode t)))
-    (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode t)))))
 
 (use-package yasnippet
   :ensure t
-  :diminish yas-global-mode
+  :diminish yas-minor-mode
   :idle (yas-global-mode t)
   :config
   (progn
@@ -142,13 +122,16 @@
 (use-package flycheck
   :ensure t
   :idle (global-flycheck-mode)
-  :config (diminish 'flycheck-mode " Φ"))
+  :config (progn
+            (diminish 'flycheck-mode " Φ")
+            (setq flycheck-standard-error-navigation nil)))
 
 (use-package markdown-mode
   :ensure t)
 
 (use-package ruby-end
-  :ensure t)
+  :ensure t
+  :diminish ruby-end-mode)
 
 (use-package coffee-mode
   :ensure t
@@ -186,12 +169,14 @@
     (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
     (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
     (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-    (setq haskell-program-name "ghci -isrc")))
+    ;; (diminish 'haskell-indentation-mode)
+    ;; (diminish 'haskell-doc-mode)
+    ))
 
 (use-package ruby-mode
-  :mode (("Vagrantfile" . ruby-mode)
-         ("Rakefile" . ruby-mode)
-         ("Gemfile" . ruby-mode)
-         ("Berksfile" . ruby-mode)))
+  :mode (("Vagrantfile$" . ruby-mode)
+         ("Rakefile$" . ruby-mode)
+         ("Gemfile$" . ruby-mode)
+         ("Berksfile$" . ruby-mode)))
 
 (provide 'mine-pkgmgt)

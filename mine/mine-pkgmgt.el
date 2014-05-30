@@ -85,7 +85,10 @@
   :ensure t
   :diminish smartparens-mode
   :idle (smartparens-global-mode t)
-  :config (require 'smartparens-config))
+  :config (progn
+            (require 'smartparens-config)
+            (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
+            (sp-use-smartparens-bindings)))
 
 (use-package multiple-cursors
   :ensure t

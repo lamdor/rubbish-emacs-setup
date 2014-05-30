@@ -168,4 +168,8 @@
 (add-to-list 'tramp-default-proxies-alist
              '((regexp-quote (system-name)) nil nil))
 
+;; server
+(require 'server)
+(unless (server-running-p) (server-start))
+
 (provide 'mine-builtin)

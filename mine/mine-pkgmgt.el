@@ -129,10 +129,6 @@
 (use-package markdown-mode
   :ensure t)
 
-(use-package ruby-end
-  :ensure t
-  :diminish ruby-end-mode)
-
 (use-package coffee-mode
   :ensure t
   :config (setq coffee-tab-width 2))

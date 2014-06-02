@@ -9,11 +9,7 @@
                     (ns-raise-emacs))))
 
 (defun ns-raise-chrome ()
+  (interactive)
   (ns-do-applescript "tell application \"Google Chrome\" to activate"))
-
-(defadvice org-capture-finalize (after switch-back-to-chrome activate)
-  "Advise org-capture-finalize to switch back to Chrome if a capture frame"
-  (if (equal mine-capture-frame-name (frame-parameter nil 'name))
-      (ns-raise-chrome)))
 
 (provide 'mine-macosx)

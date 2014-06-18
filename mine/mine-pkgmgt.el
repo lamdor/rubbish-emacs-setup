@@ -101,7 +101,8 @@
 
 (use-package browse-kill-ring
   :ensure t
-  :bind ("C-c y" . browse-kill-ring))
+  :bind (("C-c C-y" . browse-kill-ring)
+         ("C-c y" . browse-kill-ring)))
 
 
 (use-package yasnippet

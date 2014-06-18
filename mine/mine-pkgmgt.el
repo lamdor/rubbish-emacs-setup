@@ -88,7 +88,8 @@
   :config (progn
             (require 'smartparens-config)
             (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
-            (sp-use-smartparens-bindings)))
+            (sp-use-smartparens-bindings)
+            (define-key sp-keymap (kbd "M-<backspace>") nil)))
 
 (use-package multiple-cursors
   :ensure t

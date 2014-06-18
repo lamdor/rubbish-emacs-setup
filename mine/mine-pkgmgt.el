@@ -49,8 +49,6 @@
   (unless (package-activate 'org '(20140519))
     (package-install 'org)))
 
-(use-package org-reveal)
-
 (use-package htmlize
   :ensure t)
 
@@ -178,5 +176,10 @@
          ("Rakefile$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
          ("Berksfile$" . ruby-mode)))
+
+;; misc
+
+(use-package ox-reveal
+  :ensure t)
 
 (provide 'mine-pkgmgt)

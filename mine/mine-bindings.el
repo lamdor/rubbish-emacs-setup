@@ -19,6 +19,7 @@
 (global-set-key [remap find-tag] 'ido-find-tag)
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 (global-set-key (kbd "C-c C-j") 'dired-reveal-current-file)
+(define-key dired-mode-map (kbd "M-RET") 'dired-external-reveal)
 
 (global-set-key (kbd "C-c k") 'delete-this-buffer-and-file)
 

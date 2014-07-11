@@ -7,7 +7,7 @@
 (add-to-list 'default-frame-alist '(cursor-color . "gray"))
 
 ;; Remove noise
-(global-hl-line-mode nil)
+(global-hl-line-mode -1)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
@@ -55,8 +55,7 @@
 (defun mine-normal-display ()
   (interactive)
   (mine-use-normal-font)
-  (mine-use-no-transparency)
-  (global-hl-line-mode nil))
+  (mine-use-no-transparency))
 
 (defun mine-pair-display ()
   (interactive)

@@ -84,9 +84,7 @@
    '("^[ .*]+\\(\\%\\)" 1 font-lock-variable-name-face)))
 
 ;; Always use subwords to to move around
-(if (fboundp 'subword-mode)
-    (subword-mode t)
-  (c-subword-mode t))
+(global-subword-mode t)
 
 (require 'dired-x)
 (add-hook 'dired-load-hook

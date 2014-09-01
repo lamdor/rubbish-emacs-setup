@@ -45,8 +45,8 @@
   :ensure t
   :idle (edit-server-start)
   :config (progn
-            (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . markdown-mode))
-            (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . markdown-mode))
+            (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
+            (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
             (add-hook 'edit-server-edit-mode-hook
                       '(lambda () (set-frame-position (selected-frame) 360 200)))
             (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
@@ -147,7 +147,8 @@
   :ensure t
   :config (progn 
             (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
-            (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))))
+            (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
+            (setq markdown-reference-location 'end)))
 
 (use-package coffee-mode
   :ensure t

@@ -8,7 +8,9 @@
 
 (mine-load-custom-files)
 
-(setq custom-file (expand-file-name (concat user-emacs-directory "/customizations.el")))
-(load custom-file)
+(setq custom-file (expand-file-name (concat user-emacs-directory "/custom/customizations.el")))
+(if (file-exists-p custom-file)
+    (load custom-file))
+
 
 (provide 'mine-load-custom)

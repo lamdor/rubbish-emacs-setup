@@ -38,6 +38,10 @@
   :ensure t
   :bind ("C-x o" . switch-window))
 
+(use-package ido-vertical-mode
+  :ensure t
+  :idle (ido-vertical-mode t))
+
 (use-package scratch
   :ensure t)
 

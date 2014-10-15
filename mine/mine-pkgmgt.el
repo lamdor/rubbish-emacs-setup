@@ -139,6 +139,12 @@
 (use-package monokai-theme
   :ensure t)
 
+;; tools
+
+(use-package restclient
+  :ensure t
+  :config (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
+
 ;; langs
 
 (use-package flycheck

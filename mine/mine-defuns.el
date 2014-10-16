@@ -219,7 +219,8 @@ frames with exactly two windows."
           (set-buffer-modified-p nil))))))
 
 (defun mine-sql (product sql-user sql-password sql-server sql-database root-sql-script-dir &optional sql-port)
-  (let* ((today (format-time-string "%Y-%m-%d"))
+  (let* ((sql-port (or sql-port 0))
+         (today (format-time-string "%Y-%m-%d"))
          (sql-text-buffer
           (if (eq major-mode 'sql-mode)
               (progn

@@ -96,8 +96,9 @@
 ;; Tramp Optimizations
 (setq tramp-default-method "ssh")
 
-;; Use soft tabs
+;; Indentation
 (setq-default indent-tabs-mode nil)
+(electric-indent-mode t)
 
 ;; Backups
 (setq version-control nil)
@@ -121,20 +122,6 @@
   (setq mine-delete-trailing-whitespace nil))
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))
 
-
-;; auto indentation of yanked/pasted text
-(setq major-modes-to-auto-indent-yanked-text '(emacs-lisp-mode
-                                               clojure-mode
-                                               c-mode
-                                               c++-mode
-                                               objc-mode
-                                               scala-code
-                                               ruby-mode))
-
-(defun yank-and-indent ()
-  (interactive)
-  (yank)
-  (call-interactively 'indent-region))
 
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)

@@ -90,6 +90,7 @@
   :diminish magit-auto-revert-mode
   :config
   (progn (add-hook 'magit-log-edit-mode-hook '(lambda () (flyspell-mode t)))
+         (autoload 'magit-blame-mode "magit-blame" nil t nil)
          (add-hook 'magit-log-edit-mode-hook
                    '(lambda ()
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))

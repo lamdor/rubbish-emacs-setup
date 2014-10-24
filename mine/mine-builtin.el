@@ -1,18 +1,3 @@
-;; ido-mode
-(require 'ido)
-(ido-mode t)
-(ido-everywhere t)
-(setq ido-default-file-method 'selected-window
-      ido-default-buffer-method 'selected-window)
-
-;; ido setup
-(setq ido-enable-prefix nil
-      ido-enable-flex-matching t
-      ido-create-new-buffer 'always
-      ido-use-filename-at-point nil
-      ido-max-prospects 10
-      ido-show-dot-for-dired nil)
-
 ;; use uniquify
 (require 'uniquify)
 (setq
@@ -38,50 +23,6 @@
 
 (setq enable-recursive-minibuffers t)
 (minibuffer-depth-indicate-mode t)
-
-;; Buffer selection setup
-(setq bs-configurations
-      '(("all" nil nil nil nil nil)
-        ("files" nil nil nil bs-visits-non-file bs-sort-buffer-interns-are-last)
-        ("dired" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (eq major-mode 'dired-mode)))) nil)
-        ("eshell" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (eq major-mode 'eshell-mode)))) nil)
-        ("magit" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (eq major-mode 'magit-status-mode)))) nil)
-        ("sbt" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (string-prefix-p "*sbt" (buffer-name buf))))) nil)
-        ("bub" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (not (string-prefix-p "*bub " (buffer-name buf))))) nil)
-        ("sql" nil nil nil
-         (lambda (buf)
-           (with-current-buffer buf
-             (and
-              (not (eq major-mode 'sql-mode))
-              (not (eq major-mode 'sql-interactive-mode))))) nil)))
-
-(setq bs-mode-font-lock-keywords
-  (list
-   ; Headers
-   (list "^[ ]+\\([-M].*\\)$" 1 font-lock-keyword-face)
-   ; Boring buffers
-   (list "^\\(.*\\*.*\\*.*\\)$" 1 font-lock-comment-face)
-   ; Dired buffers
-   '("^[ .*%]+\\(Dired.*\\)$" 1 font-lock-type-face)
-   ; Modified buffers
-   '("^[ .]+\\(\\*\\)" 1 font-lock-warning-face)
-   ; Read-only buffers
-   '("^[ .*]+\\(\\%\\)" 1 font-lock-variable-name-face)))
 
 ;; Always use subwords to to move around
 (global-subword-mode t)

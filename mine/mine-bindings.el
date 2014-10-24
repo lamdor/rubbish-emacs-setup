@@ -3,7 +3,6 @@
 (global-set-key (kbd "C-M-?") 'help-command)
 
 ;; buffers
-(global-set-key [remap list-buffers] 'bs-show)
 (global-set-key (kbd "C-c y") 'bury-buffer)
 
 ;; frame/window

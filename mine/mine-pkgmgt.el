@@ -25,10 +25,6 @@
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
     (diminish 'abbrev-mode)))
 
-(use-package smex
-  :ensure t
-  :bind ("M-x" . smex))
-
 (use-package ag
   :ensure t
   :bind ("C-M-s" . ag)
@@ -38,9 +34,24 @@
   :ensure t
   :bind ("C-x o" . switch-window))
 
-(use-package ido-vertical-mode
+(use-package helm
   :ensure t
-  :idle (ido-vertical-mode t))
+  :idle (helm-mode t)
+  :diminish helm-mode
+  :bind  (("C-c C-y" . helm-show-kill-ring)
+          ("C-x b" . helm-mini)
+          ("C-x C-f" . helm-find-files)
+          ("M-x" . helm-M-x)
+          ("C-c h" . helm-command-prefix))
+  :config (progn
+            (require 'helm-config)
+            (setq helm-quick-update t
+                  helm-split-window-in-side-p t
+                  helm-buffers-fuzzy-matching t
+                  helm-move-to-line-cycle-in-source t
+                  helm-ff-search-library-in-sexp t
+                  helm-ff-file-name-history-use-recentf t)
+            (define-key helm-map (kbd "C-z")  'helm-select-action)))
 
 (use-package scratch
   :ensure t)
@@ -80,7 +91,15 @@
   :ensure t
   :idle (projectile-global-mode)
   :diminish projectile-mode
-  :config (define-key projectile-command-map (kbd "a") 'projectile-ag))
+  :config (progn
+            (define-key projectile-command-map (kbd "a") 'projectile-ag)
+            (setq projectile-completion-system 'helm)))
+
+(use-package helm-projectile
+  :ensure t
+  :idle (helm-projectile-on)
+  :config (progn
+            (setq projectile-switch-project-action 'helm-projectile)))
 
 (use-package magit
   :ensure t
@@ -118,12 +137,6 @@
 (use-package expand-region
   :ensure t
   :bind ("C-=" . er/expand-region))
-
-(use-package browse-kill-ring
-  :ensure t
-  :bind (("C-c C-y" . browse-kill-ring)
-         ("C-c y" . browse-kill-ring)))
-
 
 (use-package yasnippet
   :ensure t

@@ -97,9 +97,9 @@
 
 (use-package helm-projectile
   :ensure t
-  :idle (helm-projectile-on)
-  :config (progn
-            (setq projectile-switch-project-action 'helm-projectile)))
+  :idle (progn (helm-projectile-on)
+               (define-key projectile-command-map (kbd "a") 'projectile-ag))
+  :config (setq projectile-switch-project-action 'helm-projectile))
 
 (use-package magit
   :ensure t

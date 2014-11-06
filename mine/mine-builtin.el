@@ -76,6 +76,8 @@
 (if (fboundp 'mouse-wheel-mode) (mouse-wheel-mode t))
 (setq visible-bell t)
 
+(setq vc-handled-backends nil)
+
 ;; Protobuf files are like c
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
 

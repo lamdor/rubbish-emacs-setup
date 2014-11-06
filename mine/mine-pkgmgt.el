@@ -76,10 +76,7 @@
 ;; organiziation/presenation/sharing
 
 (use-package org
-  :ensure t
-  :pre-load
-  (unless (package-activate 'org '(20140519))
-    (package-install 'org)))
+  :ensure t)
 
 (use-package htmlize
   :ensure t)

@@ -23,7 +23,8 @@
   (progn
     (eval-after-load 'eldoc '(diminish 'eldoc-mode))
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
-    (diminish 'abbrev-mode)))
+    (diminish 'abbrev-mode)
+    (diminish 'subword-mode)))
 
 (use-package ag
   :ensure t

@@ -81,6 +81,8 @@
 ;; Protobuf files are like c
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
 
+(setq js-indent-level 2)
+
 ;; auto revert logs by tail
 ;; (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-tail-mode))
 

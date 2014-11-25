@@ -236,6 +236,14 @@
          ("Gemfile$" . ruby-mode)
          ("Berksfile$" . ruby-mode)))
 
+(use-package go-mode
+  :ensure t
+  :config (add-hook 'before-save-hook 'gofmt-before-save))
+
+(use-package terraform-mode
+  :ensure t
+  :config (setq terraform-indent-level 2))
+
 ;; misc
 
 (use-package ox-reveal

@@ -19,6 +19,8 @@
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
 (global-set-key (kbd "C-c C-j") 'dired-reveal-current-file)
 (define-key dired-mode-map (kbd "M-RET") 'dired-external-reveal)
+(define-key text-mode-map (kbd "C-c C-o") 'browse-url-at-point)
+(define-key comint-mode-map (kbd "C-c C-o") 'browse-url-at-point)
 
 (global-set-key (kbd "C-c k") 'delete-this-buffer-and-file)
 

@@ -56,6 +56,10 @@
                   helm-ff-file-name-history-use-recentf t)
             (define-key helm-map (kbd "C-z")  'helm-select-action)))
 
+(use-package helm-descbinds
+  :ensure t
+  :bind (("C-M-? b" . helm-descbinds)))
+
 (use-package scratch
   :ensure t)
 

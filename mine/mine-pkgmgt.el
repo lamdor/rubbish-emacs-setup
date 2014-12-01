@@ -43,6 +43,7 @@
           ("C-x b" . helm-mini)
           ("C-x C-b" . helm-mini)
           ("C-x C-f" . helm-find-files)
+          ("C-x C-i" . helm-semantic-or-imenu)
           ("M-x" . helm-M-x)
           ("C-c h" . helm-command-prefix))
   :config (progn

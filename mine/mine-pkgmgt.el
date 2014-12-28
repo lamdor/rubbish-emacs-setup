@@ -39,7 +39,7 @@
   :ensure t
   :idle (helm-mode t)
   :diminish helm-mode
-  :bind  (("C-c C-y" . helm-show-kill-ring)
+  :bind  (("M-y" . helm-show-kill-ring)
           ("C-x b" . helm-mini)
           ("C-x C-b" . helm-mini)
           ("C-x C-f" . helm-find-files)

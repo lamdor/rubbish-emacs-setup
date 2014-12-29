@@ -140,7 +140,7 @@
 
 (use-package expand-region
   :ensure t
-  :bind ("C-=" . er/expand-region))
+  :bind ("M-2" . er/expand-region))
 
 (use-package yasnippet
   :ensure t

@@ -142,6 +142,16 @@
   :ensure t
   :bind ("M-2" . er/expand-region))
 
+(use-package ace-jump-mode
+  :ensure t
+  :bind (("C-c C-SPC" . ace-jump-mode)))
+
+(use-package ace-jump-zap
+  :ensure ace-jump-zap
+  :bind
+  (("M-z" . ace-jump-zap-up-to-char-dwim)
+   ("C-M-z" . ace-jump-zap-to-char-dwim)))
+
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode

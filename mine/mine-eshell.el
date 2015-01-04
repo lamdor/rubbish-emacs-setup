@@ -67,6 +67,8 @@
 
 (global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
 
+(add-hook 'eshell-mode-hook #'(lambda () (setq eshell-path-env (getenv "PATH"))))
+
 ;; Prompt
 
 (setq eshell-highlight-prompt t)

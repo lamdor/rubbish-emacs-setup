@@ -270,8 +270,8 @@ frames with exactly two windows."
             (buffer-file-name (nth 1 marked-files)) 
             (buffer-file-name (nth 2 marked-files)))))
 
-(defun mine-command-line-tool (command &optional history history-symbol buffer-name)
-  (let* ((rest-of-command (read-from-minibuffer (concat command " ") (car history) nil nil history-symbol))
+(defun mine-command-line-tool (command &optional intial-args history history-symbol buffer-name)
+  (let* ((rest-of-command (read-from-minibuffer (concat command " ") (or intial-args (car history)) nil nil history-symbol))
          (command-with-args (append (split-string command) (split-string rest-of-command)))
          (args (cdr command-with-args))
          (command (car command-with-args))

@@ -54,7 +54,12 @@
                   helm-move-to-line-cycle-in-source t
                   helm-ff-search-library-in-sexp t
                   helm-ff-file-name-history-use-recentf t)
-            (define-key helm-map (kbd "C-z")  'helm-select-action)))
+            (define-key helm-map (kbd "C-z")  'helm-select-action)
+            (add-hook 'eshell-mode-hook
+                      #'(lambda ()
+                          (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
+                          (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))))
+
 
 (use-package helm-descbinds
   :ensure t
@@ -135,7 +140,8 @@
             (require 'smartparens-config)
             (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
             (sp-use-smartparens-bindings)
-            (define-key sp-keymap (kbd "M-<backspace>") nil)))
+            (define-key sp-keymap (kbd "M-<backspace>") nil)
+            (add-hook 'eshell-mode-hook 'smartparens-mode)))
 
 (use-package multiple-cursors
   :ensure t

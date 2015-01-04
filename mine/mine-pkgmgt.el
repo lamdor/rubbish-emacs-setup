@@ -60,6 +60,9 @@
   :ensure t
   :bind (("C-M-? b" . helm-descbinds)))
 
+(use-package wgrep-helm
+  :ensure t)
+
 (use-package scratch
   :ensure t)
 
@@ -119,6 +122,8 @@
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))))
+
+
 
 ;; text editing
 

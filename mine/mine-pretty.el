@@ -6,6 +6,11 @@
 (blink-cursor-mode t)
 (add-to-list 'default-frame-alist '(cursor-color . "gray"))
 
+(add-hook 'minibuffer-setup-hook 'mine-minibuffer-setup-font-bigger)
+(defun mine-minibuffer-setup-font-bigger ()
+  (set (make-local-variable 'face-remapping-alist)
+       '((default :height 1.3))))
+
 ;; Remove noise
 (global-hl-line-mode -1)
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))

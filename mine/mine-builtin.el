@@ -10,7 +10,6 @@
 
 (winner-mode t)
 
-;; Setup Environmental Variables
 (setq default-major-mode 'text-mode)
 (setq inhibit-startup-message t)
 
@@ -63,6 +62,7 @@
   (setq mine-delete-trailing-whitespace nil))
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))
 
+(ansi-color-for-comint-mode-on)
 
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)

@@ -256,6 +256,12 @@
     (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
     (eval-after-load 'haskell-cabal '(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal))))
 
+(use-package flycheck-haskell
+  :ensure t
+  :config
+  (eval-after-load
+      'flycheck '(add-hook 'flycheck-hode-hook #'flycheck-haskell-setup)))
+
 (use-package ruby-mode
   :mode (("Vagrantfile$" . ruby-mode)
          ("Rakefile$" . ruby-mode)

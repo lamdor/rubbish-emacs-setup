@@ -37,7 +37,6 @@
 
 (use-package helm
   :ensure t
-  :idle (helm-mode t)
   :diminish helm-mode
   :bind  (("M-y" . helm-show-kill-ring)
           ("C-x b" . helm-mini)
@@ -58,7 +57,8 @@
             (add-hook 'eshell-mode-hook
                       #'(lambda ()
                           (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
-                          (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))))
+                          (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
+            (helm-mode t)))
 
 
 (use-package helm-descbinds
@@ -73,7 +73,6 @@
 
 (use-package edit-server
   :ensure t
-  :idle (edit-server-start)
   :config (progn
             (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
             (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
@@ -81,7 +80,8 @@
             (add-hook 'edit-server-edit-mode-hook
                       '(lambda () (set-frame-position (selected-frame) 360 200)))
             (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
-            (add-hook 'edit-server-done-hook 'ns-raise-chrome)))
+            (add-hook 'edit-server-done-hook 'ns-raise-chrome)
+            (edit-server-start)))
 
 (use-package gmail-message-mode
   :ensure t)
@@ -101,17 +101,18 @@
 
 (use-package projectile
   :ensure t
-  :idle (projectile-global-mode)
   :diminish projectile-mode
   :config (progn
             (define-key projectile-command-map (kbd "a") 'projectile-ag)
-            (setq projectile-completion-system 'helm)))
+            (setq projectile-completion-system 'helm)
+            (projectile-global-mode)))
 
 (use-package helm-projectile
   :ensure t
-  :idle (progn (helm-projectile-on)
-               (define-key projectile-command-map (kbd "a") 'projectile-ag))
-  :config (setq projectile-switch-project-action 'helm-projectile))
+  :config (progn
+            (setq projectile-switch-project-action 'helm-projectile)
+            (helm-projectile-on)
+            (define-key projectile-command-map (kbd "a") 'projectile-ag)))
 
 (use-package magit
   :ensure t
@@ -135,13 +136,13 @@
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
-  :idle (smartparens-global-mode t)
   :config (progn
             (require 'smartparens-config)
             (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
             (sp-use-smartparens-bindings)
             (define-key sp-keymap (kbd "M-<backspace>") nil)
-            (add-hook 'eshell-mode-hook 'smartparens-mode)))
+            (add-hook 'eshell-mode-hook 'smartparens-mode)
+            (smartparens-global-mode t)))
 
 (use-package multiple-cursors
   :ensure t
@@ -166,12 +167,12 @@
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
-  :idle (yas-global-mode t)
   :config
   (progn
     (setq yas-snippet-dirs (remove "~/.emacs.d/snippets" yas-snippet-dirs))
     (add-to-list 'yas-snippet-dirs "~/.emacs.d/custom/snippets")
-    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))))
+    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+    (yas-global-mode t)))
 
 ;; colors
 
@@ -188,14 +189,14 @@
 
 (use-package flycheck
   :ensure t
-  :idle (global-flycheck-mode)
   :config (progn
             (diminish 'flycheck-mode " Φ")
-            (setq flycheck-standard-error-navigation nil)))
+            (setq flycheck-standard-error-navigation nil)
+            (global-flycheck-mode)))
 
 (use-package markdown-mode
   :ensure t
-  :config (progn 
+  :config (progn
             (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
             (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
             (setq markdown-reference-location 'end)))
@@ -244,7 +245,7 @@
           haskell-process-type 'cabal-repl
           haskell-interactive-mode-eval-mode 'haskell-mode
           haskell-process-show-debug-tips nil)
-    
+
     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-bring)
     (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)

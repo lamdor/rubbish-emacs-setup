@@ -127,7 +127,8 @@
                    '(lambda ()
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)
-                      (whitespace-mode t)))))
+                      (whitespace-mode t)))
+         (add-to-list 'clean-buffer-list-kill-never-regexps "^\\*magit:")))
 
 
 

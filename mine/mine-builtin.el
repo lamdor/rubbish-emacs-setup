@@ -69,6 +69,14 @@
 
 ;; Midnight mode to clean up old buffers
 (require 'midnight)
+(setq clean-buffer-list-delay-special 3600)
+
+(defvar clean-buffer-list-timer nil
+  "Stores clean-buffer-list timer if there is one. You can disable clean-buffer-list by (cancel-timer clean-buffer-list-timer).")
+(setq clean-buffer-list-timer (run-at-time t 7200 'clean-buffer-list))
+
+(setq clean-buffer-list-kill-regexps '("^.*$"))
+(add-to-list 'clean-buffer-list-kill-never-regexps "^\\*eshell")
 
 (add-hook 'emacs-lisp-mode-hook '(lambda () (eldoc-mode t)))
 

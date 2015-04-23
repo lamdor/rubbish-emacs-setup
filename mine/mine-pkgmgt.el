@@ -68,6 +68,9 @@
 (use-package wgrep-helm
   :ensure t)
 
+(use-package helm-swoop
+  :ensure t)
+
 (use-package scratch
   :ensure t)
 

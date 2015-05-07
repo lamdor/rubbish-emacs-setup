@@ -275,7 +275,10 @@
 
 (use-package go-mode
   :ensure t
-  :config (add-hook 'before-save-hook 'gofmt-before-save))
+  :config (progn
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (add-hook 'go-mode-hook (lambda ()
+                                      (local-set-key (kbd "M-.") #'godef-jump)))))
 
 (use-package terraform-mode
   :ensure t

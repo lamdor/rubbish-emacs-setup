@@ -120,13 +120,13 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
+         ("C-x M-g" . magit-dispatch-popup)
          ("C-x C-g" . magit-status)
          ("C-x G" . magit-blame-mode))
-  :diminish magit-auto-revert-mode
   :config
   (progn (add-hook 'magit-log-edit-mode-hook '(lambda () (flyspell-mode t)))
          (autoload 'magit-blame-mode "magit-blame" nil t nil)
-         (add-hook 'magit-log-edit-mode-hook
+         (add-hook 'git-commit-mode-hook
                    '(lambda ()
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)

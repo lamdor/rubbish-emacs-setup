@@ -89,3 +89,12 @@
   (ansi-term "/bin/zsh" (format "*ansi-term <%s>*" (expand-file-name default-directory))))
 
 (provide 'mine-eshell)
+(eval-after-load "em-term"
+  '(add-to-list 'eshell-visual-commands "htop"))
+
+;; bindings
+
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (local-set-key (kbd "C-c C-o") 'browse-url-at-point)))
+

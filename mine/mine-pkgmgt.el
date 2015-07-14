@@ -290,3 +290,4 @@
   :ensure t)
 
 (provide 'mine-pkgmgt)
+         (setq magit-revert-buffers t)

@@ -291,3 +291,6 @@
 
 (provide 'mine-pkgmgt)
          (setq magit-revert-buffers t)
+(use-package helm-ag
+  :ensure t)
+

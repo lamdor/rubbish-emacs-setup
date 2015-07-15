@@ -131,7 +131,9 @@
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
-         (add-to-list 'clean-buffer-list-kill-never-regexps "^\\*magit:")))
+         (add-to-list 'clean-buffer-list-kill-never-regexps "^\\*magit:")
+         (setq magit-branch-arguments nil) ;do NOT want --track
+         (setq magit-push-arguments '("--set-upstream"))))
 
 
 

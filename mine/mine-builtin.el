@@ -55,7 +55,7 @@
 (delete-selection-mode t)
 
 ;; delete trailing whitespace on save
-(setq mine-delete-trailing-whitespace t)
+(defvar mine-delete-trailing-whitespace t)
 (defun mine-leave-whitespace-in-buffer ()
   (interactive)
   (make-variable-buffer-local 'mine-leave-whitespace)

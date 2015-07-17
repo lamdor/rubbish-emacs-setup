@@ -88,6 +88,11 @@
   (interactive)
   (ansi-term "/bin/zsh" (format "*ansi-term <%s>*" (expand-file-name default-directory))))
 
+(defun eshell/clear ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))
+
 (provide 'mine-eshell)
 (eval-after-load "em-term"
   '(add-to-list 'eshell-visual-commands "htop"))

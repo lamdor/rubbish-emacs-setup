@@ -122,7 +122,7 @@
   :bind (("C-x g" . magit-status)
          ("C-x M-g" . magit-dispatch-popup)
          ("C-x C-g" . magit-status)
-         ("C-x G" . magit-blame-mode))
+         ("C-x G" . magit-blame))
   :config
   (progn (add-hook 'magit-log-edit-mode-hook '(lambda () (flyspell-mode t)))
          (autoload 'magit-blame-mode "magit-blame" nil t nil)

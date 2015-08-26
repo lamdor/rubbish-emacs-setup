@@ -199,7 +199,6 @@
 (use-package flycheck
   :ensure t
   :config (progn
-            (diminish 'flycheck-mode " Φ")
             (setq flycheck-standard-error-navigation nil)
             (global-flycheck-mode)))
 

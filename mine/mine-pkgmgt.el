@@ -132,10 +132,13 @@
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
          (add-to-list 'clean-buffer-list-kill-never-regexps "^\\*magit:")
+         (setq magit-revert-buffers t)
          (setq magit-branch-arguments nil) ;do NOT want --track
          (setq magit-push-arguments '("--set-upstream"))))
 
-
+(use-package magit-gh-pulls
+  :ensure t
+  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 ;; text editing
 
@@ -292,7 +295,7 @@
   :ensure t)
 
 (provide 'mine-pkgmgt)
-         (setq magit-revert-buffers t)
+         
 (use-package helm-ag
   :ensure t)
 

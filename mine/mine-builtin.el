@@ -90,7 +90,7 @@
 
 ;; Miscallaneous Things
 (if (fboundp 'mouse-wheel-mode) (mouse-wheel-mode t))
-(setq visible-bell t)
+(setq ring-bell-function (lambda () (message "*beep*")))
 
 (setq vc-handled-backends nil)
 

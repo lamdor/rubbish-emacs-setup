@@ -56,11 +56,15 @@
 
 ;; delete trailing whitespace on save
 (defvar mine-delete-trailing-whitespace t)
+(make-variable-buffer-local 'mine-delete-trailing-whitespace)
+
 (defun mine-leave-whitespace-in-buffer ()
   (interactive)
-  (make-variable-buffer-local 'mine-leave-whitespace)
   (setq mine-delete-trailing-whitespace nil))
+
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))
+
+(toggle-indicate-empty-lines t)
 
 (ansi-color-for-comint-mode-on)
 

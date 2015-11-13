@@ -239,7 +239,7 @@
   :config
   (progn
     (add-hook 'scala-mode-hook '(lambda ()
-                             (c-subword-mode t)))
+                                  (c-subword-mode t)))
     (setq scala-indent:align-parameters t)
     (setq scala-indent:align-forms t)))
 
@@ -310,7 +310,6 @@
   :ensure t)
 
 (provide 'mine-pkgmgt)
-         
+
 (use-package helm-ag
   :ensure t)
-

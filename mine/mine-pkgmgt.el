@@ -94,6 +94,12 @@
 (use-package org
   :ensure t)
 
+(use-package org-tree-slide
+  :ensure t
+  :config (eval-after-load 'org '(progn
+                                   (define-key org-mode-map (kbd "<f8>") 'org-tree-slide-mode)
+                                   (define-key org-mode-map (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle))))
+
 (use-package htmlize
   :ensure t)
 

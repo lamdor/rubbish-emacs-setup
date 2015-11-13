@@ -64,6 +64,8 @@
 
 (add-hook 'before-save-hook '(lambda () (if mine-delete-trailing-whitespace (delete-trailing-whitespace))))
 
+(setq delete-trailing-lines t)
+
 (toggle-indicate-empty-lines t)
 
 (ansi-color-for-comint-mode-on)

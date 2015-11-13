@@ -286,7 +286,10 @@
   :config (progn
             (add-hook 'before-save-hook 'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()
-                                      (local-set-key (kbd "M-.") #'godef-jump)))))
+                                      (local-set-key (kbd "M-.") #'godef-jump)))
+            (let ((oracle-el-file (concat (getenv "GOPATH") "/src/golang.org/x/tools/cmd/oracle/oracle.el")))
+              (if (file-exists-p oracle-el-file)
+                  (load-file oracle-el-file)))))
 
 (use-package terraform-mode
   :ensure t

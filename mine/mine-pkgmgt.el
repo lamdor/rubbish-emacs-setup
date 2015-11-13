@@ -120,7 +120,6 @@
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
-         ("C-x M-g" . magit-dispatch-popup)
          ("C-x C-g" . magit-status)
          ("C-x G" . magit-blame))
   :config
@@ -139,6 +138,11 @@
 (use-package magit-gh-pulls
   :ensure t
   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+
+(use-package github-browse-file
+  :ensure t
+  :bind (("C-x M-g" . github-browse-file))
+  :config (setq github-browse-file-show-line-at-point t))
 
 ;; text editing
 

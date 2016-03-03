@@ -193,6 +193,7 @@
 
 (use-package docker-tramp)
 (use-package docker
+  :diminish docker-mode
   :config (docker-global-mode t))
 
 ;; langs

@@ -82,15 +82,6 @@
 (setq clean-buffer-list-timer (run-at-time t 7200 'clean-buffer-list))
 
 (setq clean-buffer-list-kill-regexps '("^.*$"))
-(add-to-list 'clean-buffer-list-kill-never-regexps "^\\*eshell")
-(defadvice clean-buffer-list (before fix-clean-buffer-list-from-org)
-  "fix the clean-buffer-list-kill-buffer-names that org-mode shell buffers breaks"
-  (setq clean-buffer-list-kill-buffer-names
-        (mapcar '(lambda (buff) (if (bufferp buff)
-                                    (buffer-name buff)
-                                  buff)) clean-buffer-list-kill-buffer-names)))
-(ad-activate 'clean-buffer-list)
-
 
 (add-hook 'emacs-lisp-mode-hook '(lambda () (eldoc-mode t)))
 

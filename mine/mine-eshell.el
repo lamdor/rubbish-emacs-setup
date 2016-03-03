@@ -69,10 +69,12 @@
 
 (defun mine-switch-to-last-eshell-buffer ()
   (interactive)
-  (let ((last-used (car (mine-get-eshell-buffers))))
-    (if last-used
-        (switch-to-buffer last-used)
-      (mine-fullscreen-eshell))))
+  (if (eq major-mode 'eshell-mode)
+      (switch-to-buffer (cadr (buffer-list)))
+    (let ((last-used (car (mine-get-eshell-buffers))))
+      (if last-used
+          (switch-to-buffer last-used)
+        (mine-fullscreen-eshell)))))
 
 (global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
 (global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)

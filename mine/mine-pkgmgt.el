@@ -1,11 +1,13 @@
 ;; package.el
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ))
 
 (package-initialize)
+
 (unless (file-exists-p package-user-dir)
   (package-refresh-contents))
 
@@ -15,10 +17,15 @@
   (package-install 'use-package))
 (require 'use-package)
 
+;; to force package.el to read new pins
+(advice-add 'use-package-pin-package
+            :after #'(lambda (of &rest args) (package-read-all-archive-contents)))
+
+(setq use-package-always-ensure t)
+
 ;; general
 
 (use-package diminish
-  :ensure t
   :config
   (progn
     (eval-after-load 'eldoc '(diminish 'eldoc-mode))
@@ -27,16 +34,14 @@
     (diminish 'subword-mode)))
 
 (use-package ag
-  :ensure t
   :bind ("C-M-s" . ag)
   :config (setq ag-highlight-search t))
 
 (use-package switch-window
-  :ensure t
   :bind ("C-x o" . switch-window))
 
 (use-package helm
-  :ensure t
+  :pin melpa-stable
   :diminish helm-mode
   :bind  (("M-y" . helm-show-kill-ring)
           ("C-x b" . helm-mini)
@@ -62,20 +67,35 @@
 
 
 (use-package helm-descbinds
-  :ensure t
   :bind (("C-M-? b" . helm-descbinds)))
 
-(use-package wgrep-helm
-  :ensure t)
+(use-package wgrep-helm)
 
 (use-package helm-swoop
-  :ensure t)
+  :bind (("M-i" . helm-swoop)
+         ("M-I" . helm-swoop-back-to-last-point)
+         ("C-c M-i" . helm-multi-swoop)
+         ("C-x M-i" . helm-multi-swoop-all)))
 
-(use-package scratch
-  :ensure t)
+(use-package helm-ag)
+
+(use-package projectile
+  :pin melpa-stable
+  :diminish projectile-mode
+  :config (progn
+            (define-key projectile-command-map (kbd "a") 'projectile-ag)
+            (setq projectile-completion-system 'helm)
+            (projectile-global-mode)))
+
+(use-package helm-projectile
+  :config (progn
+            (setq projectile-switch-project-action 'helm-projectile)
+            (helm-projectile-on)
+            (define-key projectile-command-map (kbd "a") 'projectile-ag)))
+
+(use-package scratch)
 
 (use-package edit-server
-  :ensure t
   :config (progn
             (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
             (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
@@ -86,45 +106,22 @@
             (add-hook 'edit-server-done-hook 'ns-raise-chrome)
             (edit-server-start)))
 
-(use-package gmail-message-mode
-  :ensure t)
+(use-package gmail-message-mode)
 
 ;; organiziation/presenation/sharing
 
-(use-package org
-  :ensure t)
-
+(use-package org)
 (use-package org-tree-slide
-  :ensure t
   :config (eval-after-load 'org '(progn
                                    (define-key org-mode-map (kbd "<f8>") 'org-tree-slide-mode)
                                    (define-key org-mode-map (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle))))
+(use-package htmlize)
+(use-package ox-reveal)
 
-(use-package htmlize
-  :ensure t)
-
-(use-package gist
-  :ensure t)
-
-;; project
-
-(use-package projectile
-  :ensure t
-  :diminish projectile-mode
-  :config (progn
-            (define-key projectile-command-map (kbd "a") 'projectile-ag)
-            (setq projectile-completion-system 'helm)
-            (projectile-global-mode)))
-
-(use-package helm-projectile
-  :ensure t
-  :config (progn
-            (setq projectile-switch-project-action 'helm-projectile)
-            (helm-projectile-on)
-            (define-key projectile-command-map (kbd "a") 'projectile-ag)))
+(use-package gist)
 
 (use-package magit
-  :ensure t
+  :pin melpa-stable
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status)
          ("C-x G" . magit-blame))
@@ -136,55 +133,50 @@
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
-         (add-to-list 'clean-buffer-list-kill-never-regexps "^\\*magit:")
          (setq magit-revert-buffers t)
-         (setq magit-branch-arguments nil) ;do NOT want --track
-         (setq magit-push-arguments '("--set-upstream"))))
+         (setq magit-git-executable "hub")))
 
 (use-package magit-gh-pulls
-  :ensure t
   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 (use-package github-browse-file
-  :ensure t
   :bind (("C-x M-g" . github-browse-file))
   :config (setq github-browse-file-show-line-at-point t))
 
 ;; text editing
 
 (use-package smartparens
-  :ensure t
   :diminish smartparens-mode
   :config (progn
             (require 'smartparens-config)
             (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
             (sp-use-smartparens-bindings)
-            (define-key sp-keymap (kbd "M-<backspace>") nil)
+            (define-key smartparens-mode-map (kbd "M-<backspace>") nil)
             (add-hook 'eshell-mode-hook 'smartparens-mode)
+            (add-hook 'minibuffer-setup-hook 'smartparens-mode)
             (smartparens-global-mode t)))
 
 (use-package multiple-cursors
-  :ensure t
   :bind (("C->" . mc/mark-next-like-this)
          ("C-<" . mc/mark-previous-like-this)
          ("C-*" . mc/mark-all-like-this)))
 
 (use-package expand-region
-  :ensure t
   :bind ("M-2" . er/expand-region))
 
+(use-package move-text
+  :bind (([M-up] . move-text-up)
+         ([M-down] . move-text-down)))
+
 (use-package ace-jump-mode
-  :ensure t
   :bind (("C-c C-SPC" . ace-jump-mode)))
 
 (use-package ace-jump-zap
-  :ensure ace-jump-zap
   :bind
   (("M-z" . ace-jump-zap-up-to-char-dwim)
    ("C-M-z" . ace-jump-zap-to-char-dwim)))
 
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
   (progn
@@ -195,45 +187,36 @@
 
 ;; colors
 
-(use-package monokai-theme
-  :ensure t)
+(use-package monokai-theme)
 
 ;; tools
 
-(use-package restclient
-  :ensure t
-  :config (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode)))
-
-(use-package docker-tramp
-  :ensure t)
+(use-package docker-tramp)
+(use-package docker
+  :config (docker-global-mode t))
 
 ;; langs
 
 (use-package flycheck
-  :ensure t
+  :pin melpa-stable
   :config (progn
             (setq flycheck-standard-error-navigation nil)
             (global-flycheck-mode)))
 
 (use-package markdown-mode
-  :ensure t
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
             (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
             (setq markdown-reference-location 'end)))
 
 (use-package coffee-mode
-  :ensure t
   :config (setq coffee-tab-width 2))
 
-(use-package yaml-mode
-  :ensure t)
+(use-package yaml-mode)
 
-(use-package dockerfile-mode
-  :ensure t)
+(use-package dockerfile-mode)
 
 (use-package scala-mode2
-  :ensure t
   :mode (("\\.scala\\'" . scala-mode)
          ("\\.sbt\\'" . scala-mode))
   :config
@@ -244,45 +227,74 @@
     (setq scala-indent:align-forms t)))
 
 (use-package sbt-mode
-  :ensure t
   :config
   (add-hook 'sbt-mode-hook '(lambda ()
                               (setq compilation-skip-threshold 2)
                               (local-set-key (kbd "C-a") 'comint-bol)
                               (local-set-key (kbd "M-RET") 'comint-accumulate))))
 
+;; haskell bits taken mostly from:
+;;   https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
+;;   https://github.com/chrisdone/emacs-haskell-config/tree/stack-mode
 (use-package haskell-mode
-  :ensure t
   :config
   (progn
     (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-    (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
     (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+    (add-hook 'haskell-mode-hook 'subword-mode)
+    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+    (setq
+     haskell-complete-module-preferred '("Data.ByteString"
+                                         "Data.ByteString.Lazy"
+                                         "Data.Conduit"
+                                         "Data.Function"
+                                         "Data.List"
+                                         "Data.Map"
+                                         "Data.Maybe"
+                                         "Data.Monoid"
+                                         "Data.Ord")
 
-    (setq haskell-process-suggest-remove-import-lines t
-          haskell-process-auto-import-loaded-modules t
-          haskell-process-suggest-hoogle-imports nil ;; 'cabal install hoogle' fails
-          haskell-process-log t
-          haskell-process-type 'cabal-repl
-          haskell-interactive-mode-eval-mode 'haskell-mode
-          haskell-process-show-debug-tips nil)
+     haskell-interactive-mode-eval-mode 'haskell-mode
+     haskell-interactive-mode-include-file-name nil
 
-    (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-    (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-bring)
-    (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-    (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-    (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-    (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-    (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-    (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-    (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-    (eval-after-load 'haskell-cabal '(define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal))))
+     haskell-process-type 'stack-ghci
+     haskell-process-suggest-remove-import-lines t
+     haskell-process-auto-import-loaded-modules t
+     haskell-process-log t
+     haskell-process-reload-with-fbytecode nil
+     haskell-process-use-presentation-mode t
+     haskell-process-suggest-haskell-docs-imports t
+     haskell-process-suggest-remove-import-lines t
 
-(use-package flycheck-haskell
-  :ensure t
+     haskell-stylish-on-save nil
+     haskell-tags-on-save nil
+     )
+    (eval-after-load 'haskell-mode
+      '(progn
+         (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+         (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+         (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+         (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+         (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
+         (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
+         (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+         (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
+         (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)))))
+
+(use-package hindent
   :config
-  (eval-after-load
-      'flycheck '(add-hook 'flycheck-hode-hook #'flycheck-haskell-setup)))
+  (progn
+    (setq hindent-style "gibiansky")
+    (eval-after-load 'haskell-mode
+      '(progn
+         (define-key haskell-mode-map (kbd "C-c i") 'hindent-reformat-decl)
+         (define-key haskell-mode-map (kbd "C-c o") 'hindent-reformat-buffer)))))
+
+;; (use-package flycheck-haskell
+;;   :ensure t
+;;   :config
+;;   (eval-after-load
+;;       'flycheck '(add-hook 'flycheck-hode-hook #'flycheck-haskell-setup)))
 
 (use-package ruby-mode
   :mode (("Vagrantfile$" . ruby-mode)
@@ -291,7 +303,6 @@
          ("Berksfile$" . ruby-mode)))
 
 (use-package go-mode
-  :ensure t
   :config (progn
             (add-hook 'before-save-hook 'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()
@@ -301,15 +312,7 @@
                   (load-file oracle-el-file)))))
 
 (use-package terraform-mode
-  :ensure t
   :config (setq terraform-indent-level 2))
 
-;; misc
-
-(use-package ox-reveal
-  :ensure t)
 
 (provide 'mine-pkgmgt)
-
-(use-package helm-ag
-  :ensure t)

@@ -17,7 +17,8 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; to force package.el to read new pins
+;; to force package.el to read new pins from use-package blocks
+;; https://github.com/jwiegley/use-package/issues/255
 (advice-add 'use-package-pin-package
             :after #'(lambda (of &rest args) (package-read-all-archive-contents)))
 

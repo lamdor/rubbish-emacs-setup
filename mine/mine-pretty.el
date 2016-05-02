@@ -19,6 +19,18 @@
 (defvar mine-normal-font "Monaco 14" "*The main font")
 (defvar mine-big-font "Monaco 20" "*The fon mainly used in pairing and presentation modes")
 
+;; utf8
+;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(setq utf-translate-cjk-mode nil)
+(set-language-environment 'utf-8)
+(setq locale-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-file-name-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
+
 ;; display settings
 (defun mine-use-normal-font ()
   (interactive)

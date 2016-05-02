@@ -34,6 +34,27 @@
     (diminish 'abbrev-mode)
     (diminish 'subword-mode)))
 
+(use-package keyfreq
+  :config
+  (progn (setq keyfreq-excluded-commands
+               '(self-insert-command
+                 keyboard-quit
+                 abort-recursive-edit
+                 forward-char
+                 backward-char
+                 previous-line
+                 isearch-printing-char
+                 sp-backward-delete-char
+                 org-self-insert-command
+                 org-agenda-next-line
+                 helm-next-line
+                 orgtbl-self-insert-command
+                 magit-section-forward
+                 magit-section-backward
+                 next-line))
+         (keyfreq-mode t)
+         (keyfreq-autosave-mode t)))
+
 (use-package ag
   :bind ("C-M-s" . ag)
   :config (setq ag-highlight-search t))
@@ -80,6 +101,12 @@
 
 (use-package helm-ag)
 
+(use-package helm-company
+  :config (eval-after-load 'company
+            '(progn
+               (define-key company-mode-map (kbd "C-:") 'helm-company)
+               (define-key company-active-map (kbd "C-:") 'helm-company))))
+
 (use-package projectile
   :pin melpa-stable
   :diminish projectile-mode
@@ -118,6 +145,8 @@
                                    (define-key org-mode-map (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle))))
 (use-package htmlize)
 (use-package ox-reveal)
+(use-package org-bullets
+  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package gist)
 
@@ -135,7 +164,7 @@
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
          (setq magit-revert-buffers t)
-         (setq magit-git-executable "hub")))
+         (setq magit-git-executable "git")))
 
 (use-package magit-gh-pulls
   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
@@ -209,7 +238,17 @@
   :config (progn
             (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
             (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
-            (setq markdown-reference-location 'end)))
+            (setq markdown-reference-location 'end)
+
+            (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+            (defun markdown-cleanup-org-tables ()
+              (save-excursion
+                (goto-char (point-min))
+                (while (search-forward "-+-" nil t) (replace-match "-|-"))))
+            (add-hook 'markdown-mode-hook
+                      (lambda()
+                        (add-hook 'edit-server-done-hook 'markdown-cleanup-org-tables nil 'make-it-local)
+                        (add-hook 'after-save-hook 'markdown-cleanup-org-tables nil 'make-it-local)))))
 
 (use-package coffee-mode
   :config (setq coffee-tab-width 2))
@@ -234,6 +273,16 @@
                               (setq compilation-skip-threshold 2)
                               (local-set-key (kbd "C-a") 'comint-bol)
                               (local-set-key (kbd "M-RET") 'comint-accumulate))))
+
+(use-package ensime
+  :config
+  (setq ensime-sbt-command "/usr/local/bin/sbt")
+  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+  ;; TODO set ensime sbt prefix to C-c s
+  ;; TODO add scala-mode hook for if .ensime file exists
+  ;; (setq ensime-sbt-perform-on-save "compile)
+  ;; (setq ensime-server-version "0.9.10-SNAPSHOT") ;; to something else if having prolems
+  )
 
 ;; haskell bits taken mostly from:
 ;;   https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
@@ -302,7 +351,20 @@
   :mode (("Vagrantfile$" . ruby-mode)
          ("Rakefile$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
-         ("Berksfile$" . ruby-mode)))
+         ("Berksfile$" . ruby-mode))
+  :config (setq flycheck-rubocop-lint-only nil))
+
+(use-package feature-mode
+  :config (setq feature-cucumber-command
+                "bundle exec cucumber {options} --tags ~@pending {feature}"))
+
+(use-package ruby-guard
+  :bind (("C-c C-g" . ruby-guard)))
+
+(use-package inf-ruby)
+
+(use-package rspec-mode
+  :config (add-hook 'ruby-mode-hook 'rspec-mode))
 
 (use-package go-mode
   :config (progn

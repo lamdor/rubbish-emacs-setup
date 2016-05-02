@@ -70,6 +70,13 @@
 
 (ansi-color-for-comint-mode-on)
 
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (read-only-mode t)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (read-only-mode nil))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; Misc Aliases
 (defalias 'qrr 'query-replace-regexp)
 

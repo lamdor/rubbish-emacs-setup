@@ -32,3 +32,5 @@ swank
 /.mc-lists.el
 /projectile.cache
 /url/
+/ensime/
+elpa.bak/

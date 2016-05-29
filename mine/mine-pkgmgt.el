@@ -257,7 +257,7 @@
 
 (use-package dockerfile-mode)
 
-(use-package scala-mode2
+(use-package scala-mode
   :mode (("\\.scala\\'" . scala-mode)
          ("\\.sbt\\'" . scala-mode))
   :config

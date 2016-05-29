@@ -16,8 +16,8 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
-(defvar mine-normal-font "Monaco 14" "*The main font")
-(defvar mine-big-font "Monaco 20" "*The fon mainly used in pairing and presentation modes")
+(defvar mine-normal-font "Hack 14" "*The main font")
+(defvar mine-big-font "Hack 20" "*The font mainly used in pairing and presentation modes")
 
 ;; utf8
 ;; disable CJK coding/encoding (Chinese/Japanese/Korean characters)

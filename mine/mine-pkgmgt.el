@@ -62,6 +62,9 @@
 (use-package switch-window
   :bind ("C-x o" . switch-window))
 
+(use-package golden-ratio
+  :config (golden-ratio-mode t))
+
 (use-package helm
   :pin melpa-stable
   :diminish helm-mode

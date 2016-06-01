@@ -375,6 +375,10 @@
               (if (file-exists-p oracle-el-file)
                   (load-file oracle-el-file)))))
 
+(use-package elixir-mode)
+
+(use-package alchemist)
+
 (use-package terraform-mode
   :config (setq terraform-indent-level 2))
 

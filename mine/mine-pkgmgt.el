@@ -63,8 +63,29 @@
 (use-package switch-window
   :bind ("C-x o" . switch-window))
 
-(use-package golden-ratio
-  :config (golden-ratio-mode t))
+(use-package multi-term)
+
+(use-package scratch)
+
+(use-package edit-server
+  :config (progn
+            (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
+            (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
+            (add-to-list 'edit-server-url-major-mode-alist '("reddit\\.com" . markdown-mode))
+            (add-hook 'edit-server-edit-mode-hook
+                      '(lambda () (set-frame-position (selected-frame) 360 200)))
+            (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
+            (add-hook 'edit-server-done-hook 'ns-raise-chrome)
+            (edit-server-start)))
+
+(use-package projectile
+  :pin melpa-stable
+  :diminish projectile-mode
+  :bind (:map projectile-command-map
+              ("a" . projectile-ag))
+  :config 'projectile-global-mode)
+
+;; helm
 
 (use-package helm
   :pin melpa-stable
@@ -89,6 +110,7 @@
                       #'(lambda ()
                           (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
                           (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
+            (eval-after-load 'projectile '(setq projectile-completion-system 'helm))
             (helm-mode t)))
 
 
@@ -106,47 +128,36 @@
 (use-package helm-ag)
 
 (use-package helm-company
-  :config (eval-after-load 'company
-            '(progn
-               (define-key company-mode-map (kbd "C-:") 'helm-company)
-               (define-key company-active-map (kbd "C-:") 'helm-company))))
-
-(use-package projectile
-  :pin melpa-stable
-  :diminish projectile-mode
-  :config (progn
-            (define-key projectile-command-map (kbd "a") 'projectile-ag)
-            (setq projectile-completion-system 'helm)
-            (projectile-global-mode)))
+  :after company
+  :bind ((:map company-mode-map
+               ("C-:" . helm-company))
+         (:map comapny-active-map
+               ("C-:" . helm-company))))
 
 (use-package helm-projectile
+  :after helm
+  :bind (:map projectile-command-map
+              ("b" . helm-projectile-switch-to-buffer)
+              ("d" . helm-projectile-find-dir)
+              ("f" . helm-projectile-find-file)
+              ("p" . helm-projectile-switch-project)
+              ("s s" . helm-projectile-ag))
   :config (progn
             (setq projectile-switch-project-action 'helm-projectile)
-            (helm-projectile-on)
-            (define-key projectile-command-map (kbd "a") 'projectile-ag)))
+            (helm-projectile-on)))
 
-(use-package scratch)
-
-(use-package edit-server
-  :config (progn
-            (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
-            (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
-            (add-to-list 'edit-server-url-major-mode-alist '("reddit\\.com" . markdown-mode))
-            (add-hook 'edit-server-edit-mode-hook
-                      '(lambda () (set-frame-position (selected-frame) 360 200)))
-            (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
-            (add-hook 'edit-server-done-hook 'ns-raise-chrome)
-            (edit-server-start)))
-
-(use-package gmail-message-mode)
+(use-package helm-open-github)
 
 ;; organiziation/presenation/sharing
+(use-package gmail-message-mode)
 
 (use-package org)
 (use-package org-tree-slide
-  :config (eval-after-load 'org '(progn
-                                   (define-key org-mode-map (kbd "<f8>") 'org-tree-slide-mode)
-                                   (define-key org-mode-map (kbd "S-<f8>") 'org-tree-slide-skip-done-toggle))))
+  :after org
+  :bind (:map org-mode-map
+              ("<f8>" . org-tree-slide-mode)
+              ("S-<f8>" . org-tree-slide-skip-done-toggle)))
+
 (use-package htmlize)
 (use-package ox-reveal)
 (use-package org-bullets
@@ -181,11 +192,12 @@
 
 (use-package smartparens
   :diminish smartparens-mode
+  :bind (:map smartparens-mode-map
+               ("M-<backspace>" . nil))
   :config (progn
             (require 'smartparens-config)
             (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
             (sp-use-smartparens-bindings)
-            (define-key smartparens-mode-map (kbd "M-<backspace>") nil)
             (add-hook 'eshell-mode-hook 'smartparens-mode)
             (add-hook 'minibuffer-setup-hook 'smartparens-mode)
             (smartparens-global-mode t)))

@@ -91,6 +91,7 @@
 (setq clean-buffer-list-kill-regexps '("^.*$"))
 
 (add-hook 'emacs-lisp-mode-hook '(lambda () (eldoc-mode t)))
+(add-hook 'emacs-lisp-mode-hook '(lambda () (company-mode t)))
 
 ;; Miscallaneous Things
 (if (fboundp 'mouse-wheel-mode) (mouse-wheel-mode t))

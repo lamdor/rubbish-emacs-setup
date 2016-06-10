@@ -31,6 +31,7 @@
   (progn
     (eval-after-load 'eldoc '(diminish 'eldoc-mode))
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
+    (eval-after-load 'company '(diminish 'company-mode))
     (diminish 'abbrev-mode)
     (diminish 'subword-mode)))
 
@@ -256,7 +257,8 @@
 (use-package coffee-mode
   :config (setq coffee-tab-width 2))
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :config (company-mode t))
 
 (use-package dockerfile-mode)
 
@@ -265,6 +267,7 @@
          ("\\.sbt\\'" . scala-mode))
   :config
   (progn
+    (company-mode t)
     (add-hook 'scala-mode-hook '(lambda ()
                                   (c-subword-mode t)))
     (setq scala-indent:align-parameters t)
@@ -293,6 +296,7 @@
 (use-package haskell-mode
   :config
   (progn
+    (company-mode t)
     (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
     (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
     (add-hook 'haskell-mode-hook 'subword-mode)
@@ -355,7 +359,9 @@
          ("Rakefile$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
          ("Berksfile$" . ruby-mode))
-  :config (setq flycheck-rubocop-lint-only nil))
+  :config (progn
+            (company-mode t)
+            (setq flycheck-rubocop-lint-only nil)))
 
 (use-package feature-mode
   :config (setq feature-cucumber-command
@@ -371,6 +377,7 @@
 
 (use-package go-mode
   :config (progn
+            (company-mode t)
             (add-hook 'before-save-hook 'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()
                                       (local-set-key (kbd "M-.") #'godef-jump)))
@@ -383,7 +390,9 @@
 (use-package alchemist)
 
 (use-package terraform-mode
-  :config (setq terraform-indent-level 2))
+  :config (progn
+            (company-mode t)
+            (setq terraform-indent-level 2)))
 
 
 (provide 'mine-pkgmgt)

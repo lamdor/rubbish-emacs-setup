@@ -8,6 +8,7 @@
 (require 'mine-pretty)
 (require 'mine-os)
 (require 'mine-eshell)
+(require 'mine-term)
 (require 'mine-isearch)
 (if (require 'mine-pkgmgt)
     (require 'mine-load-custom))

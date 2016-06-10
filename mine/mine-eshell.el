@@ -1,8 +1,6 @@
 (setq eshell-path-env (getenv "PATH"))
 
-(setq eshell-buffer-shorthand t)
-
-(setq eshell-aliases-file (concat user-emacs-directory "/custom/eshell/alias"))
+(setq eshell-aliases-file (concat user-emacs-directory "custom/eshell/alias"))
 
 (setq eshell-prefer-lisp-functions nil)
 
@@ -76,8 +74,8 @@
           (switch-to-buffer last-used)
         (mine-fullscreen-eshell)))))
 
-(global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
-(global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)
+;; (global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
+;; (global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)
 
 (add-hook 'eshell-mode-hook #'(lambda () (setq eshell-path-env (getenv "PATH"))))
 
@@ -113,7 +111,6 @@
 (setq eshell-smart-space-goes-to-end t)
 (setq eshell-where-to-jump 'begin)
 (setq eshell-review-quick-commands nil)
-
 
 ;; commands
 

@@ -385,7 +385,18 @@
               (if (file-exists-p oracle-el-file)
                   (load-file oracle-el-file)))))
 
-(use-package elixir-mode)
+(use-package elixir-mode
+  :config (progn
+            (company-mode t)
+            (eval-after-load 'smartparens
+              '(sp-with-modes '(elixir-mode)
+                 (sp-local-pair "fn" "end"
+                                :when '(("SPC" "RET"))
+                                :actions '(insert navigate))
+                 (sp-local-pair "do" "end"
+                                :when '(("SPC" "RET"))
+                                :post-handlers '(sp-ruby-def-post-handler)
+                                :actions '(insert navigate))))))
 
 (use-package alchemist)
 

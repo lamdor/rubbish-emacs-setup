@@ -31,7 +31,6 @@
   (progn
     (eval-after-load 'eldoc '(diminish 'eldoc-mode))
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
-    (eval-after-load 'company '(diminish 'company-mode))
     (diminish 'abbrev-mode)
     (diminish 'subword-mode)))
 
@@ -222,6 +221,10 @@
   (("M-z" . ace-jump-zap-up-to-char-dwim)
    ("C-M-z" . ace-jump-zap-to-char-dwim)))
 
+(use-package company
+  :diminish company-mode
+  :config (add-hook 'emacs-lisp-mode-hook 'company-mode))
+
 (use-package yasnippet
   :diminish yas-minor-mode
   :config
@@ -270,7 +273,7 @@
   :config (setq coffee-tab-width 2))
 
 (use-package yaml-mode
-  :config (company-mode t))
+  :config (add-hook 'yaml-mode-hook 'company-mode))
 
 (use-package dockerfile-mode)
 
@@ -279,9 +282,8 @@
          ("\\.sbt\\'" . scala-mode))
   :config
   (progn
-    (company-mode t)
-    (add-hook 'scala-mode-hook '(lambda ()
-                                  (c-subword-mode t)))
+    (add-hook 'scala-mode-hook 'company-mode)
+    (add-hook 'scala-mode-hook 'c-subword-mode)
     (setq scala-indent:align-parameters t)
     (setq scala-indent:align-forms t)))
 
@@ -308,7 +310,7 @@
 (use-package haskell-mode
   :config
   (progn
-    (company-mode t)
+    (add-hook 'haskell-mode-hook 'company-mode)
     (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
     (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
     (add-hook 'haskell-mode-hook 'subword-mode)
@@ -372,7 +374,7 @@
          ("Gemfile$" . ruby-mode)
          ("Berksfile$" . ruby-mode))
   :config (progn
-            (company-mode t)
+            (add-hook 'ruby-mode-hook 'company-mode)
             (setq flycheck-rubocop-lint-only nil)))
 
 (use-package feature-mode
@@ -389,7 +391,7 @@
 
 (use-package go-mode
   :config (progn
-            (company-mode t)
+            (add-hook 'go-mode-hook 'company-mode)
             (add-hook 'before-save-hook 'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()
                                       (local-set-key (kbd "M-.") #'godef-jump)))
@@ -399,7 +401,7 @@
 
 (use-package elixir-mode
   :config (progn
-            (company-mode t)
+            (add-hook 'elixir-mode-hook 'company-mode)
             (eval-after-load 'smartparens
               '(sp-with-modes '(elixir-mode)
                  (sp-local-pair "fn" "end"
@@ -414,7 +416,7 @@
 
 (use-package terraform-mode
   :config (progn
-            (company-mode t)
+            (add-hook 'terraform-mode-hook 'company-mode)
             (setq terraform-indent-level 2)))
 
 

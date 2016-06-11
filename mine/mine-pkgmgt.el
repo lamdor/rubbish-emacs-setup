@@ -81,8 +81,23 @@
   :pin melpa-stable
   :diminish projectile-mode
   :bind (:map projectile-command-map
-              ("a" . projectile-ag))
-  :config 'projectile-global-mode)
+              ("a" . projectile-ag)
+              ("T" . mine-projectile-term-create))
+  :config (progn
+            (projectile-global-mode)
+            (setq projectile-switch-project-action 'projectile-commander)
+
+            (defun mine-projectile-term-create ()
+              (interactive)
+              (mine-term-create (projectile-project-root)))
+
+            (def-projectile-commander-method ?T
+              "Run term in project."
+              (mine-projectile-term-create))
+
+            (def-projectile-commander-method ?c
+              "Run compile in project."
+              (call-interactively #'projectile-compile-project))))
 
 ;; helm
 
@@ -135,14 +150,13 @@
 
 (use-package helm-projectile
   :after helm
-  :bind (:map projectile-command-map
+  :bind ((:map projectile-command-map
               ("b" . helm-projectile-switch-to-buffer)
               ("d" . helm-projectile-find-dir)
               ("f" . helm-projectile-find-file)
               ("p" . helm-projectile-switch-project)
-              ("s s" . helm-projectile-ag))
+              ("s s" . helm-projectile-ag)))
   :config (progn
-            (setq projectile-switch-project-action 'helm-projectile)
             (helm-projectile-on)))
 
 (use-package helm-open-github)
@@ -195,11 +209,12 @@
                ("M-<backspace>" . nil))
   :config (progn
             (require 'smartparens-config)
-            (add-hook 'smartparens-enabled-hook '(lambda () (smartparens-strict-mode t)))
             (sp-use-smartparens-bindings)
+            (add-hook 'smartparens-enabled-hook 'smartparens-strict-mode)
             (add-hook 'eshell-mode-hook 'smartparens-mode)
             (add-hook 'minibuffer-setup-hook 'smartparens-mode)
             (smartparens-global-mode t)))
+
 
 (use-package multiple-cursors
   :bind (("C->" . mc/mark-next-like-this)

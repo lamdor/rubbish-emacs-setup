@@ -20,10 +20,11 @@
 (defun mine-get-term-buffers ()
   (delq nil (mapcar 'mine-term-buffer-p (buffer-list))))
 
-(defun mine-term-create ()
+(defun mine-term-create (&optional dir)
   (interactive)
-  (multi-term)
-  (mine-term-rename-buffer-pwd))
+  (let ((default-directory dir))
+    (multi-term)
+    (mine-term-rename-buffer-pwd)))
 
 (defun mine-term-find-best-match (dir)
   (let ((pwd (expand-file-name dir))

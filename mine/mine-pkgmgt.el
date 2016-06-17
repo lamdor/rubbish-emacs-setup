@@ -80,20 +80,9 @@
 (use-package projectile
   :pin melpa-stable
   :diminish projectile-mode
-  :bind (:map projectile-command-map
-              ("a" . projectile-ag)
-              ("T" . mine-projectile-term-create))
   :config (progn
             (projectile-global-mode)
             (setq projectile-switch-project-action 'projectile-commander)
-
-            (defun mine-projectile-term-create ()
-              (interactive)
-              (mine-term-create (projectile-project-root)))
-
-            (def-projectile-commander-method ?T
-              "Run term in project."
-              (mine-projectile-term-create))
 
             (def-projectile-commander-method ?c
               "Run compile in project."
@@ -110,7 +99,9 @@
           ("C-x C-f" . helm-find-files)
           ("C-x C-i" . helm-semantic-or-imenu)
           ("M-x" . helm-M-x)
-          ("C-c h" . helm-command-prefix))
+          ("C-c h" . helm-command-prefix)
+          (:map minibuffer-local-map
+                ("C-c C-l" . helm-minibuffer-history)))
   :config (progn
             (require 'helm-config)
             (setq helm-quick-update t
@@ -119,13 +110,16 @@
                   helm-move-to-line-cycle-in-source t
                   helm-ff-search-library-in-sexp t
                   helm-ff-file-name-history-use-recentf t)
-            (define-key helm-map (kbd "C-z")  'helm-select-action)
+
+            (helm-mode t)
+
             (add-hook 'eshell-mode-hook
-                      #'(lambda ()
-                          (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
-                          (define-key eshell-mode-map (kbd "M-r") 'helm-eshell-history)))
-            (eval-after-load 'projectile '(setq projectile-completion-system 'helm))
-            (helm-mode t)))
+                      (lambda ()
+                        (eshell-cmpl-initialize)
+                        (define-key eshell-mode-map [remap eshell-pcomplete] 'helm-esh-pcomplete)
+                        (define-key eshell-mode-map (kbd "C-c C-l") 'helm-eshell-history)))
+
+            (eval-after-load 'projectile '(setq projectile-completion-system 'helm))))
 
 
 (use-package helm-descbinds
@@ -150,14 +144,7 @@
 
 (use-package helm-projectile
   :after helm
-  :bind ((:map projectile-command-map
-              ("b" . helm-projectile-switch-to-buffer)
-              ("d" . helm-projectile-find-dir)
-              ("f" . helm-projectile-find-file)
-              ("p" . helm-projectile-switch-project)
-              ("s s" . helm-projectile-ag)))
-  :config (progn
-            (helm-projectile-on)))
+  :config (helm-projectile-on))
 
 (use-package helm-open-github)
 
@@ -205,8 +192,6 @@
 
 (use-package smartparens
   :diminish smartparens-mode
-  :bind (:map smartparens-mode-map
-               ("M-<backspace>" . nil))
   :config (progn
             (require 'smartparens-config)
             (sp-use-smartparens-bindings)
@@ -238,7 +223,7 @@
 
 (use-package company
   :diminish company-mode
-  :config (add-hook 'emacs-lisp-mode-hook 'company-mode))
+  :config (global-company-mode t))
 
 (use-package yasnippet
   :diminish yas-minor-mode
@@ -261,6 +246,7 @@
   :config (docker-global-mode t))
 
 ;; langs
+
 
 (use-package flycheck
   :pin melpa-stable
@@ -432,7 +418,7 @@
 (use-package terraform-mode
   :config (progn
             (add-hook 'terraform-mode-hook 'company-mode)
-            (setq terraform-indent-level 2)))
-
+            (setq terraform-indent-level 2)
+            (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . js-mode))))
 
 (provide 'mine-pkgmgt)

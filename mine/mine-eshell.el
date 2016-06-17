@@ -74,8 +74,8 @@
           (switch-to-buffer last-used)
         (mine-fullscreen-eshell)))))
 
-;; (global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
-;; (global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)
+(global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
+(global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)
 
 (add-hook 'eshell-mode-hook #'(lambda () (setq eshell-path-env (getenv "PATH"))))
 

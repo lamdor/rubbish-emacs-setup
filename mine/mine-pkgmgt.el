@@ -144,7 +144,11 @@
 
 (use-package helm-projectile
   :after helm
-  :config (helm-projectile-on))
+  :config (progn
+            (helm-projectile-on)
+            (def-projectile-commander-method ?a
+              "Find ag on project."
+              (call-interactively 'helm-projectile-ag))))
 
 (use-package helm-open-github)
 

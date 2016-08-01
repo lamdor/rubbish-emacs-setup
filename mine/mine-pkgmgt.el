@@ -26,6 +26,10 @@
 
 ;; general
 
+;; newest gh.el has caused problems with auth
+(use-package gh
+  :pin melpa-stable)
+
 (use-package diminish
   :config
   (progn

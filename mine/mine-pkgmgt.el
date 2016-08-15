@@ -309,8 +309,10 @@
                               (local-set-key (kbd "M-RET") 'comint-accumulate))))
 
 (use-package ensime
+  :pin melpa-stable
   :config
   (setq ensime-sbt-command "/usr/local/bin/sbt")
+  (setq ensime-use-helm t)
   (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
   ;; TODO set ensime sbt prefix to C-c s
   ;; TODO add scala-mode hook for if .ensime file exists

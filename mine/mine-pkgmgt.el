@@ -429,6 +429,8 @@
                                 :post-handlers '(sp-ruby-def-post-handler)
                                 :actions '(insert navigate))))))
 
+(use-package groovy-mode)
+
 (use-package alchemist)
 
 (use-package terraform-mode

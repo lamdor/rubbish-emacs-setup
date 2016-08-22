@@ -186,6 +186,7 @@
                       (set (make-local-variable 'whitespace-style) '(face lines-tail))
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
+         (global-magit-file-mode t)
          (setq magit-revert-buffers t)
          (setq magit-git-executable "git")))
 

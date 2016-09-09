@@ -269,9 +269,9 @@
             (global-flycheck-mode)))
 
 (use-package markdown-mode
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode))
   :config (progn
-            (add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
-            (add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
             (setq markdown-reference-location 'end)
 
             (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
@@ -428,15 +428,18 @@
                                 :when '(("SPC" "RET"))
                                 :post-handlers '(sp-ruby-def-post-handler)
                                 :actions '(insert navigate))))))
+;; (use-package alchemist)
 
-(use-package groovy-mode)
+(use-package protobuf-mode)
 
-(use-package alchemist)
+(use-package groovy-mode
+  :mode ("Jenkinsfile\\'" . groovy-mode))
+
 
 (use-package terraform-mode
+  :mode ("\\.tfstate\\'" . js-mode)
   :config (progn
             (add-hook 'terraform-mode-hook 'company-mode)
-            (setq terraform-indent-level 2)
-            (add-to-list 'auto-mode-alist '("\\.tfstate\\'" . js-mode))))
+            (setq terraform-indent-level 2)))
 
 (provide 'mine-pkgmgt)

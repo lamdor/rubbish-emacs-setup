@@ -194,7 +194,7 @@
   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 (use-package github-browse-file
-  :bind (("C-x M-g" . github-browse-file))
+  :bind (("C-x M-G" . github-browse-file))
   :config (setq github-browse-file-show-line-at-point t))
 
 ;; text editing

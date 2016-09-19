@@ -1,12 +1,8 @@
-;; package.el
-(require 'package)
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")
         ))
-
-(package-initialize)
 
 (unless (file-exists-p package-user-dir)
   (package-refresh-contents))

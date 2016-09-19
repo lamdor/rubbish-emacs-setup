@@ -1,3 +1,5 @@
+(package-initialize) ;; emacs 25.0 keeps adding this
+
 (add-to-list 'load-path (concat user-emacs-directory "/mine"))
 
 (require 'mine-builtin)

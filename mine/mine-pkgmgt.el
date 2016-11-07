@@ -150,8 +150,6 @@
               "Find ag on project."
               (call-interactively 'helm-projectile-ag))))
 
-(use-package helm-open-github)
-
 ;; organiziation/presenation/sharing
 (use-package gmail-message-mode)
 
@@ -189,9 +187,8 @@
 (use-package magit-gh-pulls
   :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
-(use-package github-browse-file
-  :bind (("C-x M-G" . github-browse-file))
-  :config (setq github-browse-file-show-line-at-point t))
+(use-package browse-at-remote
+  :bind (("C-x M-G" . browse-at-remote)))
 
 ;; text editing
 

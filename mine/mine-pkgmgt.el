@@ -287,7 +287,8 @@
 
 (use-package scala-mode
   :mode (("\\.scala\\'" . scala-mode)
-         ("\\.sbt\\'" . scala-mode))
+         ("\\.sbt\\'" . scala-mode)
+         ("\\.sc\\'" . scala-mode))
   :config
   (progn
     (add-hook 'scala-mode-hook 'company-mode)

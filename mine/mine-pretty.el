@@ -46,7 +46,7 @@
   (interactive)
   (if (frame-parameter (selected-frame) 'fullscreen)
       (set-frame-parameter (selected-frame) 'fullscreen nil)
-      (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)))
+    (set-frame-parameter (selected-frame) 'fullscreen 'fullboth)))
 
 (defun mine-use-transparency ()
   (interactive)

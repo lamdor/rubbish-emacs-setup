@@ -409,6 +409,9 @@
               (if (file-exists-p oracle-el-file)
                   (load-file oracle-el-file)))))
 
+(use-package company-go
+  :config (eval-after-load 'go-mode '(require 'company-go)))
+
 (use-package elixir-mode
   :config (progn
             (add-hook 'elixir-mode-hook 'company-mode)

@@ -158,6 +158,7 @@
 (use-package gmail-message-mode)
 
 (use-package org)
+
 (use-package org-tree-slide
   :after org
   :bind (:map org-mode-map
@@ -188,8 +189,9 @@
          (setq magit-revert-buffers t)
          (setq magit-git-executable "git")))
 
-(use-package magit-gh-pulls
-  :config (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
+(use-package magithub
+  :after magit
+  :config (magithub-feature-autoinject t))
 
 (use-package browse-at-remote
   :bind (("C-x M-G" . browse-at-remote)))

@@ -300,7 +300,10 @@
   (add-hook 'sbt-mode-hook '(lambda ()
                               (setq compilation-skip-threshold 2)
                               (local-set-key (kbd "C-a") 'comint-bol)
-                              (local-set-key (kbd "M-RET") 'comint-accumulate))))
+                              (local-set-key (kbd "M-RET") 'comint-accumulate)))
+  (add-hook 'scala-mode-hook '(lambda ()
+                                (if (string= (file-name-extension buffer-file-name) "sbt")
+                                    (flycheck-mode -1)))))
 
 (use-package ensime
   :pin melpa-stable

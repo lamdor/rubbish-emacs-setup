@@ -59,8 +59,8 @@
   :bind ("C-M-s" . ag)
   :config (setq ag-highlight-search t))
 
-(use-package switch-window
-  :bind ("C-x o" . switch-window))
+(use-package ace-window
+  :bind ("C-x o" . ace-window))
 
 (use-package multi-term)
 

@@ -84,6 +84,10 @@
             (projectile-global-mode)
             (setq projectile-switch-project-action 'projectile-commander)
 
+            (def-projectile-commander-method ?e
+              "Run eshell in project."
+              (call-interactively #'eshell))
+
             (def-projectile-commander-method ?c
               "Run compile in project."
               (call-interactively #'projectile-compile-project))))

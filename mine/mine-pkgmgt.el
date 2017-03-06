@@ -423,11 +423,13 @@
                                 :actions '(insert navigate))))))
 ;; (use-package alchemist)
 
-(use-package protobuf-mode)
+(use-package protobuf-mode
+  :mode ("\\.proto\\'" . protobuf-mode))
+
+(setq protobuf-mode-hook nil)
 
 (use-package groovy-mode
   :mode ("Jenkinsfile\\'" . groovy-mode))
-
 
 (use-package terraform-mode
   :mode ("\\.tfstate\\'" . js-mode)

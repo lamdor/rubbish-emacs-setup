@@ -33,6 +33,22 @@
 
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
+;; Window split behavior (see mine-bindings for these to get set)
+;; taken from https://www.youtube.com/watch?list=UUlT2UAbC6j7TqOWurVhkuHQ&v=nKCKuRuvAOw
+(defun mine-split-window-vertically-last-buffer (prefix)
+  (interactive "p")
+  (split-window-vertically)
+  (other-window 1 nil)
+  (if (= prefix 1)
+      (switch-to-next-buffer)))
+
+(defun mine-split-window-horizontally-last-buffer (prefix)
+  (interactive "p")
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (if (= prefix 1)
+      (switch-to-next-buffer)))
+
 ;; Tramp Optimizations
 (setq tramp-default-method "ssh")
 

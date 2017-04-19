@@ -318,7 +318,8 @@
                               (local-set-key (kbd "C-a") 'comint-bol)
                               (local-set-key (kbd "M-RET") 'comint-accumulate)))
   (add-hook 'scala-mode-hook '(lambda ()
-                                (if (string= (file-name-extension buffer-file-name) "sbt")
+                                (if (and buffer-file-name
+                                         (string= (file-name-extension buffer-file-name) "sbt"))
                                     (flycheck-mode -1)))))
 
 (use-package ensime

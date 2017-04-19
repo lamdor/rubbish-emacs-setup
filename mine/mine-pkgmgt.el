@@ -182,7 +182,6 @@
 (use-package gist)
 
 (use-package magit
-  :pin melpa-stable
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status)
          ("C-x G" . magit-blame))

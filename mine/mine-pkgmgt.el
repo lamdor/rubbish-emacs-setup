@@ -161,7 +161,7 @@
 ;; after emacs re-installs, the builtin org mode can foobar the EPLA package one
 ;; https://emacs.stackexchange.com/questions/28441/org-mode-9-unable-to-eval-code-blocks/28448#28448
 ;; so rm it with:
-;; rm -rf /usr/local/Cellar/emacs/25.1/share/emacs/25.1/lisp/org/
+;; rm -rf /usr/local/Cellar/emacs/25.2/share/emacs/25.2/lisp/org/
 
 (use-package org)
 

@@ -70,9 +70,14 @@
   :config (progn
             (add-to-list 'edit-server-url-major-mode-alist '("github\\.com" . gfm-mode))
             (add-to-list 'edit-server-url-major-mode-alist '("trello\\.com" . gfm-mode))
+            (add-to-list 'edit-server-url-major-mode-alist '("discourse\\.com" . gfm-mode))
             (add-to-list 'edit-server-url-major-mode-alist '("reddit\\.com" . markdown-mode))
             (add-hook 'edit-server-edit-mode-hook
-                      '(lambda () (set-frame-position (selected-frame) 360 200)))
+                      '(lambda ()
+                         (if (string-equal (frame-parameter (selected-frame) 'name) "Edit with Emacs FRAME")
+                             (set-frame-position (selected-frame)
+                                                 (- (/ (display-pixel-width) 2) 400)
+                                                 200))))
             (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
             (add-hook 'edit-server-done-hook 'ns-raise-chrome)
             (edit-server-start)))

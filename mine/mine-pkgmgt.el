@@ -298,6 +298,8 @@
                         (add-hook 'edit-server-done-hook 'markdown-cleanup-org-tables nil 'make-it-local)
                         (add-hook 'after-save-hook 'markdown-cleanup-org-tables nil 'make-it-local)))))
 
+(use-package edit-indirect)
+
 (use-package coffee-mode
   :config (setq coffee-tab-width 2))
 

@@ -54,7 +54,7 @@
           (switch-to-buffer best-match-buffer)
         (mine-eshell-create)))))
 
-(defun mine-fullscreen-eshell (&optional create-new)
+(defun mine-eshell (&optional create-new)
   (interactive "P")
   (if create-new
       (mine-eshell-switch-to-closest-or-create create-new)
@@ -62,8 +62,8 @@
         (jump-to-register :before-eshell-fullscreen)
       (progn
         (window-configuration-to-register :before-eshell-fullscreen)
-        (mine-eshell-switch-to-closest-or-create nil)
-        (delete-other-windows)))))
+        (split-window)
+        (mine-eshell-switch-to-closest-or-create nil)))))
 
 (defun mine-switch-to-last-eshell-buffer ()
   (interactive)
@@ -72,9 +72,9 @@
     (let ((last-used (car (mine-get-eshell-buffers))))
       (if last-used
           (switch-to-buffer last-used)
-        (mine-fullscreen-eshell)))))
+        (mine-eshell)))))
 
-(global-set-key (kbd "C-c t") 'mine-fullscreen-eshell)
+(global-set-key (kbd "C-c t") 'mine-eshell)
 (global-set-key (kbd "C-M-t") 'mine-switch-to-last-eshell-buffer)
 
 (add-hook 'eshell-mode-hook #'(lambda () (setq eshell-path-env (getenv "PATH"))))

@@ -124,6 +124,9 @@
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
 (setq-default save-place t)
 
+;; gpg
+(setq epa-pinentry-mode 'loopback)
+
 ;; ssh sudo
 (require 'tramp)
 (add-to-list 'tramp-default-proxies-alist

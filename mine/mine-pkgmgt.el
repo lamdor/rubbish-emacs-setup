@@ -109,8 +109,8 @@
           ("C-x C-i" . helm-semantic-or-imenu)
           ("M-x" . helm-M-x)
           ("C-c h" . helm-command-prefix)
-          (:map minibuffer-local-map
-                ("C-c C-l" . helm-minibuffer-history)))
+          :map minibuffer-local-map
+               ("C-c C-l" . helm-minibuffer-history))
   :config (progn
             (require 'helm-config)
             (setq helm-quick-update t
@@ -146,10 +146,10 @@
 
 (use-package helm-company
   :after company
-  :bind ((:map company-mode-map
-               ("C-:" . helm-company))
-         (:map comapny-active-map
-               ("C-:" . helm-company))))
+  :bind (:map company-mode-map
+               ("C-:" . helm-company)
+         :map comapny-active-map
+               ("C-:" . helm-company)))
 
 (use-package helm-projectile
   :after helm
@@ -419,8 +419,8 @@
   :config (setq feature-cucumber-command
                 "bundle exec cucumber {options} --tags ~@pending {feature}"))
 
-(use-package ruby-guard
-  :bind (("C-c C-g" . ruby-guard)))
+;; (use-package ruby-guard
+;;   :bind (("C-c C-g" . ruby-guard)))
 
 (use-package inf-ruby)
 

@@ -320,18 +320,6 @@
                                          (string= (file-name-extension buffer-file-name) "sbt"))
                                     (flycheck-mode -1)))))
 
-(use-package ensime
-  :pin melpa-stable
-  :config
-  (setq ensime-sbt-command "/usr/local/bin/sbt")
-  (setq ensime-use-helm t)
-  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-  ;; TODO set ensime sbt prefix to C-c s
-  ;; TODO add scala-mode hook for if .ensime file exists
-  ;; (setq ensime-sbt-perform-on-save "compile)
-  ;; (setq ensime-server-version "0.9.10-SNAPSHOT") ;; to something else if having prolems
-  )
-
 ;; haskell bits taken mostly from:
 ;;   https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ;;   https://github.com/chrisdone/emacs-haskell-config/tree/stack-mode

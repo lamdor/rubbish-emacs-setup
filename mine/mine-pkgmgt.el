@@ -12,18 +12,9 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; to force package.el to read new pins from use-package blocks
-;; https://github.com/jwiegley/use-package/issues/255
-(advice-add 'use-package-pin-package
-            :after #'(lambda (of &rest args) (package-read-all-archive-contents)))
-
 (setq use-package-always-ensure t)
 
 ;; general
-
-;; newest gh.el has caused problems with auth
-(use-package gh
-  :pin melpa-stable)
 
 (use-package diminish
   :config
@@ -188,7 +179,6 @@
 (use-package gist)
 
 (use-package magit
-  :pin melpa-stable
   :bind (("C-x g" . magit-status)
          ("C-x C-g" . magit-status)
          ("C-x G" . magit-blame))
@@ -205,7 +195,6 @@
          (setq magit-git-executable "git")))
 
 (use-package magithub
-  :pin melpa-stable
   :after magit
   :config (magithub-feature-autoinject t))
 

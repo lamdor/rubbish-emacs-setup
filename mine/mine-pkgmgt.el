@@ -446,4 +446,7 @@
             (add-hook 'terraform-mode-hook 'company-mode)
             (setq terraform-indent-level 2)))
 
+(use-package jsonnet-mode
+  :mode ("\\.libsonnet\\'" . jsonnet-mode))
+
 (provide 'mine-pkgmgt)

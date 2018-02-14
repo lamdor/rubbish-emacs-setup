@@ -99,6 +99,7 @@
           ("C-x C-i" . helm-semantic-or-imenu)
           ("M-x" . helm-M-x)
           ("C-c h" . helm-command-prefix)
+          ("M-i" . helm-occur)
           :map minibuffer-local-map
                ("C-c C-l" . helm-minibuffer-history))
   :config (progn
@@ -125,12 +126,6 @@
   :bind (("C-M-? b" . helm-descbinds)))
 
 (use-package wgrep-helm)
-
-(use-package helm-swoop
-  :bind (("M-i" . helm-swoop)
-         ("M-I" . helm-swoop-back-to-last-point)
-         ("C-c M-i" . helm-multi-swoop)
-         ("C-x M-i" . helm-multi-swoop-all)))
 
 (use-package helm-ag)
 

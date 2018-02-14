@@ -264,10 +264,10 @@ frames with exactly two windows."
   (set 'marked-files (dired-get-marked-files))
   (when (= (safe-length marked-files) 2)
     (ediff-files (nth 0 marked-files) (nth 1 marked-files)))
-  
+
   (when (= (safe-length marked-files) 3)
     (ediff3 (buffer-file-name (nth 0 marked-files))
-            (buffer-file-name (nth 1 marked-files)) 
+            (buffer-file-name (nth 1 marked-files))
             (buffer-file-name (nth 2 marked-files)))))
 
 (defun mine-command-line-tool (command &optional intial-args history history-symbol in-named-directory)
@@ -321,5 +321,23 @@ frames with exactly two windows."
   "Remove white spaces in beginning and ending of STRING.
 White space here is any of: space, tab, emacs newline (line feed, ASCII 10)."
   (replace-regexp-in-string "\\`[ \t\n]*" "" (replace-regexp-in-string "[ \t\n]*\\'" "" string)))
+
+(defun resolve-host-to-ip (host &optional from to)
+  "Takes a host or a region and returns the ip address"
+  (interactive
+   (if (use-region-p)
+       (list nil (region-beginning) (region-end))
+     (let ((bds (bounds-of-thing-at-point 'filename)))
+       (list nil (car bds) (cdr bds)))))
+  (let* ((_host host)
+         (host (or host (buffer-substring-no-properties from to)))
+         (cmd (concat "dig +short " host))
+         (ip (string-trim (shell-command-to-string cmd))))
+    (if _host
+        ip
+      (save-excursion
+        (delete-region from to)
+        (goto-char from)
+        (insert ip)))))
 
 (provide 'mine-defuns)

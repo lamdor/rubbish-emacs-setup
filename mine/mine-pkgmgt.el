@@ -444,4 +444,6 @@
 (use-package jsonnet-mode
   :mode ("\\.libsonnet\\'" . jsonnet-mode))
 
+(use-package nix-mode)
+
 (provide 'mine-pkgmgt)

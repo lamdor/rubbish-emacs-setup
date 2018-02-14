@@ -162,8 +162,7 @@
               ("<f8>" . org-tree-slide-mode)
               ("S-<f8>" . org-tree-slide-skip-done-toggle)))
 
-(use-package ob-async
-  :config (add-to-list 'org-ctrl-c-ctrl-c-hook 'ob-async-org-babel-execute-src-block))
+(use-package ob-async)
 
 (use-package htmlize)
 (use-package ox-reveal)

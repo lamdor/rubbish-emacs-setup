@@ -1,6 +1,7 @@
 (setq package-archives
       '(("gnu" . "https://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")
         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (unless (file-exists-p package-user-dir)

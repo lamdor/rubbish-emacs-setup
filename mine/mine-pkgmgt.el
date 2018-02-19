@@ -79,6 +79,7 @@
   :config (progn
             (projectile-global-mode)
             (setq projectile-switch-project-action 'projectile-commander)
+            (add-to-list 'projectile-project-root-files ".github")
 
             (def-projectile-commander-method ?e
               "Run eshell in project."
@@ -102,7 +103,7 @@
           ("C-c h" . helm-command-prefix)
           ("M-i" . helm-occur)
           :map minibuffer-local-map
-               ("C-c C-l" . helm-minibuffer-history))
+          ("C-c C-l" . helm-minibuffer-history))
   :config (progn
             (require 'helm-config)
             (setq helm-quick-update t
@@ -133,9 +134,9 @@
 (use-package helm-company
   :after company
   :bind (:map company-mode-map
-               ("C-:" . helm-company)
-         :map comapny-active-map
-               ("C-:" . helm-company)))
+              ("C-:" . helm-company)
+              :map comapny-active-map
+              ("C-:" . helm-company)))
 
 (use-package helm-projectile
   :after helm
@@ -315,64 +316,64 @@
                                          (string= (file-name-extension buffer-file-name) "sbt"))
                                     (flycheck-mode -1)))))
 
+;; THIS haskell-mode config needs updated
 ;; haskell bits taken mostly from:
 ;;   https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
 ;;   https://github.com/chrisdone/emacs-haskell-config/tree/stack-mode
 (use-package haskell-mode
-  :config
-  (progn
-    (add-hook 'haskell-mode-hook 'company-mode)
-    (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-    (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-    (add-hook 'haskell-mode-hook 'subword-mode)
-    (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-    (setq
-     haskell-complete-module-preferred '("Data.ByteString"
-                                         "Data.ByteString.Lazy"
-                                         "Data.Conduit"
-                                         "Data.Function"
-                                         "Data.List"
-                                         "Data.Map"
-                                         "Data.Maybe"
-                                         "Data.Monoid"
-                                         "Data.Ord")
+  ;; :config
+  ;; (progn
+  ;;   (add-hook 'haskell-mode-hook 'company-mode)
+  ;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+  ;;   (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
+  ;;   (add-hook 'haskell-mode-hook 'subword-mode)
+  ;;   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+  ;;   (setq
+  ;;    haskell-complete-module-preferred '("Data.ByteString"
+  ;;                                        "Data.ByteString.Lazy"
+  ;;                                        "Data.Conduit"
+  ;;                                        "Data.Function"
+  ;;                                        "Data.List"
+  ;;                                        "Data.Map"
+  ;;                                        "Data.Maybe"
+  ;;                                        "Data.Monoid"
+  ;;                                        "Data.Ord")
 
-     haskell-interactive-mode-eval-mode 'haskell-mode
-     haskell-interactive-mode-include-file-name nil
+  ;;    haskell-interactive-mode-eval-mode 'haskell-mode
+  ;;    haskell-interactive-mode-include-file-name nil
 
-     haskell-process-type 'stack-ghci
-     haskell-process-suggest-remove-import-lines t
-     haskell-process-auto-import-loaded-modules t
-     haskell-process-log t
-     haskell-process-reload-with-fbytecode nil
-     haskell-process-use-presentation-mode t
-     haskell-process-suggest-haskell-docs-imports t
-     haskell-process-suggest-remove-import-lines t
+  ;;    haskell-process-type 'stack-ghci
+  ;;    haskell-process-suggest-remove-import-lines t
+  ;;    haskell-process-auto-import-loaded-modules t
+  ;;    haskell-process-log t
+  ;;    haskell-process-reload-with-fbytecode nil
+  ;;    haskell-process-use-presentation-mode t
+  ;;    haskell-process-suggest-haskell-docs-imports t
+  ;;    haskell-process-suggest-remove-import-lines t
 
-     haskell-stylish-on-save nil
-     haskell-tags-on-save nil
-     )
-    (eval-after-load 'haskell-mode
-      '(progn
-         (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-         (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-         (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-         (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-         (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-         (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
-         (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-         (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
-         (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right)))))
-
-(use-package hindent
-  :config
-  (progn
-    (setq hindent-style "gibiansky")
-    (eval-after-load 'haskell-mode
-      '(progn
-         (define-key haskell-mode-map (kbd "C-c i") 'hindent-reformat-decl)
-         (define-key haskell-mode-map (kbd "C-c o") 'hindent-reformat-buffer)))))
-
+  ;;    haskell-stylish-on-save nil
+  ;;    haskell-tags-on-save nil
+  ;;    )
+  ;;   (eval-after-load 'haskell-mode
+  ;;     '(progn
+  ;;        (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+  ;;        (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+  ;;        (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  ;;        (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+  ;;        (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
+  ;;        (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
+  ;;        (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
+  ;;        (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
+  ;;        (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right))))
+  )
+;; (use-package hindent
+;;   :config
+;;   (progn
+;;     (setq hindent-style "gibiansky")
+;;     (eval-after-load 'haskell-mode
+;;       '(progn
+;;          (define-key haskell-mode-map (kbd "C-c i") 'hindent-reformat-decl)
+;;          (define-key haskell-mode-map (kbd "C-c o") 'hindent-reformat-buffer)))))
 ;; (use-package flycheck-haskell
 ;;   :ensure t
 ;;   :config
@@ -445,5 +446,14 @@
   :mode ("\\.libsonnet\\'" . jsonnet-mode))
 
 (use-package nix-mode)
+
+(use-package nix-sandbox
+  :config (progn
+            (setq flycheck-command-wrapper-function
+                  (lambda (command) (apply 'nix-shell-command (nix-current-sandbox) command))
+                  flycheck-executable-find
+                  (lambda (cmd) (nix-executable-find (nix-current-sandbox) cmd)))
+            (setq haskell-process-wrapper-function
+                  (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))))
 
 (provide 'mine-pkgmgt)

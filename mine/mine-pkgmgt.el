@@ -258,6 +258,10 @@
   :diminish docker-mode
   :config (docker-global-mode t))
 
+(use-package editorconfig
+  :diminish editorconfig-mode
+  :config (editorconfig-mode t))
+
 ;; langs
 
 

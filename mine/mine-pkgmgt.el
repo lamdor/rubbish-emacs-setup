@@ -23,7 +23,8 @@
     (eval-after-load 'eldoc '(diminish 'eldoc-mode))
     (eval-after-load 'flyspell '(diminish 'flyspell-mode))
     (diminish 'abbrev-mode)
-    (diminish 'subword-mode)))
+    (diminish 'subword-mode)
+    (diminish 'auto-revert-mode)))
 
 (use-package keyfreq
   :config
@@ -134,8 +135,6 @@
 (use-package helm-company
   :after company
   :bind (:map company-mode-map
-              ("C-:" . helm-company)
-              :map comapny-active-map
               ("C-:" . helm-company)))
 
 (use-package helm-projectile
@@ -187,7 +186,7 @@
                       (set (make-local-variable 'whitespace-line-column) 72)
                       (whitespace-mode t)))
          (global-magit-file-mode t)
-         (setq magit-revert-buffers t)
+         (magit-auto-revert-mode t)
          (setq magit-git-executable "git")))
 
 (use-package magithub
@@ -245,7 +244,7 @@
   (progn
     (setq yas-snippet-dirs (remove "~/.emacs.d/snippets" yas-snippet-dirs))
     (add-to-list 'yas-snippet-dirs "~/.emacs.d/custom/snippets")
-    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate t)))
+    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate-functions t)))
     (yas-global-mode t)))
 
 ;; colors
@@ -385,9 +384,7 @@
          ("Rakefile$" . ruby-mode)
          ("Gemfile$" . ruby-mode)
          ("Berksfile$" . ruby-mode))
-  :config (progn
-            (add-hook 'ruby-mode-hook 'company-mode)
-            (setq flycheck-rubocop-lint-only nil)))
+  :config (add-hook 'ruby-mode-hook 'company-mode))
 
 (use-package feature-mode
   :config (setq feature-cucumber-command
@@ -430,8 +427,6 @@
 
 (use-package protobuf-mode
   :mode ("\\.proto\\'" . protobuf-mode))
-
-(setq protobuf-mode-hook nil)
 
 (use-package groovy-mode
   :mode ("Jenkinsfile\\'" . groovy-mode))

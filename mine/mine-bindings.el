@@ -6,8 +6,6 @@
 (global-set-key (kbd "C-c y") 'bury-buffer)
 
 ;; frame/window
-(global-set-key (kbd "C-x 2") 'mine-split-window-vertically-last-buffer)
-(global-set-key (kbd "C-x 3") 'mine-split-window-horizontally-last-buffer)
 (global-set-key (kbd "C-x 7") 'swap-windows)
 (global-set-key (kbd "C-x 9") 'toggle-window-split)
 (global-set-key (kbd "C-M-9") 'winner-undo)

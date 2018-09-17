@@ -242,10 +242,10 @@
               ("C-TAB" . yas-expand))
   :config
   (progn
+    (yas-global-mode t)
     (setq yas-snippet-dirs (remove "~/.emacs.d/snippets" yas-snippet-dirs))
     (add-to-list 'yas-snippet-dirs "~/.emacs.d/custom/snippets")
-    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate-functions t)))
-    (yas-global-mode t)))
+    (add-hook 'term-mode-hook (lambda() (setq yas-dont-activate-functions t)))))
 
 ;; colors
 

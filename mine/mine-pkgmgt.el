@@ -444,6 +444,9 @@
 (use-package jsonnet-mode
   :mode ("\\.libsonnet\\'" . jsonnet-mode))
 
+(use-package dhall-mode
+  :config (setq dhall-format-command nil))
+
 (use-package nix-mode)
 
 (use-package nix-sandbox

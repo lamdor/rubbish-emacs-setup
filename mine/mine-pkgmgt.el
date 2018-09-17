@@ -112,7 +112,8 @@
                   helm-buffers-fuzzy-matching t
                   helm-move-to-line-cycle-in-source t
                   helm-ff-search-library-in-sexp t
-                  helm-ff-file-name-history-use-recentf t)
+                  helm-ff-file-name-history-use-recentf t
+                  helm-show-completion-display-function #'helm-show-completion-default-display-function)
 
             (helm-mode t)
 

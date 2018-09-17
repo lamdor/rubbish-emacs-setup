@@ -256,8 +256,7 @@
 
 (use-package docker-tramp)
 (use-package docker
-  :diminish docker-mode
-  :config (docker-global-mode t))
+  :bind ("C-c d" . docker))
 
 (use-package editorconfig
   :diminish editorconfig-mode

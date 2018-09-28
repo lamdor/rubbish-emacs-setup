@@ -1,4 +1,10 @@
+;; used in emacs-mac forc
+(setq mac-command-modifier (quote meta))
+(setq mac-option-modifier (quote meta))
+
+;; might be in older emacs versions or plain emacs
 (setq ns-command-modifier (quote meta))
+(setq ns-option-modifier (quote meta))
 
 (setq ns-use-proxy-icon nil)
 (setq frame-title-format nil)

@@ -79,6 +79,9 @@
   :diminish projectile-mode
   :config (progn
             (projectile-global-mode)
+
+            (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
             (setq projectile-switch-project-action 'projectile-commander)
             (add-to-list 'projectile-project-root-files ".github")
 

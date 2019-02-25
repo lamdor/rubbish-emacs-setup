@@ -193,9 +193,8 @@
          (magit-auto-revert-mode t)
          (setq magit-git-executable "git")))
 
-(use-package magithub
-  :after magit
-  :config (magithub-feature-autoinject t))
+(use-package forge
+  :after magit)
 
 (use-package browse-at-remote
   :bind (("C-x M-G" . browse-at-remote)))

@@ -34,3 +34,6 @@ swank
 /ensime/
 elpa.bak*/
 /magithub/cache
+/recentf
+/forge-database.sqlite
+/transient

@@ -152,12 +152,6 @@
 ;; organiziation/presenation/sharing
 (use-package gmail-message-mode)
 
-
-;; after emacs re-installs, the builtin org mode can foobar the EPLA package one
-;; https://emacs.stackexchange.com/questions/28441/org-mode-9-unable-to-eval-code-blocks/28448#28448
-;; so rm it with:
-;; rm -rf /usr/local/Cellar/emacs/25.3/share/emacs/25.3/lisp/org/
-
 (use-package org)
 
 (use-package org-tree-slide
@@ -321,70 +315,6 @@
                                          (string= (file-name-extension buffer-file-name) "sbt"))
                                     (flycheck-mode -1)))))
 
-;; THIS haskell-mode config needs updated
-;; haskell bits taken mostly from:
-;;   https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md
-;;   https://github.com/chrisdone/emacs-haskell-config/tree/stack-mode
-(use-package haskell-mode
-  ;; :config
-  ;; (progn
-  ;;   (add-hook 'haskell-mode-hook 'company-mode)
-  ;;   (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-  ;;   (add-hook 'haskell-mode-hook 'haskell-auto-insert-module-template)
-  ;;   (add-hook 'haskell-mode-hook 'subword-mode)
-  ;;   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  ;;   (setq
-  ;;    haskell-complete-module-preferred '("Data.ByteString"
-  ;;                                        "Data.ByteString.Lazy"
-  ;;                                        "Data.Conduit"
-  ;;                                        "Data.Function"
-  ;;                                        "Data.List"
-  ;;                                        "Data.Map"
-  ;;                                        "Data.Maybe"
-  ;;                                        "Data.Monoid"
-  ;;                                        "Data.Ord")
-
-  ;;    haskell-interactive-mode-eval-mode 'haskell-mode
-  ;;    haskell-interactive-mode-include-file-name nil
-
-  ;;    haskell-process-type 'stack-ghci
-  ;;    haskell-process-suggest-remove-import-lines t
-  ;;    haskell-process-auto-import-loaded-modules t
-  ;;    haskell-process-log t
-  ;;    haskell-process-reload-with-fbytecode nil
-  ;;    haskell-process-use-presentation-mode t
-  ;;    haskell-process-suggest-haskell-docs-imports t
-  ;;    haskell-process-suggest-remove-import-lines t
-
-  ;;    haskell-stylish-on-save nil
-  ;;    haskell-tags-on-save nil
-  ;;    )
-  ;;   (eval-after-load 'haskell-mode
-  ;;     '(progn
-  ;;        (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
-  ;;        (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  ;;        (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  ;;        (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-  ;;        (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def-or-tag)
-  ;;        (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
-  ;;        (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-  ;;        (define-key haskell-mode-map (kbd "C-,") 'haskell-move-nested-left)
-  ;;        (define-key haskell-mode-map (kbd "C-.") 'haskell-move-nested-right))))
-  )
-;; (use-package hindent
-;;   :config
-;;   (progn
-;;     (setq hindent-style "gibiansky")
-;;     (eval-after-load 'haskell-mode
-;;       '(progn
-;;          (define-key haskell-mode-map (kbd "C-c i") 'hindent-reformat-decl)
-;;          (define-key haskell-mode-map (kbd "C-c o") 'hindent-reformat-buffer)))))
-;; (use-package flycheck-haskell
-;;   :ensure t
-;;   :config
-;;   (eval-after-load
-;;       'flycheck '(add-hook 'flycheck-hode-hook #'flycheck-haskell-setup)))
-
 (use-package ruby-mode
   :mode (("Vagrantfile$" . ruby-mode)
          ("Rakefile$" . ruby-mode)
@@ -395,9 +325,6 @@
 (use-package feature-mode
   :config (setq feature-cucumber-command
                 "bundle exec cucumber {options} --tags ~@pending {feature}"))
-
-;; (use-package ruby-guard
-;;   :bind (("C-c C-g" . ruby-guard)))
 
 (use-package inf-ruby)
 
@@ -450,19 +377,5 @@
   :config (setq dhall-format-command nil))
 
 (use-package nix-mode)
-
-(use-package nix-sandbox
-  :config (progn
-            ;; (setq flycheck-command-wrapper-function
-            ;;       (lambda (command)
-            ;;         (apply 'nix-shell-command (nix-current-sandbox) command))
-            ;;       flycheck-executable-find
-            ;;       (lambda (cmd)
-            ;;         (progn
-            ;;           (message cmd)
-            ;;           (nix-executable-find (nix-current-sandbox) cmd))))
-            (setq haskell-process-wrapper-function
-                  (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args))))
-  )
 
 (provide 'mine-pkgmgt)

@@ -8,6 +8,7 @@
 (require 'mine-bindings)
 (require 'mine-desktop)
 (require 'mine-pretty)
+(require 'mine-env)
 (require 'mine-os)
 (require 'mine-eshell)
 (require 'mine-isearch)

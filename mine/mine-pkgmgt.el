@@ -293,6 +293,16 @@
 
 (use-package dockerfile-mode)
 
+(use-package rust-mode
+  :config (setq rust-format-on-save t))
+
+(use-package cargo
+  :diminish cargo-minor-mode
+  :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+(use-package flycheck-rust
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 (use-package scala-mode
   :mode (("\\.scala\\'" . scala-mode)
          ("\\.sbt\\'" . scala-mode)

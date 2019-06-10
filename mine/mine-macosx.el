@@ -19,8 +19,4 @@
                 (if (display-graphic-p f) ;; is a graphical frame
                     (ns-raise-emacs))))
 
-(defun ns-raise-chrome ()
-  (interactive)
-  (ns-do-applescript "tell application \"Google Chrome\" to activate"))
-
 (provide 'mine-macosx)

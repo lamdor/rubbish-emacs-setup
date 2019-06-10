@@ -138,4 +138,6 @@
 (require 'server)
 (unless (server-running-p) (server-start))
 
+(setq browse-url-browser-function 'browse-url-default-browser)
+
 (provide 'mine-builtin)

@@ -71,7 +71,6 @@
                                                  (- (/ (display-pixel-width) 2) 400)
                                                  200))))
             (add-hook 'edit-server-edit-mode-hook 'beginning-of-buffer)
-            (add-hook 'edit-server-done-hook 'ns-raise-chrome)
             (edit-server-start)))
 
 (use-package projectile
@@ -165,7 +164,7 @@
 (use-package htmlize)
 (use-package ox-reveal)
 (use-package org-bullets
-  :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  :hook org-mode)
 
 (use-package org-pomodoro)
 
@@ -262,10 +261,20 @@
 
 
 (use-package flycheck
-  :pin melpa-stable
   :config (progn
             (setq flycheck-standard-error-navigation nil)
             (global-flycheck-mode)))
+
+(use-package lsp-mode
+  :commands lsp
+  :config (require 'lsp-clients))
+
+(use-package lsp-ui)
+
+(use-package company-lsp)
+
+;; (use-package flycheck-inline
+;;   :config (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
 (use-package markdown-mode
   :mode (("\\.md\\'" . gfm-mode)
@@ -293,12 +302,15 @@
 
 (use-package dockerfile-mode)
 
+(use-package toml-mode)
+
 (use-package rust-mode
+  :hook (rust-mode . lsp)
   :config (setq rust-format-on-save t))
 
 (use-package cargo
   :diminish cargo-minor-mode
-  :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
+  :hook (rust-mode . cargo-minor-mode))
 
 (use-package flycheck-rust
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
@@ -343,6 +355,7 @@
 
 (use-package go-mode
   :config (progn
+            (add-hook 'go-mode-hook #'lsp)
             (add-hook 'go-mode-hook 'company-mode)
             (add-hook 'before-save-hook 'gofmt-before-save)
             (add-hook 'go-mode-hook (lambda ()

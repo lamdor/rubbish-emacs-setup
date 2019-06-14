@@ -187,7 +187,8 @@
          (setq magit-git-executable "git")))
 
 (use-package forge
-  :after magit)
+  :after magit
+  :config (setq forge-pull-notifications nil))
 
 (use-package browse-at-remote
   :bind (("C-x M-G" . browse-at-remote)))

@@ -83,6 +83,7 @@
 
             (setq projectile-switch-project-action 'projectile-commander)
             (add-to-list 'projectile-project-root-files ".github")
+            (add-to-list 'projectile-project-root-files ".exercism")
 
             (def-projectile-commander-method ?E
               "Run eshell in project."
